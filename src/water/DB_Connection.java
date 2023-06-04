@@ -21,7 +21,7 @@ public class DB_Connection {
     try{
        Class.forName("org.mariadb.jdbc.Driver");
        con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/water_billing", "root", "");
-       JOptionPane.showMessageDialog(null,"Connected");
+//       JOptionPane.showMessageDialog(null,"Connected");
     }catch(Exception e){
         JOptionPane.showMessageDialog(null,e);
     }

@@ -242,7 +242,7 @@ public class admin_login extends javax.swing.JFrame {
         String pass = jPasswordField1.getText();
         
         try{
-            pst = con.prepareStatement("SELECT * FROM users");
+            pst = con.prepareStatement("SELECT * FROM admin_user");
             rs = pst.executeQuery();
             
             while(rs.next()){
@@ -250,6 +250,7 @@ public class admin_login extends javax.swing.JFrame {
                 String password = rs.getString("User_Password");
                 
                 if((user.equals(username)) && (pass.equals(password))){
+                    JOptionPane.showMessageDialog(this,"Login Successful!");
                     new Dashboard().setVisible(true);
                     this.setVisible(false);
                 }
@@ -263,7 +264,7 @@ public class admin_login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Please enter Username!");
                 }
                 else{
-                    JOptionPane.showMessageDialog(this,"Invalid Login Credentials!");
+                    JOptionPane.showMessageDialog(this, "Invalid Credentials!");
                 }
             }
         } catch(Exception e) {
