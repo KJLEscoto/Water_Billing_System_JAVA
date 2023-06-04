@@ -23,9 +23,10 @@ public class DB_Connection {
        con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/water_billing", "root", "");
 //       JOptionPane.showMessageDialog(null,"Connected");
     }catch(Exception e){
-        JOptionPane.showMessageDialog(null,e);
+        JOptionPane.showMessageDialog(null, "Connect to Server First!", "Request Timeout", 2);
+        System.exit(0);
     }
         return con;
     }
-    
+
 }

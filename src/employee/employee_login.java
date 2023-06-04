@@ -1,5 +1,6 @@
-package admin;
+package employee;
 
+import admin.*;
 import java.awt.Color;
 import water.index;
 import java.sql.*;
@@ -16,7 +17,7 @@ import water.DB_Connection;
  * @author Kent
  */
 
-public class admin_login extends javax.swing.JFrame {
+public class employee_login extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement pst = null;
@@ -25,7 +26,7 @@ public class admin_login extends javax.swing.JFrame {
     /**
      * Creates new form index
      */
-    public admin_login() {
+    public employee_login() {
         initComponents();
         con = DB_Connection.con();
     }
@@ -117,7 +118,7 @@ public class admin_login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(10, 52, 66));
-        jLabel2.setText("ADMIN");
+        jLabel2.setText("EMPLOYEE");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(10, 52, 66));
@@ -126,9 +127,6 @@ public class admin_login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(10, 52, 66));
         jLabel4.setText("Username");
-
-        passwordPassField.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
-        passwordPassField.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(10, 52, 66));
@@ -146,15 +144,6 @@ public class admin_login extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,6 +165,15 @@ public class admin_login extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +243,7 @@ public class admin_login extends javax.swing.JFrame {
         String pass = passwordPassField.getText();
         
         try{
-            pst = con.prepareStatement("SELECT * FROM users WHERE User_Type='admin'");
+            pst = con.prepareStatement("SELECT * FROM users WHERE User_Type='employee'");
             rs = pst.executeQuery();
             
             while(rs.next()){
@@ -324,20 +322,21 @@ public class admin_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(employee_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(employee_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(employee_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(employee_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin_login().setVisible(true);
+                new employee_login().setVisible(true);
             }
         });
     }
