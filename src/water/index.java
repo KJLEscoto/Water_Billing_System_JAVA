@@ -16,6 +16,7 @@ public class index extends javax.swing.JFrame {
     /**
      * Creates new form index
      */
+            
     public index() {
         initComponents();
     }
@@ -137,8 +138,8 @@ public class index extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        admin_login a_l = new admin_login();
-        a_l.show();
+        new admin_login().setVisible(true);
+        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

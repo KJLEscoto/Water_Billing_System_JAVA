@@ -242,7 +242,7 @@ public class admin_login extends javax.swing.JFrame {
         String pass = jPasswordField1.getText();
         
         try{
-            pst = con.prepareStatement("SELECT * FROM admin_user");
+            pst = con.prepareStatement("SELECT * FROM users WHERE User_Type='admin'");
             rs = pst.executeQuery();
             
             while(rs.next()){
@@ -264,7 +264,7 @@ public class admin_login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Please enter Username!");
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Invalid Credentials!");
+                    JOptionPane.showMessageDialog(this, "Invalid Login Credentials!");
                 }
             }
         } catch(Exception e) {
@@ -274,8 +274,8 @@ public class admin_login extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        index i = new index();
-        i.show();
+        new index().setVisible(true);
+        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
