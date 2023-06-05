@@ -10,18 +10,17 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author Kent
  */
-public class Dashboard_content extends javax.swing.JInternalFrame {
+public class ListofClients_content extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Dashboard_content
+     * Creates new form ListofClients_content
      */
-    public Dashboard_content() {
+    public ListofClients_content() {
         initComponents();
         
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
-        
     }
 
     /**
@@ -35,23 +34,23 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("yawa");
+        jLabel1.setText("list of yawa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
+                .addGap(381, 381, 381)
                 .addComponent(jLabel1)
-                .addContainerGap(1009, Short.MAX_VALUE))
+                .addContainerGap(772, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addGap(192, 192, 192)
                 .addComponent(jLabel1)
-                .addContainerGap(556, Short.MAX_VALUE))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
 
         pack();
@@ -59,16 +58,6 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel countTotalClientsLabel;
-    private javax.swing.JLabel countTotalClientsLabel1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel totalClientsLabel;
-    private javax.swing.JLabel totalClientsLabel1;
-    private javax.swing.JPanel totalClientsPanel;
-    private javax.swing.JPanel totalClientsPanel1;
     // End of variables declaration//GEN-END:variables
 }

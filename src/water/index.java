@@ -11,6 +11,7 @@ package water;
  */
 
 import admin.admin_login;
+import employee.employee_login;
 
 public class index extends javax.swing.JFrame {
     /**
@@ -39,6 +40,7 @@ public class index extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Continue As...");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(10, 52, 66));
 
@@ -62,6 +64,11 @@ public class index extends javax.swing.JFrame {
         adminButton.setForeground(new java.awt.Color(217, 217, 217));
         adminButton.setText("ADMIN");
         adminButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                adminButtonMousePressed(evt);
+            }
+        });
         adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminButtonActionPerformed(evt);
@@ -145,7 +152,14 @@ public class index extends javax.swing.JFrame {
 
     private void employeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeButtonActionPerformed
         // TODO add your handling code here:
+        new employee_login().setVisible(true);
+        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_employeeButtonActionPerformed
+
+    private void adminButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminButtonMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adminButtonMousePressed
 
     /**
      * @param args the command line arguments

@@ -56,7 +56,8 @@ public class employee_login extends javax.swing.JFrame {
         showPassCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Admin | Login");
+        setTitle("Employee | Login");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(10, 52, 66));
 
