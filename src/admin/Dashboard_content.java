@@ -33,25 +33,182 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        tClientsPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        countTClientsLabel = new javax.swing.JLabel();
+        pendingBillsPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        CountPendingBillsLabel = new javax.swing.JLabel();
+        categoriesPanel = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        countCateLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setText("yawa");
+        jPanel3.setBackground(new java.awt.Color(57, 93, 120));
+
+        tClientsPanel.setBackground(new java.awt.Color(10, 52, 66));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big-listofclients.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(217, 217, 217));
+        jLabel2.setText("Total Clients");
+
+        countTClientsLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        countTClientsLabel.setForeground(new java.awt.Color(0, 255, 51));
+        countTClientsLabel.setText("0");
+
+        javax.swing.GroupLayout tClientsPanelLayout = new javax.swing.GroupLayout(tClientsPanel);
+        tClientsPanel.setLayout(tClientsPanelLayout);
+        tClientsPanelLayout.setHorizontalGroup(
+            tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tClientsPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(31, 31, 31)
+                .addGroup(tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(countTClientsLabel)
+                    .addComponent(jLabel2))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        tClientsPanelLayout.setVerticalGroup(
+            tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tClientsPanelLayout.createSequentialGroup()
+                .addGroup(tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tClientsPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1))
+                    .addGroup(tClientsPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(countTClientsLabel)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        pendingBillsPanel.setBackground(new java.awt.Color(10, 52, 66));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big-bills.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(217, 217, 217));
+        jLabel5.setText("Pending Bills");
+
+        CountPendingBillsLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        CountPendingBillsLabel.setForeground(new java.awt.Color(0, 255, 51));
+        CountPendingBillsLabel.setText("0");
+
+        javax.swing.GroupLayout pendingBillsPanelLayout = new javax.swing.GroupLayout(pendingBillsPanel);
+        pendingBillsPanel.setLayout(pendingBillsPanelLayout);
+        pendingBillsPanelLayout.setHorizontalGroup(
+            pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pendingBillsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(32, 32, 32)
+                .addGroup(pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(CountPendingBillsLabel))
+                .addGap(21, 21, 21))
+        );
+        pendingBillsPanelLayout.setVerticalGroup(
+            pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pendingBillsPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pendingBillsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(CountPendingBillsLabel))
+                    .addComponent(jLabel4))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        categoriesPanel.setBackground(new java.awt.Color(10, 52, 66));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big-cate.png"))); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(217, 217, 217));
+        jLabel8.setText("Categories");
+
+        countCateLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        countCateLabel.setForeground(new java.awt.Color(0, 255, 51));
+        countCateLabel.setText("0");
+
+        javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
+        categoriesPanel.setLayout(categoriesPanelLayout);
+        categoriesPanelLayout.setHorizontalGroup(
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel7)
+                .addGap(45, 45, 45)
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(countCateLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        categoriesPanelLayout.setVerticalGroup(
+            categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoriesPanelLayout.createSequentialGroup()
+                .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(categoriesPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(countCateLabel))
+                    .addGroup(categoriesPanelLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel7)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jLabel3.setText("\"Clean Water for");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 534, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tClientsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pendingBillsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(categoriesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(76, 76, 76))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(tClientsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pendingBillsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel3)))
+                .addGap(18, 18, 18)
+                .addComponent(categoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(jLabel1)
-                .addContainerGap(1009, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jLabel1)
-                .addContainerGap(556, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -59,13 +216,26 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CountPendingBillsLabel;
+    private javax.swing.JPanel categoriesPanel;
+    private javax.swing.JLabel countCateLabel;
+    private javax.swing.JLabel countTClientsLabel;
     private javax.swing.JLabel countTotalClientsLabel;
     private javax.swing.JLabel countTotalClientsLabel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel pendingBillsPanel;
+    private javax.swing.JPanel tClientsPanel;
     private javax.swing.JLabel totalClientsLabel;
     private javax.swing.JLabel totalClientsLabel1;
     private javax.swing.JPanel totalClientsPanel;
