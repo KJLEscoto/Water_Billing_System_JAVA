@@ -249,6 +249,9 @@ public class Dashboard extends javax.swing.JFrame {
         billingsPanel.setBackground(new java.awt.Color(10, 52, 66));
         billingsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         billingsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                billingsPanelMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 billingsPanelMousePressed(evt);
             }
@@ -785,6 +788,13 @@ public class Dashboard extends javax.swing.JFrame {
         contentDesktopPanel.removeAll();
         contentDesktopPanel.add(loc).setVisible(true);
     }//GEN-LAST:event_ListofClientsPanelMouseClicked
+
+    private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
+        // TODO add your handling code here:
+        Billings_content bc = new Billings_content();
+        contentDesktopPanel.removeAll();
+        contentDesktopPanel.add(bc).setVisible(true);
+    }//GEN-LAST:event_billingsPanelMouseClicked
 
     /**
      * @param args the command line arguments

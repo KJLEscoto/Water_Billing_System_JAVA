@@ -10,12 +10,12 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author Kent
  */
-public class ListofClients_content extends javax.swing.JInternalFrame {
+public class Billings_content extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ListofClients_content
      */
-    public ListofClients_content() {
+    public Billings_content() {
         initComponents();
         
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -55,7 +55,7 @@ public class ListofClients_content extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("LIST OF CLIENTS");
+        jLabel2.setText("BILLINGS");
 
         createNewClientsButton.setBackground(new java.awt.Color(10, 52, 66));
         createNewClientsButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -124,15 +124,23 @@ public class ListofClients_content extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "#", "Code", "Name", "Date Created", "Status", "Action"
+                "#", "Reading Date", "Client Code", "Amount", "Due Date", "Status", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
@@ -263,12 +271,12 @@ public class ListofClients_content extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
