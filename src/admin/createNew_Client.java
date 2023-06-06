@@ -5,6 +5,13 @@
 package admin;
 
 import java.awt.Color;
+import java.awt.Color;
+import water.index;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import water.DB_Connection;
 
 /**
  *
@@ -12,13 +19,17 @@ import java.awt.Color;
  */
 public class createNew_Client extends javax.swing.JFrame {
 
-    /**
-     * Creates new form createNew_Client
-     */
+   Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     public createNew_Client() {
         initComponents();
+        con = DB_Connection.con();
+        
+       
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,25 +46,25 @@ public class createNew_Client extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtClientCode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtClientFirstName = new javax.swing.JTextField();
+        txtClientMiddleName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtClientLastName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtClientContactNumber = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtClientAddress = new javax.swing.JTextField();
+        comboCategory = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtMeterCode = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txtFirstReading = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        comboClientStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,6 +96,11 @@ public class createNew_Client extends javax.swing.JFrame {
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,14 +141,14 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(9, 33, 43));
         jLabel4.setText("Middle Name");
 
-        jTextField5.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField5.setText("(Optional)");
-        jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtClientMiddleName.setForeground(new java.awt.Color(153, 153, 153));
+        txtClientMiddleName.setText("(Optional)");
+        txtClientMiddleName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField5FocusGained(evt);
+                txtClientMiddleNameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField5FocusLost(evt);
+                txtClientMiddleNameFocusLost(evt);
             }
         });
 
@@ -151,7 +167,7 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Category");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Commercial", "Residential" }));
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
         jLabel8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -173,6 +189,8 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(9, 33, 43));
         jLabel11.setText("Status");
 
+        comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Active", "Inactive" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,28 +204,27 @@ public class createNew_Client extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                        .addComponent(txtClientFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                        .addComponent(txtClientMiddleName, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField1))
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtClientCode))
+                    .addComponent(txtClientContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtClientLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel7)
-                        .addComponent(jComboBox1, 0, 285, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel9)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7)
+                    .addComponent(comboCategory, 0, 285, Short.MAX_VALUE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(txtMeterCode)
+                    .addComponent(txtClientAddress)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(txtFirstReading, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(comboClientStatus, 0, 285, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -221,42 +238,42 @@ public class createNew_Client extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
+                    .addComponent(txtClientCode, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(comboCategory))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClientFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtClientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClientMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtClientLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFirstReading, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtClientContactNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(comboClientStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -302,21 +319,77 @@ public class createNew_Client extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
+    private void txtClientMiddleNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClientMiddleNameFocusGained
         // TODO add your handling code here:
-        if(jTextField5.getText().equals("(Optional)")) {
-            jTextField5.setText("");
-            jTextField5.setForeground(new Color(0,0,0));
+        if(txtClientMiddleName.getText().equals("(Optional)")) {
+            txtClientMiddleName.setText("");
+            txtClientMiddleName.setForeground(new Color(0,0,0));
         }
-    }//GEN-LAST:event_jTextField5FocusGained
+    }//GEN-LAST:event_txtClientMiddleNameFocusGained
 
-    private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
+    private void txtClientMiddleNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClientMiddleNameFocusLost
         // TODO add your handling code here:
-        if(jTextField5.getText().equals("")) {
-            jTextField5.setText("(Optional)");
-            jTextField5.setForeground(new Color(153,153,153));
+        if(txtClientMiddleName.getText().equals("")) {
+            txtClientMiddleName.setText("(Optional)");
+            txtClientMiddleName.setForeground(new Color(153,153,153));
         }
-    }//GEN-LAST:event_jTextField5FocusLost
+    }//GEN-LAST:event_txtClientMiddleNameFocusLost
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+       try {
+           // TODO add your handling code here:
+           
+           String Client_ID = txtClientCode.getText();
+           String First_Name = txtClientFirstName.getText();
+           String Middle_Name = txtClientMiddleName.getText();
+           String Last_Name = txtClientLastName.getText();
+           String Contact_Number = txtClientContactNumber.getText();
+           String Category_Type = comboCategory.getSelectedItem().toString();
+           String Client_Address = txtClientAddress.getText();
+           String Meter_Code = txtMeterCode.getText();
+           String First_Reading = txtFirstReading.getText();
+           String Client_Status = comboClientStatus.getSelectedItem().toString();
+                      
+           String Client_Name = Last_Name + ", " + First_Name + " " + Middle_Name;
+                                
+           pst = con.prepareStatement("INSERT INTO clientinformation ( Client_ID, Client_Name, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) VALUES (?,?,?,?,?,?,?,?);");
+           
+         
+           pst.setString(1, Client_Name);
+           pst.setString(2, Contact_Number);
+           pst.setString(3, Category_Type);
+           pst.setString(4, Client_Address);
+           pst.setString(5, Meter_Code);
+           pst.setString(6, First_Reading);
+           pst.setString(7, Client_Status);
+           
+           
+           rs = pst.executeQuery();
+           
+           int k = pst.executeUpdate();
+           
+           if (k==1){
+               JOptionPane.showMessageDialog(this,"Client Added: Successfully!");
+                txtClientCode.setText("");
+                txtClientFirstName.setText("");
+                txtClientMiddleName.setText("");
+                txtClientLastName.setText("");
+                txtClientContactNumber.setText("");
+                comboCategory.setSelectedItem("");
+                txtClientAddress.setText("");
+                txtMeterCode.setText("");
+                txtFirstReading.setText("");
+                comboClientStatus.setSelectedItem("");
+           }
+           else{
+           JOptionPane.showMessageDialog(this,"Client failed to saved!");
+           }
+                      
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,7 +428,8 @@ public class createNew_Client extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboCategory;
+    private javax.swing.JComboBox<String> comboClientStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -370,15 +444,14 @@ public class createNew_Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField txtClientAddress;
+    private javax.swing.JTextField txtClientCode;
+    private javax.swing.JTextField txtClientContactNumber;
+    private javax.swing.JTextField txtClientFirstName;
+    private javax.swing.JTextField txtClientLastName;
+    private javax.swing.JTextField txtClientMiddleName;
+    private javax.swing.JTextField txtFirstReading;
+    private javax.swing.JTextField txtMeterCode;
     // End of variables declaration//GEN-END:variables
 }

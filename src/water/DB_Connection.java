@@ -17,10 +17,11 @@ public class DB_Connection {
     
     public static Connection con(){
     Connection con = null;
+    PreparedStatement pst;
     
     try{
        Class.forName("org.mariadb.jdbc.Driver");
-       con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/water_billing", "root", "");
+       con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/water_billing_system", "root", "");
 //       JOptionPane.showMessageDialog(null,"Connected");
     }catch(Exception e){
         JOptionPane.showMessageDialog(null, "Connect to Server First!", "Request Timeout", 2);

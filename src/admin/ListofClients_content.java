@@ -124,13 +124,13 @@ public class ListofClients_content extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "#", "Code", "Name", "Date Created", "Status", "Action"
+                "#", "Code", "Name", "Date Created", "Status"
             }
         ));
         jTable1.setEnabled(false);

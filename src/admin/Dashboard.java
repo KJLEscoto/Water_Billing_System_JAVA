@@ -29,6 +29,8 @@ public class Dashboard extends javax.swing.JFrame {
         
         DefaultColor = new Color(10,52,66);
         ActiveColor = new Color(217,217,217);
+        
+        contentTabPanel.setSelectedIndex(0);
     }
 
     /**
@@ -78,7 +80,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        contentTabPanel = new javax.swing.JTabbedPane();
         dashboardContentPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         tClientsPanel = new javax.swing.JPanel();
@@ -116,6 +118,7 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         monthlyReportsContentPanel = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
         ListofCategoriesContentPanel = new javax.swing.JPanel();
         ListofUsersContentPanel = new javax.swing.JPanel();
         settingsContentPanel = new javax.swing.JPanel();
@@ -804,7 +807,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab2", dashboardContentPanel);
+        contentTabPanel.addTab("tab2", dashboardContentPanel);
 
         jPanel4.setBackground(new java.awt.Color(10, 79, 95));
 
@@ -927,7 +930,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab7", ListofClientsContentPanel);
+        contentTabPanel.addTab("tab7", ListofClientsContentPanel);
 
         jPanel7.setBackground(new java.awt.Color(10, 79, 95));
 
@@ -1059,20 +1062,33 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab3", billingsContentPanel);
+        contentTabPanel.addTab("tab3", billingsContentPanel);
+
+        jPanel10.setBackground(new java.awt.Color(10, 79, 95));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1230, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 689, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout monthlyReportsContentPanelLayout = new javax.swing.GroupLayout(monthlyReportsContentPanel);
         monthlyReportsContentPanel.setLayout(monthlyReportsContentPanelLayout);
         monthlyReportsContentPanelLayout.setHorizontalGroup(
             monthlyReportsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         monthlyReportsContentPanelLayout.setVerticalGroup(
             monthlyReportsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 689, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab4", monthlyReportsContentPanel);
+        contentTabPanel.addTab("tab4", monthlyReportsContentPanel);
 
         javax.swing.GroupLayout ListofCategoriesContentPanelLayout = new javax.swing.GroupLayout(ListofCategoriesContentPanel);
         ListofCategoriesContentPanel.setLayout(ListofCategoriesContentPanelLayout);
@@ -1085,7 +1101,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 689, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab5", ListofCategoriesContentPanel);
+        contentTabPanel.addTab("tab5", ListofCategoriesContentPanel);
 
         javax.swing.GroupLayout ListofUsersContentPanelLayout = new javax.swing.GroupLayout(ListofUsersContentPanel);
         ListofUsersContentPanel.setLayout(ListofUsersContentPanelLayout);
@@ -1098,7 +1114,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 689, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab6", ListofUsersContentPanel);
+        contentTabPanel.addTab("tab6", ListofUsersContentPanel);
 
         javax.swing.GroupLayout settingsContentPanelLayout = new javax.swing.GroupLayout(settingsContentPanel);
         settingsContentPanel.setLayout(settingsContentPanelLayout);
@@ -1111,9 +1127,9 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 689, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab1", settingsContentPanel);
+        contentTabPanel.addTab("tab1", settingsContentPanel);
 
-        jPanel2.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 83, 1230, 720));
+        jPanel2.add(contentTabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 83, 1230, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1289,18 +1305,24 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void dashboardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseClicked
         // TODO add your handling code here:
+        contentTabPanel.setSelectedIndex(0);
     }//GEN-LAST:event_dashboardPanelMouseClicked
 
     private void ListofClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMouseClicked
         // TODO add your handling code here:
+        contentTabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_ListofClientsPanelMouseClicked
 
     private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
         // TODO add your handling code here:
+        contentTabPanel.setSelectedIndex(2);
     }//GEN-LAST:event_billingsPanelMouseClicked
 
     private void tClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClientsPanelMouseClicked
         // TODO add your handling code here:
+        
+        contentTabPanel.setSelectedIndex(1);
+        
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(ActiveColor);
         billingsPanel.setBackground(DefaultColor);
@@ -1316,10 +1338,15 @@ public class Dashboard extends javax.swing.JFrame {
         ListofCategoriesLabel.setForeground(ActiveColor);
         ListofUsersLabel.setForeground(ActiveColor);
         settingsLabel.setForeground(ActiveColor);
+        
+        
     }//GEN-LAST:event_tClientsPanelMouseClicked
 
     private void pendingBillsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pendingBillsPanelMouseClicked
         // TODO add your handling code here:
+        
+        contentTabPanel.setSelectedIndex(2);
+        
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
         billingsPanel.setBackground(ActiveColor);
@@ -1335,6 +1362,8 @@ public class Dashboard extends javax.swing.JFrame {
         ListofCategoriesLabel.setForeground(ActiveColor);
         ListofUsersLabel.setForeground(ActiveColor);
         settingsLabel.setForeground(ActiveColor);
+        
+        
     }//GEN-LAST:event_pendingBillsPanelMouseClicked
 
     private void categoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesPanelMouseClicked
@@ -1358,8 +1387,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void createNewClientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButtonActionPerformed
         new createNew_Client().setVisible(true);
-        createNewClientsButton.setEnabled(false);
-        createNewClientsButton.setForeground(Color.gray);
+     
+        
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
     private void createNewClientsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton1ActionPerformed
@@ -1418,6 +1447,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel billingsLabel;
     private javax.swing.JPanel billingsPanel;
     private javax.swing.JPanel categoriesPanel;
+    private javax.swing.JTabbedPane contentTabPanel;
     private javax.swing.JLabel countCateLabel;
     private javax.swing.JLabel countTClientsLabel;
     private javax.swing.JButton createNewClientsButton;
@@ -1458,6 +1488,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1468,7 +1499,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JPanel logoNamePanel;

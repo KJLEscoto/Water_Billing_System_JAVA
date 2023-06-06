@@ -91,31 +91,29 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField4" alignment="0" pref="285" max="32767" attributes="0"/>
-                              <Component id="jTextField5" alignment="0" pref="285" max="32767" attributes="0"/>
+                              <Component id="txtClientFirstName" alignment="0" pref="285" max="32767" attributes="0"/>
+                              <Component id="txtClientMiddleName" alignment="0" pref="285" max="32767" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtClientCode" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jTextField7" min="-2" pref="285" max="-2" attributes="0"/>
+                          <Component id="txtClientContactNumber" min="-2" pref="285" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField6" min="-2" pref="285" max="-2" attributes="0"/>
+                          <Component id="txtClientLastName" min="-2" pref="285" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="61" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="0" pref="285" max="32767" attributes="0"/>
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField3" max="32767" attributes="0"/>
-                              <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboCategory" alignment="0" pref="285" max="32767" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMeterCode" max="32767" attributes="0"/>
+                          <Component id="txtClientAddress" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField8" alignment="0" min="-2" pref="285" max="-2" attributes="0"/>
-                          <Component id="jTextField9" min="-2" pref="285" max="-2" attributes="0"/>
+                          <Component id="txtFirstReading" alignment="0" pref="285" max="32767" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboClientStatus" alignment="0" pref="285" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
@@ -133,8 +131,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField1" pref="30" max="32767" attributes="0"/>
-                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="txtClientCode" pref="30" max="32767" attributes="0"/>
+                          <Component id="comboCategory" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -143,8 +141,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtClientFirstName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtClientAddress" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -153,20 +151,20 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtClientMiddleName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtMeterCode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField6" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtClientLastName" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField8" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtFirstReading" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -175,9 +173,9 @@
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jTextField9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtClientContactNumber" pref="30" max="32767" attributes="0"/>
+                          <Component id="comboClientStatus" pref="30" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="80" max="32767" attributes="0"/>
                   </Group>
@@ -268,6 +266,9 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -285,7 +286,7 @@
                 <Property name="text" type="java.lang.String" value="Client Code"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="txtClientCode">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -315,9 +316,9 @@
                 <Property name="text" type="java.lang.String" value="Middle Name"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="txtClientFirstName">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="txtClientMiddleName">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
@@ -325,8 +326,8 @@
                 <Property name="text" type="java.lang.String" value="(Optional)"/>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField5FocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField5FocusLost"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtClientMiddleNameFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtClientMiddleNameFocusLost"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -343,7 +344,7 @@
                 <Property name="text" type="java.lang.String" value="Last Name"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
+            <Component class="javax.swing.JTextField" name="txtClientLastName">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -359,7 +360,7 @@
                 <Property name="text" type="java.lang.String" value="Contact #"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
+            <Component class="javax.swing.JTextField" name="txtClientContactNumber">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -375,20 +376,20 @@
                 <Property name="text" type="java.lang.String" value="Category"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="txtClientAddress">
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="comboCategory">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="---"/>
+                    <StringItem index="1" value="Commercial"/>
+                    <StringItem index="2" value="Residential"/>
                   </StringArray>
                 </Property>
               </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="createNew_Client_jComboBox1"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
@@ -420,7 +421,7 @@
                 <Property name="text" type="java.lang.String" value="Meter Code"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="txtMeterCode">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -436,9 +437,7 @@
                 <Property name="text" type="java.lang.String" value="First Reading"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField9">
+            <Component class="javax.swing.JTextField" name="txtFirstReading">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -453,6 +452,20 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Status"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboClientStatus">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="---"/>
+                    <StringItem index="1" value="Active"/>
+                    <StringItem index="2" value="Inactive"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
