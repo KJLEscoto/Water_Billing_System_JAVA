@@ -4,6 +4,7 @@
  */
 package admin;
 
+import admin.Dashboard;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -52,6 +53,11 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(57, 93, 120));
 
         tClientsPanel.setBackground(new java.awt.Color(10, 52, 66));
+        tClientsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tClientsPanelMouseClicked(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big-listofclients.png"))); // NOI18N
 
@@ -74,7 +80,7 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
                 .addGroup(tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(countTClientsLabel)
                     .addComponent(jLabel2))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tClientsPanelLayout.setVerticalGroup(
             tClientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,11 +116,11 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
             .addGroup(pendingBillsPanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(CountPendingBillsLabel))
-                .addGap(21, 21, 21))
+                .addGap(50, 50, 50))
         );
         pendingBillsPanelLayout.setVerticalGroup(
             pendingBillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +201,7 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
                     .addComponent(tClientsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pendingBillsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(categoriesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(76, 76, 76))
+                .addGap(46, 46, 46))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,17 +234,19 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClientsPanelMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_tClientsPanelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CountPendingBillsLabel;
     private javax.swing.JPanel categoriesPanel;
     private javax.swing.JLabel countCateLabel;
     private javax.swing.JLabel countTClientsLabel;
-    private javax.swing.JLabel countTotalClientsLabel;
-    private javax.swing.JLabel countTotalClientsLabel1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -246,14 +254,8 @@ public class Dashboard_content extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel pendingBillsPanel;
     private javax.swing.JPanel tClientsPanel;
-    private javax.swing.JLabel totalClientsLabel;
-    private javax.swing.JLabel totalClientsLabel1;
-    private javax.swing.JPanel totalClientsPanel;
-    private javax.swing.JPanel totalClientsPanel1;
     // End of variables declaration//GEN-END:variables
 }
