@@ -276,7 +276,7 @@ public class admin_login extends javax.swing.JFrame {
                 
                 if((user.equals(username)) && (pass.equals(password))){
                     JOptionPane.showMessageDialog(this,"Login Successful!");
-                    new Dashboard().setVisible(true);
+                    new admin_Dashboard().setVisible(true);
                     this.setVisible(false);
                 }
                 else if(user.equals("") && pass.equals("")){
@@ -331,7 +331,7 @@ public class admin_login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

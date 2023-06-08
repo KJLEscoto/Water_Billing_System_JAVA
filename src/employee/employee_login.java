@@ -57,6 +57,7 @@ public class employee_login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee | Login");
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(10, 52, 66));
@@ -253,7 +254,7 @@ public class employee_login extends javax.swing.JFrame {
                 
                 if((user.equals(username)) && (pass.equals(password))){
                     JOptionPane.showMessageDialog(this,"Login Successful!");
-                    new Dashboard().setVisible(true);
+                    new admin_Dashboard().setVisible(true);
                     this.setVisible(false);
                 }
                 else if(user.equals("") && pass.equals("")){
