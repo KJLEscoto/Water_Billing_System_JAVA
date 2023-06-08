@@ -2041,6 +2041,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void categoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesPanelMouseClicked
         // TODO add your handling code here:
+        
+        contentTabPanel.setSelectedIndex(4);
+        
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
         billingsPanel.setBackground(DefaultColor);
