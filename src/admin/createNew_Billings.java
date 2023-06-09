@@ -4,30 +4,19 @@
  */
 package admin;
 
-import java.awt.Color;
-import java.awt.Color;
-import water.index;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import water.DB_Connection;
-
 /**
  *
  * @author Kent
  */
-public class createNew_Client extends javax.swing.JFrame {
+public class createNew_Billings extends javax.swing.JFrame {
 
-   Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    
-    public createNew_Client() {
+    /**
+     * Creates new form createNew_Billings
+     */
+    public createNew_Billings() {
         initComponents();
-        con = DB_Connection.con();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,25 +33,21 @@ public class createNew_Client extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtClientCode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtClientFirstName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtClientLastName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtClientContactNumber = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtClientAddress = new javax.swing.JTextField();
-        comboCategory = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtMeterCode = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtFirstReading = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         comboClientStatus = new javax.swing.JComboBox<>();
         txtMidName = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -76,7 +61,7 @@ public class createNew_Client extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CREATE NEW CLIENT");
+        jLabel1.setText("CREATE NEW BILLING");
 
         cancelButton.setBackground(new java.awt.Color(99, 125, 131));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -107,7 +92,7 @@ public class createNew_Client extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,56 +112,71 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(9, 33, 43));
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel2.setText("Client Code");
+        jLabel2.setText("Client");
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel3.setText("First Name");
+        jLabel3.setText("Reading Date");
 
         jLabel4.setBackground(new java.awt.Color(9, 33, 43));
         jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel4.setText("Middle Name (Optional)");
+        jLabel4.setText("Rate per Cubic Meter (m^3)");
 
         jLabel5.setBackground(new java.awt.Color(9, 33, 43));
         jLabel5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel5.setText("Last Name");
+        jLabel5.setText("Previous Reading");
+
+        txtClientLastName.setEditable(false);
+        txtClientLastName.setBackground(new java.awt.Color(18, 137, 167));
+        txtClientLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtClientLastName.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setBackground(new java.awt.Color(9, 33, 43));
         jLabel6.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel6.setText("Contact #");
-
-        jLabel7.setBackground(new java.awt.Color(9, 33, 43));
-        jLabel7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel7.setText("Category");
-
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial", "Residential" }));
+        jLabel6.setText("Current Reading");
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
         jLabel8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel8.setText("Address");
+        jLabel8.setText("Total Bill");
 
         jLabel9.setBackground(new java.awt.Color(9, 33, 43));
         jLabel9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel9.setText("Meter Code");
+        jLabel9.setText("Due Date");
+
+        txtMeterCode.setEditable(false);
+        txtMeterCode.setBackground(new java.awt.Color(18, 137, 167));
+        txtMeterCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMeterCode.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setBackground(new java.awt.Color(9, 33, 43));
         jLabel10.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel10.setText("First Reading");
+        jLabel10.setText("Status");
 
-        jLabel11.setBackground(new java.awt.Color(9, 33, 43));
-        jLabel11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel11.setText("Status");
+        comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Paid" }));
 
-        comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+        txtMidName.setEditable(false);
+        txtMidName.setBackground(new java.awt.Color(18, 137, 167));
+        txtMidName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMidName.setForeground(new java.awt.Color(255, 255, 255));
+        txtMidName.setText("10.75");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client 1", "Client 2" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,30 +188,27 @@ public class createNew_Client extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(txtClientCode, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addComponent(comboCategory, 0, 285, Short.MAX_VALUE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtMeterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(txtClientContactNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtMidName, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel9)
+                        .addComponent(txtClientContactNumber)
+                        .addComponent(txtMidName)
+                        .addComponent(jComboBox1, 0, 285, Short.MAX_VALUE))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel3)
                         .addComponent(jLabel10)
-                        .addComponent(txtFirstReading, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addComponent(comboClientStatus, 0, 285, Short.MAX_VALUE))
-                    .addComponent(txtClientFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtClientLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboClientStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtClientLastName)
+                        .addComponent(jComboBox2, 0, 285, Short.MAX_VALUE))
+                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -224,42 +221,34 @@ public class createNew_Client extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClientCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClientFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jComboBox2))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtClientLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(txtMidName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(txtMidName))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtClientAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(txtClientContactNumber))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtClientContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFirstReading, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboClientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboClientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(164, 164, 164))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -275,12 +264,12 @@ public class createNew_Client extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -304,81 +293,13 @@ public class createNew_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+
         
-        String client_id = txtClientCode.getText();
-        String client_fname = txtClientFirstName.getText();
-        String client_mname = txtMidName.getText();
-        String client_lname = txtClientLastName.getText();
-        String contact_no = txtClientContactNumber.getText();
-        String category_type = (String) comboCategory.getSelectedItem();
-        String client_address = txtClientAddress.getText();
-        String meter_code = txtMeterCode.getText();
-        String first_reading = txtFirstReading.getText();
-        String client_status = (String) comboClientStatus.getSelectedItem();
-        
-        String client_name = client_lname + ", " + client_fname + " " + client_mname;
-        
-        try {
-//            String queryCheckDupKey = "SELECT * FROM clientinformation";
-//            pst = con.prepareStatement(queryCheckDupKey);
-//            rs = pst.executeQuery();
-//
-//            if (rs.next()) {
-//                String dupClientID = rs.getString("Client_ID");
-//                String dupClientName = rs.getString("Client_Name");
-//                String dupMeterCode = rs.getString("Meter_Code");
-//
-//                if (client_id.equals(dupClientID)) {
-//                    JOptionPane.showMessageDialog(this, "*Client Code* Already Exists!");
-//                    txtClientCode.setText(null);
-//                } else if (client_name.equals(dupClientName)) {
-//                    JOptionPane.showMessageDialog(this, "*Name* Already Exists!");
-//                    txtClientFirstName.setText(null);
-//                    txtMidName.setText(null);
-//                    txtClientLastName.setText(null);
-//                } else if (meter_code.equals(dupMeterCode)) {
-//                    JOptionPane.showMessageDialog(this, "*Meter Code* Already Exists!");
-//                    txtMeterCode.setText(null);
-//                }
-//            } else {
-                String queryClientInfo = "INSERT INTO clientinformation (Client_ID, Client_Name, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
-                        + "VALUES (?,?,?,?,?,?,?,?)";
-                pst = con.prepareStatement(queryClientInfo);
-
-                pst.setString(1, client_id);
-                pst.setString(2, client_name);
-                pst.setString(3, contact_no);
-                pst.setString(4, category_type);
-                pst.setString(5, client_address);
-                pst.setString(6, meter_code);
-                pst.setString(7, first_reading);
-                pst.setString(8, client_status);
-
-                int rowsAffected = pst.executeUpdate();
-
-                if (rowsAffected == 1) {
-                    JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
-
-                    txtClientCode.setText(null); 
-                    txtClientFirstName.setText(null);
-                    txtClientLastName.setText(null);
-                    txtMidName.setText(null);
-                    txtClientContactNumber.setText(null);
-                    comboCategory.setSelectedItem("Commercial");
-                    txtClientAddress.setText(null);
-                    txtMeterCode.setText(null);
-                    txtFirstReading.setText(null);
-                    comboClientStatus.setSelectedItem("Active");
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR:\nFailed to Add!");
-                }
-            
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERROR:\nDuplicate or Invalid Entries!");
-            txtClientCode.setText(null); 
-        }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,49 +318,45 @@ public class createNew_Client extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createNew_Billings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createNew_Billings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createNew_Billings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createNew_Billings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createNew_Client().setVisible(true);
+                new createNew_Billings().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox<String> comboCategory;
     private javax.swing.JComboBox<String> comboClientStatus;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton saveButton;
-    private javax.swing.JTextField txtClientAddress;
-    private javax.swing.JTextField txtClientCode;
     private javax.swing.JTextField txtClientContactNumber;
-    private javax.swing.JTextField txtClientFirstName;
     private javax.swing.JTextField txtClientLastName;
-    private javax.swing.JTextField txtFirstReading;
     private javax.swing.JTextField txtMeterCode;
     private javax.swing.JTextField txtMidName;
     // End of variables declaration//GEN-END:variables

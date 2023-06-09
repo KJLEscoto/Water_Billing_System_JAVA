@@ -52,12 +52,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        footer = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         sidebarPanel = new javax.swing.JPanel();
         logoNamePanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        firstWord = new javax.swing.JLabel();
+        secondWord = new javax.swing.JLabel();
+        thirdWord = new javax.swing.JLabel();
         dashboardPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         dashboardLabel = new javax.swing.JLabel();
@@ -84,11 +86,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         settingsLabel = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        systemName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         contentTabPanel = new javax.swing.JTabbedPane();
         dashboardContentPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -125,7 +125,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableClients1 = new javax.swing.JTable();
-        createNewClientsButton1 = new javax.swing.JButton();
+        createNewBillings = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -183,6 +183,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard | Admin | Water Biling System");
@@ -191,6 +192,31 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(10, 101, 128));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        footer.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel8.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel8.setText("Water Billing System © Leah & Kent | BSCS | HCI - 2023");
+
+        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
+        footer.setLayout(footerLayout);
+        footerLayout.setHorizontalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(footerLayout.createSequentialGroup()
+                .addGap(573, 573, 573)
+                .addComponent(jLabel8)
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
+        footerLayout.setVerticalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, footerLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 799, 1500, -1));
 
         sidebarPanel.setBackground(new java.awt.Color(10, 52, 66));
 
@@ -203,17 +229,17 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-dash.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(34, 178, 197));
-        jLabel3.setText("Water");
+        firstWord.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
+        firstWord.setForeground(new java.awt.Color(34, 178, 197));
+        firstWord.setText("Water");
 
-        jLabel5.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(34, 178, 197));
-        jLabel5.setText("Billing");
+        secondWord.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
+        secondWord.setForeground(new java.awt.Color(34, 178, 197));
+        secondWord.setText("Billing");
 
-        jLabel6.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(34, 178, 197));
-        jLabel6.setText("System");
+        thirdWord.setFont(new java.awt.Font("Ebrima", 1, 25)); // NOI18N
+        thirdWord.setForeground(new java.awt.Color(34, 178, 197));
+        thirdWord.setText("System");
 
         javax.swing.GroupLayout logoNamePanelLayout = new javax.swing.GroupLayout(logoNamePanel);
         logoNamePanel.setLayout(logoNamePanelLayout);
@@ -224,9 +250,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(logoNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(firstWord)
+                    .addComponent(secondWord)
+                    .addComponent(thirdWord))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         logoNamePanelLayout.setVerticalGroup(
@@ -235,11 +261,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(logoNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoNamePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstWord, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addComponent(secondWord)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
+                        .addComponent(thirdWord))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -611,9 +637,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         header.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("MANAGEMENT SITE - Admin");
+        systemName.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        systemName.setForeground(new java.awt.Color(51, 51, 51));
+        systemName.setText("MANAGEMENT SITE - Admin");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
 
@@ -634,7 +660,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(systemName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -647,7 +673,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(systemName)
                     .addGroup(headerLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -656,32 +682,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jPanel2.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 0, 1230, -1));
         header.getAccessibleContext().setAccessibleName("");
-
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel8.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Water Billing System © Leah & Kent | BSCS | 2023");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 799, 1230, -1));
 
         jPanel1.setBackground(new java.awt.Color(10, 79, 95));
 
@@ -1095,14 +1095,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
             tableClients1.getColumnModel().getColumn(5).setHeaderValue("Status");
         }
 
-        createNewClientsButton1.setBackground(new java.awt.Color(10, 52, 66));
-        createNewClientsButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        createNewClientsButton1.setForeground(new java.awt.Color(217, 217, 217));
-        createNewClientsButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
-        createNewClientsButton1.setText("Create New");
-        createNewClientsButton1.addActionListener(new java.awt.event.ActionListener() {
+        createNewBillings.setBackground(new java.awt.Color(10, 52, 66));
+        createNewBillings.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        createNewBillings.setForeground(new java.awt.Color(217, 217, 217));
+        createNewBillings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
+        createNewBillings.setText("Create New");
+        createNewBillings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createNewClientsButton1ActionPerformed(evt);
+                createNewBillingsActionPerformed(evt);
             }
         });
 
@@ -1162,7 +1162,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                             .addComponent(jButton6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8))
-                        .addComponent(createNewClientsButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createNewBillings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField2)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton11))
@@ -1187,7 +1187,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11)
                         .addGap(39, 39, 39)
-                        .addComponent(createNewClientsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createNewBillings, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -1220,7 +1220,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton12.setBackground(new java.awt.Color(18, 137, 167));
+        jButton12.setBackground(new java.awt.Color(10, 79, 95));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("FILTER");
@@ -1230,7 +1230,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setBackground(new java.awt.Color(18, 137, 167));
+        jButton13.setBackground(new java.awt.Color(10, 79, 95));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
         jButton13.setText("PRINT");
@@ -1267,7 +1267,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Code", "Reading_Date", "Due_Date", "Readings", "Consumption", "Rate", "Status", "Amount"
+                "No", "Code", "Reading_Date", "Due_Date", "Readings", "Consumption", "Rate", "Amount", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1278,13 +1278,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableClients2.setColumnSelectionAllowed(true);
         tableClients2.setEnabled(false);
         tableClients2.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tableClients2);
         tableClients2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tableClients2.getColumnModel().getColumnCount() > 0) {
-            tableClients2.getColumnModel().getColumn(4).setHeaderValue("Due_Date");
-        }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1733,10 +1731,15 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel35)
                         .addComponent(jLabel34)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton24)))
+                        .addGroup(jPanel16Layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(jButton24))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(jLabel36)
                 .addGap(139, 139, 139))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addComponent(jSeparator2)
+                .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1762,9 +1765,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -2064,7 +2069,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private void createNewClientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButtonActionPerformed
         new createNew_Client().setVisible(true);
      
-        
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2075,12 +2079,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void createNewClientsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton1ActionPerformed
+    private void createNewBillingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBillingsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createNewClientsButton1ActionPerformed
+        
+        new createNew_Billings().setVisible(true);
+        
+    }//GEN-LAST:event_createNewBillingsActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -2098,6 +2106,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void createNewClientsButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton2ActionPerformed
         // TODO add your handling code here:
+        
+        new createNew_Category().setVisible(true);
     }//GEN-LAST:event_createNewClientsButton2ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -2110,6 +2120,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void createNewClientsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton3ActionPerformed
         // TODO add your handling code here:
+        
+        new createNew_User().setVisible(true);
     }//GEN-LAST:event_createNewClientsButton3ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -2228,13 +2240,15 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane contentTabPanel;
     private javax.swing.JLabel countCateLabel;
     private javax.swing.JLabel countTClientsLabel;
+    private javax.swing.JButton createNewBillings;
     private javax.swing.JButton createNewClientsButton;
-    private javax.swing.JButton createNewClientsButton1;
     private javax.swing.JButton createNewClientsButton2;
     private javax.swing.JButton createNewClientsButton3;
     private javax.swing.JPanel dashboardContentPanel;
     private javax.swing.JLabel dashboardLabel;
     private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JLabel firstWord;
+    private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -2261,7 +2275,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2283,7 +2296,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2292,8 +2304,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2306,7 +2316,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -2319,6 +2328,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -2333,15 +2343,18 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel pendingBillsPanel;
     private javax.swing.JPanel reportsContentPanel;
     private javax.swing.JPanel reportsPanel;
+    private javax.swing.JLabel secondWord;
     private javax.swing.JPanel settingsContentPanel;
     private javax.swing.JLabel settingsLabel;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JPanel sidebarPanel;
+    private javax.swing.JLabel systemName;
     private javax.swing.JPanel tClientsPanel;
     private javax.swing.JTable tableClients;
     private javax.swing.JTable tableClients1;
     private javax.swing.JTable tableClients2;
     private javax.swing.JTable tableClients3;
     private javax.swing.JTable tableClients4;
+    private javax.swing.JLabel thirdWord;
     // End of variables declaration//GEN-END:variables
 }

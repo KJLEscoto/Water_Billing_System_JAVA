@@ -166,14 +166,12 @@ public class index extends javax.swing.JFrame {
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
         new admin_login().setVisible(true);
-        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void employeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeButtonActionPerformed
         // TODO add your handling code here:
         new employee_login().setVisible(true);
-        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_employeeButtonActionPerformed
 
