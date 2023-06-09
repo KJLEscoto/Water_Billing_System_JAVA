@@ -113,7 +113,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClients = new javax.swing.JTable();
         createNewClientsButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        viewDataClients = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -907,30 +907,26 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        tableClients.setAutoCreateRowSorter(true);
         tableClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Code", "Name", "Date_Created", "Status"
+                "Code", "Name", "Date_Created", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableClients.setColumnSelectionAllowed(true);
-        tableClients.setEnabled(false);
         tableClients.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableClients);
         tableClients.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tableClients.getColumnModel().getColumnCount() > 0) {
-            tableClients.getColumnModel().getColumn(4).setHeaderValue("Due_Date");
-        }
 
         createNewClientsButton.setBackground(new java.awt.Color(10, 52, 66));
         createNewClientsButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -943,13 +939,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(10, 52, 66));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(217, 217, 217));
-        jButton2.setText("View");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        viewDataClients.setBackground(new java.awt.Color(10, 52, 66));
+        viewDataClients.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewDataClients.setForeground(new java.awt.Color(217, 217, 217));
+        viewDataClients.setText("View");
+        viewDataClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                viewDataClientsActionPerformed(evt);
             }
         });
 
@@ -957,6 +953,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(217, 217, 217));
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(10, 52, 66));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -996,7 +997,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jButton2)
+                            .addComponent(viewDataClients)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3))
                         .addComponent(createNewClientsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1017,7 +1018,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(viewDataClients)
                             .addComponent(jButton3))
                         .addGap(44, 44, 44)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2071,9 +2072,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
      
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void viewDataClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDataClientsActionPerformed
         Fetch();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_viewDataClientsActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -2155,30 +2156,28 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void Fetch() {
         try {
             // TODO add your handling code here:
-            int q;
-            String sqlClientInformation = "SELECT * FROM clientinformation";
-            pst = con.prepareStatement(sqlClientInformation);
+            String queryClientInformation = "SELECT * FROM clientinformation";
+            
+            pst = con.prepareStatement(queryClientInformation);
             rs = pst.executeQuery();
             
-            ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
-            q = rss.getColumnCount();
-            
-            DefaultTableModel tblClients = (DefaultTableModel)tableClients.getModel();
-            tblClients.setRowCount(0);
-            
-            while(rs.next()){
-                String No = String.valueOf(rs.getInt("#"));
-                String Code = String.valueOf(rs.getInt("Client_ID"));
-                String Name = rs.getString("Client_Name");
-                String Date_Created = rs.getString("Date_Created");
-                String Status = rs.getString("Client_Status");
+            while(rs.next()) {
+                String code = rs.getString("Client_ID");
+                String name = rs.getString("Client_Name");
+                String date_created = rs.getString("Date_Created");
+                String client_status = rs.getString("Client_Status");
                 
-                String tbData[] = {No,Code,Name,Date_Created,Status};
-                DefaultTableModel tblModel = (DefaultTableModel)tableClients.getModel();
-                tblModel.addRow(tbData);
+                String tbData[] = {code,name,date_created,client_status};
+                DefaultTableModel tblClients = (DefaultTableModel)tableClients.getModel();
+                tblClients.addRow(tbData);
             }
             
         } catch (Exception ex) {
@@ -2261,7 +2260,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -2356,5 +2354,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableClients3;
     private javax.swing.JTable tableClients4;
     private javax.swing.JLabel thirdWord;
+    private javax.swing.JButton viewDataClients;
     // End of variables declaration//GEN-END:variables
 }
