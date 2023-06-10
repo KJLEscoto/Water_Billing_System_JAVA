@@ -4,9 +4,6 @@
  */
 package admin;
 
-import java.awt.Color;
-import java.awt.Color;
-import water.index;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +23,8 @@ public class createNew_Client extends javax.swing.JFrame {
     public createNew_Client() {
         initComponents();
         con = DB_Connection.con();
+        loadCategory();
+        clientIDincrement();
     }
     
     /**
@@ -127,7 +126,13 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(9, 33, 43));
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel2.setText("Client Code");
+        jLabel2.setText("Client ID");
+
+        txtClientCode.setEditable(false);
+        txtClientCode.setBackground(new java.awt.Color(18, 137, 167));
+        txtClientCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtClientCode.setForeground(new java.awt.Color(255, 255, 255));
+        txtClientCode.setText("1000");
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -154,7 +159,7 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Category");
 
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial", "Residential" }));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial" }));
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
         jLabel8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -359,7 +364,7 @@ public class createNew_Client extends javax.swing.JFrame {
                 if (rowsAffected == 1) {
                     JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
 
-                    txtClientCode.setText(null); 
+                    txtClientCode.setText(null);
                     txtClientFirstName.setText(null);
                     txtClientLastName.setText(null);
                     txtMidName.setText(null);
@@ -369,6 +374,8 @@ public class createNew_Client extends javax.swing.JFrame {
                     txtMeterCode.setText(null);
                     txtFirstReading.setText(null);
                     comboClientStatus.setSelectedItem("Active");
+                    clientIDincrement();
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR:\nFailed to Add!");
                 }
@@ -378,8 +385,42 @@ public class createNew_Client extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERROR:\nDuplicate or Invalid Entries!");
             txtClientCode.setText(null); 
         }
+               
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    public void loadCategory() {
+       
+       try {
+           String queryCategory = "SELECT Category_Type FROM categories";
+           pst = con.prepareStatement(queryCategory);
+           rs = pst.executeQuery();
+           comboCategory.removeAllItems();
+           
+           while(rs.next()) {
+               comboCategory.addItem(rs.getString(1));
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    private void clientIDincrement() {
+       try {
+           String queryClientID = "SELECT Client_ID FROM clientinformation ORDER BY Client_ID DESC LIMIT 1";
+           pst = con.prepareStatement(queryClientID);
+           rs = pst.executeQuery();
+           
+           if(rs.next()) {
+               int id = rs.getInt(1);
+               int n = id + 1;
+               txtClientCode.setText(Integer.toString(n));
+           }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
     /**
      * @param args the command line arguments
      */
