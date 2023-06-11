@@ -5,7 +5,8 @@
         <group>
             <file>file:/C:/Users/Kent/Documents/NetBeansProjects/Water_Billing_System/src/water/index.java</file>
             <file>file:/C:/Users/Kent/Documents/NetBeansProjects/Water_Billing_System/src/admin/admin_Dashboard.java</file>
-            <file>file:/C:/Users/Kent/Documents/NetBeansProjects/Water_Billing_System/src/admin/createNew_Billings.java</file>
+            <file>file:/C:/Users/Kent/Documents/NetBeansProjects/Water_Billing_System/src/admin/update_Client.java</file>
+            <file>file:/C:/Users/Kent/Documents/NetBeansProjects/Water_Billing_System/src/admin/createNew_Client.java</file>
         </group>
     </open-files>
 </project-private>

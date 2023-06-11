@@ -15,13 +15,13 @@ import admin.admin_Dashboard;
  *
  * @author Kent
  */
-public class createNew_Client extends javax.swing.JFrame {
+public class update_Client extends javax.swing.JFrame {
 
    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public createNew_Client() {
+    public update_Client() {
         initComponents();
         con = DB_Connection.con();
         loadCategory();
@@ -42,7 +42,7 @@ public class createNew_Client extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
+        updatebtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtClientCode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -76,7 +76,7 @@ public class createNew_Client extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CREATE NEW CLIENT");
+        jLabel1.setText("UPDATING CLIENT");
 
         cancelButton.setBackground(new java.awt.Color(99, 125, 131));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -89,14 +89,14 @@ public class createNew_Client extends javax.swing.JFrame {
             }
         });
 
-        saveButton.setBackground(new java.awt.Color(0, 55, 69));
-        saveButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
-        saveButton.setText("Save");
-        saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
+        updatebtn.setBackground(new java.awt.Color(0, 55, 69));
+        updatebtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        updatebtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatebtn.setText("Update");
+        updatebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+                updatebtnActionPerformed(evt);
             }
         });
 
@@ -110,7 +110,7 @@ public class createNew_Client extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,7 +120,7 @@ public class createNew_Client extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -308,14 +308,15 @@ public class createNew_Client extends javax.swing.JFrame {
         // TODO add your handling code here:
         String addValue = txtClientCode.getText();
         //comboClientIDList.addItem(addValue);
+        admin_Dashboard a = new admin_Dashboard();
+        a.Fetch();
+        a.loadClient_ID();
+        a.displayTCountClients();
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-          saveNewClient();
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    public void saveNewClient() {
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+         
         String client_id = txtClientCode.getText();
         String client_fname = txtClientFirstName.getText();
         String client_mname = txtMidName.getText();
@@ -382,21 +383,17 @@ public class createNew_Client extends javax.swing.JFrame {
                     comboClientStatus.setSelectedItem("Active");
                     clientIDincrement();
                     
-                    admin.admin_Dashboard a = new admin.admin_Dashboard();
-                    a.Fetch();
-                    a.loadClient_ID();
-                    
-                    
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR:\nFailed to Add!");
                 }
             
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERROR:\n Please provide a Data!");
+            JOptionPane.showMessageDialog(null, "ERROR:\nDuplicate or Invalid Entries!");
         }
-    }
-    
+               
+    }//GEN-LAST:event_updatebtnActionPerformed
+
     public void loadCategory() {
        
        try {
@@ -409,7 +406,7 @@ public class createNew_Client extends javax.swing.JFrame {
                comboCategory.addItem(rs.getString(1));
            }
        } catch (SQLException ex) {
-           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
     
@@ -426,33 +423,38 @@ public class createNew_Client extends javax.swing.JFrame {
            }
            
        } catch (SQLException ex) {
-           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
     
-    public void updateClient() {
+    public void updatingClient() {
        try {
-           String Client_ID = txtClientCode.getText();
-           String First_Name = txtClientFirstName.getText();
-           String Middle_Name = txtMidName.getText();
-           String Last_Name = txtClientLastName.getText();
-           String Contact_Number = txtClientContactNumber.getText();
-           String Client_Address = txtClientAddress.getText();
-           String Meter_Code = txtMeterCode.getText();
-           String First_Reading= txtFirstReading.getText();
-           String category_type = (String) comboCategory.getSelectedItem();
-           String client_status = (String) comboClientStatus.getSelectedItem();
+           String queryDisplayClient = "SELECT * FROM clientinformation";
+           pst = con.prepareStatement(queryDisplayClient);
+           rs = pst.executeQuery();
            
-           pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
+           while(rs.next()) {
+            String client_id = txtClientCode.getText();
+            String client_fname = txtClientFirstName.getText();
+            String client_mname = txtMidName.getText();
+            String client_lname = txtClientLastName.getText();
+            String contact_no = txtClientContactNumber.getText();
+            String category_type = (String) comboCategory.getSelectedItem();
+            String client_address = txtClientAddress.getText();
+            String meter_code = txtMeterCode.getText();
+            String first_reading = txtFirstReading.getText();
+            String client_status = (String) comboClientStatus.getSelectedItem();   
+               
+            pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
                    + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_ID=?");
-            pst.setString(1, Client_ID);
-            pst.setString(2, First_Name );
-            pst.setString(3, Middle_Name);
-            pst.setString(4, Last_Name );
-            pst.setString(5, Contact_Number );
-            pst.setString(6, Client_Address);
-            pst.setString(7, Meter_Code);
-            pst.setString(8, First_Reading);
+            pst.setString(1, client_id);
+            pst.setString(2, client_fname );
+            pst.setString(3, client_mname);
+            pst.setString(4, client_lname );
+            pst.setString(5, contact_no );
+            pst.setString(6, client_address);
+            pst.setString(7, meter_code);
+            pst.setString(8, first_reading);
             pst.setString(9, category_type );
             pst.setString(10, client_status );
                 
@@ -478,11 +480,12 @@ public class createNew_Client extends javax.swing.JFrame {
                     a.loadClient_ID();
                  
                 }
-                
+           }
            
        } catch (SQLException ex) {
-           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
        }
+       
        
     }
     
@@ -503,20 +506,21 @@ public class createNew_Client extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(createNew_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Client.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createNew_Client().setVisible(true);
+                new update_Client().setVisible(true);
             }
         });
     }
@@ -539,7 +543,6 @@ public class createNew_Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton saveButton;
     private javax.swing.JTextField txtClientAddress;
     private javax.swing.JTextField txtClientCode;
     private javax.swing.JTextField txtClientContactNumber;
@@ -548,5 +551,6 @@ public class createNew_Client extends javax.swing.JFrame {
     private javax.swing.JTextField txtFirstReading;
     private javax.swing.JTextField txtMeterCode;
     private javax.swing.JTextField txtMidName;
+    private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }
