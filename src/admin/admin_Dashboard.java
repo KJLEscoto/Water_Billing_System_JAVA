@@ -40,11 +40,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
     
     public admin_Dashboard() {
         initComponents();
+        con = DB_Connection.con();
         
         DefaultColor = new Color(10,52,66);
         ActiveColor = new Color(217,217,217);
         contentTabPanel.setSelectedIndex(0);
-        con = DB_Connection.con();
         displayTCountClients();
     }
 
@@ -116,6 +116,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        countTClientsLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClients = new javax.swing.JTable();
         createNewClientsButton = new javax.swing.JButton();
@@ -125,18 +126,18 @@ public class admin_Dashboard extends javax.swing.JFrame {
         searchIDBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         billingsContentPanel = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableClients1 = new javax.swing.JTable();
-        createNewBillings = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        countTBillingsLabel = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tableClients5 = new javax.swing.JTable();
+        createNewClientsButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        deleteClient1 = new javax.swing.JButton();
+        comboClientIDList1 = new javax.swing.JComboBox<>();
+        searchIDBtn1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         reportsContentPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -147,31 +148,31 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tableClients2 = new javax.swing.JTable();
         ListofCategoriesContentPanel = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        countTClientsLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableClients1 = new javax.swing.JTable();
+        createNewClientsButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        deleteClient2 = new javax.swing.JButton();
+        comboClientIDList2 = new javax.swing.JComboBox<>();
+        searchIDBtn2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        ListofUsersContentPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
+        countTClientsLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableClients3 = new javax.swing.JTable();
         createNewClientsButton2 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        ListofUsersContentPanel = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tableClients4 = new javax.swing.JTable();
-        createNewClientsButton3 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        deleteClient3 = new javax.swing.JButton();
+        comboClientIDList3 = new javax.swing.JComboBox<>();
+        searchIDBtn3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         settingsContentPanel = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
@@ -893,7 +894,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("LIST OF CLIENTS");
+        jLabel25.setText("LIST OF CLIENTS -");
+
+        countTClientsLabel2.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTClientsLabel2.setForeground(new java.awt.Color(0, 255, 51));
+        countTClientsLabel2.setText("0");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -902,14 +907,18 @@ public class admin_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel25)
-                .addContainerGap(921, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(countTClientsLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel25)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(countTClientsLabel2))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         tableClients.setAutoCreateRowSorter(true);
@@ -982,7 +991,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         comboClientIDList.setBackground(new java.awt.Color(102, 102, 102));
         comboClientIDList.setForeground(new java.awt.Color(255, 255, 255));
-        comboClientIDList.setMaximumRowCount(3);
+        comboClientIDList.setMaximumRowCount(4);
         comboClientIDList.setAutoscrolls(true);
 
         searchIDBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
@@ -1005,7 +1014,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1026,22 +1035,19 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(searchIDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(searchIDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboClientIDList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
+                        .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteClient, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(deleteClient, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -1058,153 +1064,166 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         contentTabPanel.addTab("tab7", ListofClientsContentPanel);
 
-        jPanel6.setBackground(new java.awt.Color(10, 79, 95));
+        jPanel17.setBackground(new java.awt.Color(10, 79, 95));
 
-        jPanel7.setBackground(new java.awt.Color(18, 137, 167));
+        jPanel18.setBackground(new java.awt.Color(18, 137, 167));
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("BILLINGS");
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("BILLINGS -");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        countTBillingsLabel.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTBillingsLabel.setForeground(new java.awt.Color(0, 255, 51));
+        countTBillingsLabel.setText("0");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel26)
-                .addContainerGap(1040, Short.MAX_VALUE))
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(countTBillingsLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel26)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(countTBillingsLabel))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        tableClients1.setModel(new javax.swing.table.DefaultTableModel(
+        tableClients5.setAutoCreateRowSorter(true);
+        tableClients5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Reading_Date", "Code", "Amount", "Due_Date", "Status"
+                "Reading_Date", "Code", "Amount", "Due_Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableClients1.setEnabled(false);
-        tableClients1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tableClients1);
-        tableClients1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tableClients1.getColumnModel().getColumnCount() > 0) {
-            tableClients1.getColumnModel().getColumn(4).setHeaderValue("Due_Date");
-            tableClients1.getColumnModel().getColumn(5).setHeaderValue("Status");
-        }
+        tableClients5.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableClients5.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableClients5.setShowGrid(false);
+        tableClients5.setShowHorizontalLines(true);
+        tableClients5.getTableHeader().setReorderingAllowed(false);
+        tableClients5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableClients5MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tableClients5);
+        tableClients5.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        createNewBillings.setBackground(new java.awt.Color(10, 52, 66));
-        createNewBillings.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        createNewBillings.setForeground(new java.awt.Color(217, 217, 217));
-        createNewBillings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
-        createNewBillings.setText("Create New");
-        createNewBillings.addActionListener(new java.awt.event.ActionListener() {
+        createNewClientsButton1.setBackground(new java.awt.Color(10, 52, 66));
+        createNewClientsButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        createNewClientsButton1.setForeground(new java.awt.Color(217, 217, 217));
+        createNewClientsButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
+        createNewClientsButton1.setText("Create New");
+        createNewClientsButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createNewBillingsActionPerformed(evt);
+                createNewClientsButton1ActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(10, 52, 66));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(217, 217, 217));
-        jButton6.setText("View");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(10, 52, 66));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(217, 217, 217));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        jButton5.setText("Update Data");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(10, 52, 66));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(217, 217, 217));
-        jButton8.setText("Clear");
-
-        jButton9.setBackground(new java.awt.Color(10, 52, 66));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(217, 217, 217));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton9.setText("Update Data");
-
-        jButton10.setBackground(new java.awt.Color(10, 52, 66));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(217, 217, 217));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        jButton10.setText("Delete Data");
-
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo.png"))); // NOI18N
-
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setText("Search...");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        deleteClient1.setBackground(new java.awt.Color(10, 52, 66));
+        deleteClient1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleteClient1.setForeground(new java.awt.Color(217, 217, 217));
+        deleteClient1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        deleteClient1.setText("Delete Data");
+        deleteClient1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                deleteClient1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        comboClientIDList1.setBackground(new java.awt.Color(102, 102, 102));
+        comboClientIDList1.setForeground(new java.awt.Color(255, 255, 255));
+        comboClientIDList1.setMaximumRowCount(4);
+        comboClientIDList1.setAutoscrolls(true);
+
+        searchIDBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchIDBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIDBtn1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Search for Client ID :");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jButton6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton8))
-                        .addComponent(createNewBillings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton11))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteClient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createNewClientsButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(comboClientIDList1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchIDBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton8))
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
-                        .addGap(39, 39, 39)
-                        .addComponent(createNewBillings, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchIDBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboClientIDList1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addComponent(createNewClientsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(deleteClient1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -1212,11 +1231,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         billingsContentPanel.setLayout(billingsContentPanelLayout);
         billingsContentPanelLayout.setHorizontalGroup(
             billingsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         billingsContentPanelLayout.setVerticalGroup(
             billingsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         contentTabPanel.addTab("tab7", billingsContentPanel);
@@ -1333,13 +1352,194 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         contentTabPanel.addTab("tab7", reportsContentPanel);
 
+        jPanel6.setBackground(new java.awt.Color(10, 79, 95));
+
+        jPanel7.setBackground(new java.awt.Color(18, 137, 167));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("LIST OF CATEGORIES -");
+
+        countTClientsLabel3.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTClientsLabel3.setForeground(new java.awt.Color(0, 255, 51));
+        countTClientsLabel3.setText("0");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(countTClientsLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(countTClientsLabel3))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        tableClients1.setAutoCreateRowSorter(true);
+        tableClients1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date_Created", "Type", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableClients1.setColumnSelectionAllowed(true);
+        tableClients1.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableClients1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableClients1.setShowGrid(false);
+        tableClients1.setShowHorizontalLines(true);
+        tableClients1.getTableHeader().setReorderingAllowed(false);
+        tableClients1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableClients1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableClients1);
+        tableClients1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        createNewClientsButton4.setBackground(new java.awt.Color(10, 52, 66));
+        createNewClientsButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        createNewClientsButton4.setForeground(new java.awt.Color(217, 217, 217));
+        createNewClientsButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
+        createNewClientsButton4.setText("Create New");
+        createNewClientsButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewClientsButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(10, 52, 66));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(217, 217, 217));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        jButton6.setText("Update Data");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        deleteClient2.setBackground(new java.awt.Color(10, 52, 66));
+        deleteClient2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleteClient2.setForeground(new java.awt.Color(217, 217, 217));
+        deleteClient2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        deleteClient2.setText("Delete Data");
+        deleteClient2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteClient2ActionPerformed(evt);
+            }
+        });
+
+        comboClientIDList2.setBackground(new java.awt.Color(102, 102, 102));
+        comboClientIDList2.setForeground(new java.awt.Color(255, 255, 255));
+        comboClientIDList2.setMaximumRowCount(4);
+        comboClientIDList2.setAutoscrolls(true);
+
+        searchIDBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchIDBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIDBtn2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Search for Client ID :");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteClient2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createNewClientsButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(comboClientIDList2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchIDBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchIDBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboClientIDList2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addComponent(createNewClientsButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteClient2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ListofCategoriesContentPanelLayout = new javax.swing.GroupLayout(ListofCategoriesContentPanel);
+        ListofCategoriesContentPanel.setLayout(ListofCategoriesContentPanelLayout);
+        ListofCategoriesContentPanelLayout.setHorizontalGroup(
+            ListofCategoriesContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ListofCategoriesContentPanelLayout.setVerticalGroup(
+            ListofCategoriesContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        contentTabPanel.addTab("tab7", ListofCategoriesContentPanel);
+
         jPanel10.setBackground(new java.awt.Color(10, 79, 95));
 
         jPanel11.setBackground(new java.awt.Color(18, 137, 167));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("LIST OF CATEGORIES");
+        jLabel28.setText("LIST OF USERS -");
+
+        countTClientsLabel4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTClientsLabel4.setForeground(new java.awt.Color(0, 255, 51));
+        countTClientsLabel4.setText("0");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1348,34 +1548,47 @@ public class admin_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel28)
-                .addContainerGap(847, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(countTClientsLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel28)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(countTClientsLabel4))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        tableClients3.setAutoCreateRowSorter(true);
         tableClients3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Date_Created", "Type", "Status"
+                "Date_Updated", "Name", "Username", "User_Type", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableClients3.setEnabled(false);
+        tableClients3.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableClients3.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableClients3.setShowGrid(false);
+        tableClients3.setShowHorizontalLines(true);
         tableClients3.getTableHeader().setReorderingAllowed(false);
+        tableClients3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableClients3MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tableClients3);
         tableClients3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -1390,44 +1603,48 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(10, 52, 66));
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(217, 217, 217));
-        jButton14.setText("View");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.setBackground(new java.awt.Color(10, 52, 66));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(217, 217, 217));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        jButton7.setText("Update Data");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(10, 52, 66));
-        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(217, 217, 217));
-        jButton15.setText("Clear");
-
-        jButton16.setBackground(new java.awt.Color(10, 52, 66));
-        jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(217, 217, 217));
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton16.setText("Update Data");
-
-        jButton17.setBackground(new java.awt.Color(10, 52, 66));
-        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(217, 217, 217));
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        jButton17.setText("Delete Data");
-
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo.png"))); // NOI18N
-
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField3.setText("Search...");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        deleteClient3.setBackground(new java.awt.Color(10, 52, 66));
+        deleteClient3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleteClient3.setForeground(new java.awt.Color(217, 217, 217));
+        deleteClient3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        deleteClient3.setText("Delete Data");
+        deleteClient3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                deleteClient3ActionPerformed(evt);
             }
         });
+
+        comboClientIDList3.setBackground(new java.awt.Color(102, 102, 102));
+        comboClientIDList3.setForeground(new java.awt.Color(255, 255, 255));
+        comboClientIDList3.setMaximumRowCount(4);
+        comboClientIDList3.setAutoscrolls(true);
+
+        searchIDBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchIDBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIDBtn3ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Search for Client ID :");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1438,19 +1655,17 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jButton14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton15))
-                        .addComponent(createNewClientsButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton18))
-                .addGap(31, 31, 31)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteClient3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createNewClientsButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(comboClientIDList3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchIDBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -1461,180 +1676,19 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton14)
-                            .addComponent(jButton15))
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton18)
-                        .addGap(39, 39, 39)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchIDBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboClientIDList3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout ListofCategoriesContentPanelLayout = new javax.swing.GroupLayout(ListofCategoriesContentPanel);
-        ListofCategoriesContentPanel.setLayout(ListofCategoriesContentPanelLayout);
-        ListofCategoriesContentPanelLayout.setHorizontalGroup(
-            ListofCategoriesContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        ListofCategoriesContentPanelLayout.setVerticalGroup(
-            ListofCategoriesContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        contentTabPanel.addTab("tab7", ListofCategoriesContentPanel);
-
-        jPanel12.setBackground(new java.awt.Color(10, 79, 95));
-
-        jPanel13.setBackground(new java.awt.Color(18, 137, 167));
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setText("LIST OF USERS");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel29)
-                .addContainerGap(953, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel29)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        tableClients4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No", "Date_Updated", "Name", "Username", "User_Type", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableClients4.setEnabled(false);
-        tableClients4.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(tableClients4);
-        tableClients4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        createNewClientsButton3.setBackground(new java.awt.Color(10, 52, 66));
-        createNewClientsButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        createNewClientsButton3.setForeground(new java.awt.Color(217, 217, 217));
-        createNewClientsButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus logo.png"))); // NOI18N
-        createNewClientsButton3.setText("Create New");
-        createNewClientsButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createNewClientsButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton19.setBackground(new java.awt.Color(10, 52, 66));
-        jButton19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton19.setForeground(new java.awt.Color(217, 217, 217));
-        jButton19.setText("View");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
-
-        jButton20.setBackground(new java.awt.Color(10, 52, 66));
-        jButton20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton20.setForeground(new java.awt.Color(217, 217, 217));
-        jButton20.setText("Clear");
-
-        jButton21.setBackground(new java.awt.Color(10, 52, 66));
-        jButton21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(217, 217, 217));
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton21.setText("Update Data");
-
-        jButton22.setBackground(new java.awt.Color(10, 52, 66));
-        jButton22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton22.setForeground(new java.awt.Color(217, 217, 217));
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        jButton22.setText("Delete Data");
-
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo.png"))); // NOI18N
-
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField4.setText("Search...");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jButton19)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton20))
-                        .addComponent(createNewClientsButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton23))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton19)
-                            .addComponent(jButton20))
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton23)
-                        .addGap(39, 39, 39)
-                        .addComponent(createNewClientsButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(deleteClient3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -1642,11 +1696,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ListofUsersContentPanel.setLayout(ListofUsersContentPanelLayout);
         ListofUsersContentPanelLayout.setHorizontalGroup(
             ListofUsersContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ListofUsersContentPanelLayout.setVerticalGroup(
             ListofUsersContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         contentTabPanel.addTab("tab7", ListofUsersContentPanel);
@@ -1691,12 +1745,18 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(51, 51, 51));
         jLabel32.setText("System Name");
 
+        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(18, 137, 167));
         jTextField5.setText("MANAGEMENT SITE - Admin");
 
         jLabel33.setFont(new java.awt.Font("Ebrima", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(51, 51, 51));
         jLabel33.setText("System Short Name");
 
+        jTextField6.setEditable(false);
+        jTextField6.setBackground(new java.awt.Color(18, 137, 167));
+        jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
         jTextField6.setText("Water Billing System");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1712,6 +1772,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(51, 51, 51));
         jLabel35.setText("Rate per Cubic Meter (m^3)");
 
+        jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField7.setForeground(new java.awt.Color(18, 137, 167));
         jTextField7.setText("10.75");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1863,7 +1925,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private void ListofClientsPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMousePressed
         // TODO add your handling code here:
         
-        comboClientIDList.removeAllItems();
+        loadClient_ID();
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(ActiveColor);
@@ -2005,9 +2067,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void ListofClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMouseClicked
         // TODO add your handling code here:
+        
+        AutoCompleteDecorator.decorate(comboClientIDList);
         Fetch();
         loadClient_ID();
+        displayTCountClients();
         contentTabPanel.setSelectedIndex(1);
+        
     }//GEN-LAST:event_ListofClientsPanelMouseClicked
 
     private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
@@ -2017,10 +2083,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void tClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClientsPanelMouseClicked
         // TODO add your handling code here:
+        
+        AutoCompleteDecorator.decorate(comboClientIDList);
         Fetch();
         loadClient_ID();
-        contentTabPanel.setSelectedIndex(1);
-        AutoCompleteDecorator.decorate(comboClientIDList);
+        displayTCountClients();
+        contentTabPanel.setSelectedIndex(1);        
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(ActiveColor);
@@ -2092,22 +2160,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
      
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
-    private void createNewBillingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBillingsActionPerformed
-        // TODO add your handling code here:
-        
-        new createNew_Billings().setVisible(true);
-        
-    }//GEN-LAST:event_createNewBillingsActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void reportsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsPanelMouseClicked
         // TODO add your handling code here:
         contentTabPanel.setSelectedIndex(3);        
@@ -2116,34 +2168,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void createNewClientsButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        new createNew_Category().setVisible(true);
-    }//GEN-LAST:event_createNewClientsButton2ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void createNewClientsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton3ActionPerformed
-        // TODO add your handling code here:
-        
-        new createNew_User().setVisible(true);
-    }//GEN-LAST:event_createNewClientsButton3ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void ListofCategoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofCategoriesPanelMouseClicked
         // TODO add your handling code here:
@@ -2170,9 +2194,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void searchIDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtnActionPerformed
         // TODO add your handling code here:
+        displayTCountClients();
                
         try {
-            
             if(comboClientIDList.getSelectedItem() != null) {
                 String client_id = comboClientIDList.getSelectedItem().toString();
 
@@ -2208,6 +2232,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "User not found!");
+                    loadClient_ID();
                 }
             }
             else {
@@ -2234,9 +2259,86 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void deleteClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClientActionPerformed
         // TODO add your handling code here:
-        deleteClient();
         
+        if(comboClientIDList.getSelectedItem() != null) {
+            deleteClient();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Select a Data to be Deleted.");
+        }        
     }//GEN-LAST:event_deleteClientActionPerformed
+
+    private void tableClients5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableClients5MouseClicked
+
+    private void createNewClientsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewClientsButton1ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void deleteClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteClient1ActionPerformed
+
+    private void searchIDBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchIDBtn1ActionPerformed
+
+    private void tableClients1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableClients1MouseClicked
+
+    private void createNewClientsButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewClientsButton4ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void deleteClient2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteClient2ActionPerformed
+
+    private void searchIDBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchIDBtn2ActionPerformed
+
+    private void tableClients3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableClients3MouseClicked
+
+    private void createNewClientsButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewClientsButton2ActionPerformed
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void deleteClient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteClient3ActionPerformed
+
+    private void searchIDBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchIDBtn3ActionPerformed
 
 //    public void toUpdateClient() {
 //        try {
@@ -2294,12 +2396,10 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }
     
     public void loadClient_ID() {
-        
        try {
-           AutoCompleteDecorator.decorate(comboClientIDList);
            String queryClientID = "SELECT Client_ID FROM clientinformation ORDER BY Client_ID";
-           pst = con.prepareStatement(queryClientID);
            comboClientIDList.removeAllItems();
+           pst = con.prepareStatement(queryClientID);
            rs = pst.executeQuery();
            
            while(rs.next()) {
@@ -2320,6 +2420,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 int count = rs.getInt("totalClients");
                 
                 countTClientsLabel.setText(String.valueOf(count));
+                countTClientsLabel2.setText(String.valueOf(count));
             }
             
         } catch (SQLException ex) {
@@ -2348,6 +2449,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         
                         Fetch();
                         loadClient_ID();
+                        displayTCountClients();
                         
                         JOptionPane.showMessageDialog(null, "Deleted Successfully!");
                         
@@ -2420,40 +2522,38 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel billingsPanel;
     private javax.swing.JPanel categoriesPanel;
     private javax.swing.JComboBox<String> comboClientIDList;
+    private javax.swing.JComboBox<String> comboClientIDList1;
+    private javax.swing.JComboBox<String> comboClientIDList2;
+    private javax.swing.JComboBox<String> comboClientIDList3;
     private javax.swing.JTabbedPane contentTabPanel;
     private javax.swing.JLabel countCateLabel;
+    private javax.swing.JLabel countTBillingsLabel;
     private javax.swing.JLabel countTClientsLabel;
-    private javax.swing.JButton createNewBillings;
+    private javax.swing.JLabel countTClientsLabel2;
+    private javax.swing.JLabel countTClientsLabel3;
+    private javax.swing.JLabel countTClientsLabel4;
     private javax.swing.JButton createNewClientsButton;
+    private javax.swing.JButton createNewClientsButton1;
     private javax.swing.JButton createNewClientsButton2;
-    private javax.swing.JButton createNewClientsButton3;
+    private javax.swing.JButton createNewClientsButton4;
     private javax.swing.JPanel dashboardContentPanel;
     private javax.swing.JLabel dashboardLabel;
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JButton deleteClient;
+    private javax.swing.JButton deleteClient1;
+    private javax.swing.JButton deleteClient2;
+    private javax.swing.JButton deleteClient3;
     private javax.swing.JLabel firstWord;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2476,7 +2576,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2484,18 +2584,21 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2507,12 +2610,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -2524,6 +2624,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel reportsContentPanel;
     private javax.swing.JPanel reportsPanel;
     private javax.swing.JButton searchIDBtn;
+    private javax.swing.JButton searchIDBtn1;
+    private javax.swing.JButton searchIDBtn2;
+    private javax.swing.JButton searchIDBtn3;
     private javax.swing.JLabel secondWord;
     private javax.swing.JPanel settingsContentPanel;
     private javax.swing.JLabel settingsLabel;
@@ -2535,7 +2638,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableClients1;
     private javax.swing.JTable tableClients2;
     private javax.swing.JTable tableClients3;
-    private javax.swing.JTable tableClients4;
+    private javax.swing.JTable tableClients5;
     private javax.swing.JLabel thirdWord;
     // End of variables declaration//GEN-END:variables
 }
