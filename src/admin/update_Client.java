@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import water.DB_Connection;
-import admin.admin_Dashboard;
+import java.awt.EventQueue;
 
 /**
  *
@@ -17,9 +17,10 @@ import admin.admin_Dashboard;
  */
 public class update_Client extends javax.swing.JFrame {
 
-   Connection con = null;
+    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    
     
     public update_Client() {
         initComponents();
@@ -306,94 +307,16 @@ public class update_Client extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-        String addValue = txtClientCode.getText();
-        //comboClientIDList.addItem(addValue);
-        admin_Dashboard a = new admin_Dashboard();
-        a.Fetch();
-        a.loadClient_ID();
-        a.displayTCountClients();
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
-         
-        String client_id = txtClientCode.getText();
-        String client_fname = txtClientFirstName.getText();
-        String client_mname = txtMidName.getText();
-        String client_lname = txtClientLastName.getText();
-        String contact_no = txtClientContactNumber.getText();
-        String category_type = (String) comboCategory.getSelectedItem();
-        String client_address = txtClientAddress.getText();
-        String meter_code = txtMeterCode.getText();
-        String first_reading = txtFirstReading.getText();
-        String client_status = (String) comboClientStatus.getSelectedItem();
-        
-        String client_name = client_lname + ", " + client_fname + " " + client_mname;
-        
-        try {
-//            String queryCheckDupKey = "SELECT * FROM clientinformation";
-//            pst = con.prepareStatement(queryCheckDupKey);
-//            rs = pst.executeQuery();
-//
-//            if (rs.next()) {
-//                String dupClientID = rs.getString("Client_ID");
-//                String dupClientName = rs.getString("Client_Name");
-//                String dupMeterCode = rs.getString("Meter_Code");
-//
-//                if (client_id.equals(dupClientID)) {
-//                    JOptionPane.showMessageDialog(this, "*Client Code* Already Exists!");
-//                    txtClientCode.setText(null);
-//                } else if (client_name.equals(dupClientName)) {
-//                    JOptionPane.showMessageDialog(this, "*Name* Already Exists!");
-//                    txtClientFirstName.setText(null);
-//                    txtMidName.setText(null);
-//                    txtClientLastName.setText(null);
-//                } else if (meter_code.equals(dupMeterCode)) {
-//                    JOptionPane.showMessageDialog(this, "*Meter Code* Already Exists!");
-//                    txtMeterCode.setText(null);
-//                }
-//            } else {
-                String queryClientInfo = "INSERT INTO clientinformation (Client_ID, Client_Name, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
-                        + "VALUES (?,?,?,?,?,?,?,?)";
-                pst = con.prepareStatement(queryClientInfo);
-
-                pst.setString(1, client_id);
-                pst.setString(2, client_name);
-                pst.setString(3, contact_no);
-                pst.setString(4, category_type);
-                pst.setString(5, client_address);
-                pst.setString(6, meter_code);
-                pst.setString(7, first_reading);
-                pst.setString(8, client_status);
-
-                int rowsAffected = pst.executeUpdate();
-
-                if (rowsAffected == 1) {
-                    JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
-
-                    txtClientCode.setText(null);
-                    txtClientFirstName.setText(null);
-                    txtClientLastName.setText(null);
-                    txtMidName.setText(null);
-                    txtClientContactNumber.setText(null);
-                    comboCategory.setSelectedItem("Commercial");
-                    txtClientAddress.setText(null);
-                    txtMeterCode.setText(null);
-                    txtFirstReading.setText(null);
-                    comboClientStatus.setSelectedItem("Active");
-                    clientIDincrement();
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR:\nFailed to Add!");
-                }
-            
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERROR:\nDuplicate or Invalid Entries!");
-        }
-               
+        updatingClient();
     }//GEN-LAST:event_updatebtnActionPerformed
 
+    /**
+     *
+     */
     public void loadCategory() {
        
        try {
@@ -428,12 +351,7 @@ public class update_Client extends javax.swing.JFrame {
     }
     
     public void updatingClient() {
-       try {
-           String queryDisplayClient = "SELECT * FROM clientinformation";
-           pst = con.prepareStatement(queryDisplayClient);
-           rs = pst.executeQuery();
-           
-           while(rs.next()) {
+        try {
             String client_id = txtClientCode.getText();
             String client_fname = txtClientFirstName.getText();
             String client_mname = txtMidName.getText();
@@ -444,50 +362,41 @@ public class update_Client extends javax.swing.JFrame {
             String meter_code = txtMeterCode.getText();
             String first_reading = txtFirstReading.getText();
             String client_status = (String) comboClientStatus.getSelectedItem();   
-               
-            pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
-                   + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_ID=?");
-            pst.setString(1, client_id);
-            pst.setString(2, client_fname );
-            pst.setString(3, client_mname);
-            pst.setString(4, client_lname );
-            pst.setString(5, contact_no );
+
+            pst = con.prepareStatement("UPDATE clientinformation SET Client_Fname=?, Client_Mname=?, Client_Lname=?, Contact_No=?, Category_Type=?, "
+                    + "Client_Address=?,  Meter_Code=?, First_Reading=?, Client_Status=? WHERE Client_ID=?");
+            pst.setString(1, client_fname);
+            pst.setString(2, client_mname);
+            pst.setString(3, client_lname);
+            pst.setString(4, contact_no);
+            pst.setString(5, category_type);
             pst.setString(6, client_address);
             pst.setString(7, meter_code);
             pst.setString(8, first_reading);
-            pst.setString(9, category_type );
-            pst.setString(10, client_status );
-                
-                 int rowsAffected = pst.executeUpdate();
+            pst.setString(9, client_status);
+            pst.setString(10, client_id);
 
-                if (rowsAffected == 1) {
-                    JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
+            int rowsAffected = pst.executeUpdate();
 
-                    txtClientCode.setText(null);
-                    txtClientFirstName.setText(null);
-                    txtClientLastName.setText(null);
-                    txtMidName.setText(null);
-                    txtClientContactNumber.setText(null);
-                    comboCategory.setSelectedItem("Commercial");
-                    txtClientAddress.setText(null);
-                    txtMeterCode.setText(null);
-                    txtFirstReading.setText(null);
-                    comboClientStatus.setSelectedItem("Active");
-                    clientIDincrement();
-                    txtClientFirstName.requestFocus();
-                    
+            if (rowsAffected > 0) {
                     admin_Dashboard a = new admin_Dashboard();
                     a.loadClient_ID();
-                 
-                }
-           }
-           
-       } catch (SQLException ex) {
-           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       
-       
+                    a.Fetch();
+                    JOptionPane.showMessageDialog(null, "Client Updated Successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to Update!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+
+
+
+    /**
+     *
+     */
     
     /**
      * @param args the command line arguments
@@ -527,8 +436,8 @@ public class update_Client extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox<String> comboCategory;
-    private javax.swing.JComboBox<String> comboClientStatus;
+    public javax.swing.JComboBox<String> comboCategory;
+    public javax.swing.JComboBox<String> comboClientStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -543,14 +452,14 @@ public class update_Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtClientAddress;
-    private javax.swing.JTextField txtClientCode;
-    private javax.swing.JTextField txtClientContactNumber;
-    private javax.swing.JTextField txtClientFirstName;
-    private javax.swing.JTextField txtClientLastName;
-    private javax.swing.JTextField txtFirstReading;
-    private javax.swing.JTextField txtMeterCode;
-    private javax.swing.JTextField txtMidName;
+    public javax.swing.JTextField txtClientAddress;
+    public javax.swing.JTextField txtClientCode;
+    public javax.swing.JTextField txtClientContactNumber;
+    public javax.swing.JTextField txtClientFirstName;
+    public javax.swing.JTextField txtClientLastName;
+    public javax.swing.JTextField txtFirstReading;
+    public javax.swing.JTextField txtMeterCode;
+    public javax.swing.JTextField txtMidName;
     private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }
