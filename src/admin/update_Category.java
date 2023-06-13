@@ -18,17 +18,16 @@ import water.DB_Connection;
  *
  * @author Kent
  */
-public class createNew_Category extends javax.swing.JFrame {
+public class update_Category extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;    
     
-    public createNew_Category() {
+    public update_Category() {
         initComponents();
         con = DB_Connection.con();
         AutoCompleteDecorator.decorate(comboCatStatus);
-        catIDincrement();
     }
 
     /**
@@ -65,7 +64,7 @@ public class createNew_Category extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CREATE NEW CATEGORY");
+        jLabel1.setText("UPDATING CATEGORY");
 
         cancelCatBtn.setBackground(new java.awt.Color(99, 125, 131));
         cancelCatBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -81,7 +80,7 @@ public class createNew_Category extends javax.swing.JFrame {
         saveCatBtn.setBackground(new java.awt.Color(0, 55, 69));
         saveCatBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveCatBtn.setForeground(new java.awt.Color(0, 255, 51));
-        saveCatBtn.setText("Save");
+        saveCatBtn.setText("Update");
         saveCatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveCatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +95,7 @@ public class createNew_Category extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(cancelCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(saveCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +133,6 @@ public class createNew_Category extends javax.swing.JFrame {
         txtCatID.setBackground(new java.awt.Color(18, 137, 167));
         txtCatID.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtCatID.setForeground(new java.awt.Color(255, 255, 255));
-        txtCatID.setText("101");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,13 +146,14 @@ public class createNew_Category extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtCatType, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboCatStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(txtCatID, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(txtCatID, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
+                                .addComponent(txtCatType, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                                .addComponent(comboCatStatus, 0, 525, Short.MAX_VALUE)))
+                        .addGap(0, 29, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -214,7 +213,7 @@ public class createNew_Category extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCatBtnActionPerformed
-        saveCategory();
+        updatingCategory();
     }//GEN-LAST:event_saveCatBtnActionPerformed
 
     private void cancelCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCatBtnActionPerformed
@@ -222,72 +221,44 @@ public class createNew_Category extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelCatBtnActionPerformed
 
-    public void saveCategory() {
+    public void updatingCategory() {
         try {
-            String type = txtCatType.getText().trim(); // Trim any leading or trailing whitespace
+            String cat = txtCatType.getText();
+            String status = (String) comboCatStatus.getSelectedItem();
 
-            if (type.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Empty Category!");
-                return;
-            }
-
-            // Check for duplicate category type
-            String queryDuplicateCheck = "SELECT COUNT(*) FROM categories WHERE Category_Type = ?";
-            pst = con.prepareStatement(queryDuplicateCheck);
-            pst.setString(1, type);
+            // Check for duplicate entry excluding the current category
+            String checkDuplicateQuery = "SELECT COUNT(*) FROM categories WHERE Category_Type = ? AND Category_Type <> ?";
+            pst = con.prepareStatement(checkDuplicateQuery);
+            pst.setString(1, cat);
             rs = pst.executeQuery();
 
             if (rs.next()) {
                 int count = rs.getInt(1);
                 if (count > 0) {
-                    JOptionPane.showMessageDialog(this, "Duplicate Category!");
+                    JOptionPane.showMessageDialog(null, "Duplicate Category!");
                     return;
                 }
             }
 
-            String status = (String) comboCatStatus.getSelectedItem();
-            String id = txtCatID.getText();
-            String queryInsertType = "INSERT INTO categories (Category_ID, Category_Type, Status) VALUES (?,?,?)";
-            pst = con.prepareStatement(queryInsertType);
-            pst.setString(1, id);
-            pst.setString(2, type);
-            pst.setString(3, status);
+            // Update the category
+            pst = con.prepareStatement("UPDATE categories SET Category_Type=?, Status=? WHERE Category_Type=?");
+            pst.setString(1, cat);
+            pst.setString(2, status);
 
             int rowsAffected = pst.executeUpdate();
 
-            if (rowsAffected == 1) {
-                JOptionPane.showMessageDialog(null, "Category Added Successfully!");
-
-                txtCatType.setText(null);
-                txtCatID.setText(null);
-                comboCatStatus.setSelectedItem("Active");
-                catIDincrement();
+            if (rowsAffected > 0) {
+                admin_Dashboard a = new admin_Dashboard();
+                a.loadCategory();
+                a.fetchCategories();
+                JOptionPane.showMessageDialog(null, "Category Updated Successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to Add!");
+                JOptionPane.showMessageDialog(null, "Failed to Update!");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(createNew_Category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void catIDincrement() {
-       try {
-           String querycatID = "SELECT Category_ID FROM categories ORDER BY Category_ID DESC LIMIT 1";
-           pst = con.prepareStatement(querycatID);
-           rs = pst.executeQuery();
-           
-           if(rs.next()) {
-               int id = rs.getInt(1);
-               int n = id + 1;
-               txtCatID.setText(Integer.toString(n));
-           }
-           
-       } catch (SQLException ex) {
-           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
-
-
 
     
     /**
@@ -307,27 +278,28 @@ public class createNew_Category extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(createNew_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(createNew_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(createNew_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(createNew_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(update_Category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createNew_Category().setVisible(true);
+                new update_Category().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelCatBtn;
-    private javax.swing.JComboBox<String> comboCatStatus;
+    public javax.swing.JComboBox<String> comboCatStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -336,7 +308,7 @@ public class createNew_Category extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton saveCatBtn;
-    private javax.swing.JTextField txtCatID;
-    private javax.swing.JTextField txtCatType;
+    public javax.swing.JTextField txtCatID;
+    public javax.swing.JTextField txtCatType;
     // End of variables declaration//GEN-END:variables
 }

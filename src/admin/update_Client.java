@@ -8,8 +8,8 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import water.DB_Connection;
-import java.awt.EventQueue;
 
 /**
  *
@@ -27,6 +27,8 @@ public class update_Client extends javax.swing.JFrame {
         con = DB_Connection.con();
         loadCategory();
         clientIDincrement();
+        AutoCompleteDecorator.decorate(comboCategory);
+        AutoCompleteDecorator.decorate(comboClientStatus);
     }
     
     /**
@@ -81,7 +83,7 @@ public class update_Client extends javax.swing.JFrame {
 
         cancelButton.setBackground(new java.awt.Color(99, 125, 131));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setForeground(new java.awt.Color(204, 0, 0));
         cancelButton.setText("Cancel");
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +94,7 @@ public class update_Client extends javax.swing.JFrame {
 
         updatebtn.setBackground(new java.awt.Color(0, 55, 69));
         updatebtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        updatebtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatebtn.setForeground(new java.awt.Color(0, 255, 51));
         updatebtn.setText("Update");
         updatebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updatebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -128,13 +130,12 @@ public class update_Client extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(9, 33, 43));
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel2.setText("Client ID");
+        jLabel2.setText("Client Code");
 
         txtClientCode.setEditable(false);
         txtClientCode.setBackground(new java.awt.Color(18, 137, 167));
         txtClientCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtClientCode.setForeground(new java.awt.Color(255, 255, 255));
-        txtClientCode.setText("1001");
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -161,6 +162,7 @@ public class update_Client extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Category");
 
+        comboCategory.setMaximumRowCount(3);
         comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial" }));
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
@@ -183,6 +185,7 @@ public class update_Client extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(9, 33, 43));
         jLabel11.setText("Status");
 
+        comboClientStatus.setMaximumRowCount(3);
         comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -390,10 +393,7 @@ public class update_Client extends javax.swing.JFrame {
             Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-
-
+    
     /**
      *
      */

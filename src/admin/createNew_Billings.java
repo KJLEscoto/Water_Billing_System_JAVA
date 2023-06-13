@@ -83,7 +83,7 @@ public class createNew_Billings extends javax.swing.JFrame {
 
         cancelButton.setBackground(new java.awt.Color(99, 125, 131));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setForeground(new java.awt.Color(204, 0, 0));
         cancelButton.setText("Cancel");
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class createNew_Billings extends javax.swing.JFrame {
 
         saveButton.setBackground(new java.awt.Color(0, 55, 69));
         saveButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setForeground(new java.awt.Color(0, 255, 51));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.addMouseListener(new java.awt.event.MouseAdapter() {

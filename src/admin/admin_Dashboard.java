@@ -18,10 +18,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import water.DB_Connection;
 import water.index;
@@ -30,10 +28,6 @@ import water.index;
  * @author Kent
  */
 public class admin_Dashboard extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Dashboard
-     */
     
     Color DefaultColor, ActiveColor;
     Connection con = null;
@@ -48,6 +42,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ActiveColor = new Color(217,217,217);
         contentTabPanel.setSelectedIndex(0);
         displayTCountClients();
+        displayTCountCategories();
     }
     
     /**
@@ -111,7 +106,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         categoriesPanel = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        countCateLabel = new javax.swing.JLabel();
+        countTCategoriesLabel = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         ListofClientsContentPanel = new javax.swing.JPanel();
@@ -125,7 +120,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         updateDataClient = new javax.swing.JButton();
         deleteClient = new javax.swing.JButton();
         comboClientIDList = new javax.swing.JComboBox<>();
-        searchIDBtn = new javax.swing.JButton();
+        searchCodeBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         billingsContentPanel = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
@@ -138,7 +133,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         deleteClient1 = new javax.swing.JButton();
         comboClientIDList1 = new javax.swing.JComboBox<>();
-        searchIDBtn1 = new javax.swing.JButton();
+        searchBillBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         reportsContentPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -153,14 +148,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        countTClientsLabel3 = new javax.swing.JLabel();
+        countTCategoriesLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableClients1 = new javax.swing.JTable();
+        tableCategories = new javax.swing.JTable();
         createNewClientsButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        updateCatBtn = new javax.swing.JButton();
         deleteClient2 = new javax.swing.JButton();
-        comboClientIDList2 = new javax.swing.JComboBox<>();
-        searchIDBtn2 = new javax.swing.JButton();
+        comboCategoryList = new javax.swing.JComboBox<>();
+        searchCatBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         ListofUsersContentPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -168,7 +163,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         countTClientsLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableClients3 = new javax.swing.JTable();
+        tableUsers = new javax.swing.JTable();
         createNewClientsButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         deleteClient3 = new javax.swing.JButton();
@@ -285,9 +280,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dashboardPanelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                dashboardPanelMousePressed(evt);
-            }
         });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboard-icon.png"))); // NOI18N
@@ -348,9 +340,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListofCategoriesPanelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ListofCategoriesPanelMousePressed(evt);
-            }
         });
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listofcat.png"))); // NOI18N
@@ -386,9 +375,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         billingsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 billingsPanelMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                billingsPanelMousePressed(evt);
             }
         });
 
@@ -449,9 +435,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListofClientsPanelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ListofClientsPanelMousePressed(evt);
-            }
         });
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listofclients_color.png"))); // NOI18N
@@ -487,9 +470,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         reportsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reportsPanelMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                reportsPanelMousePressed(evt);
             }
         });
 
@@ -527,9 +507,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListofUsersPanelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ListofUsersPanelMousePressed(evt);
-            }
         });
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listuser pale.png"))); // NOI18N
@@ -565,9 +542,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         settingsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsPanelMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                settingsPanelMousePressed(evt);
             }
         });
 
@@ -653,7 +627,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         logoutBtn.setBackground(new java.awt.Color(10, 52, 66));
         logoutBtn.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        logoutBtn.setForeground(new java.awt.Color(217, 217, 217));
+        logoutBtn.setForeground(new java.awt.Color(255, 102, 102));
         logoutBtn.setText("Logout");
         logoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -797,9 +771,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(217, 217, 217));
         jLabel20.setText("Categories");
 
-        countCateLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
-        countCateLabel.setForeground(new java.awt.Color(0, 255, 51));
-        countCateLabel.setText("0");
+        countTCategoriesLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        countTCategoriesLabel.setForeground(new java.awt.Color(0, 255, 51));
+        countTCategoriesLabel.setText("0");
 
         javax.swing.GroupLayout categoriesPanelLayout = new javax.swing.GroupLayout(categoriesPanel);
         categoriesPanel.setLayout(categoriesPanelLayout);
@@ -811,7 +785,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addGroup(categoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
-                    .addComponent(countCateLabel))
+                    .addComponent(countTCategoriesLabel))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         categoriesPanelLayout.setVerticalGroup(
@@ -822,7 +796,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel20)
                         .addGap(18, 18, 18)
-                        .addComponent(countCateLabel))
+                        .addComponent(countTCategoriesLabel))
                     .addGroup(categoriesPanelLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel18)))
@@ -986,16 +960,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         comboClientIDList.setMaximumRowCount(4);
         comboClientIDList.setAutoscrolls(true);
 
-        searchIDBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
-        searchIDBtn.addActionListener(new java.awt.event.ActionListener() {
+        searchCodeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchCodeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIDBtnActionPerformed(evt);
+                searchCodeBtnActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Search for Client ID :");
+        jLabel1.setText("Search Client Code :");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1015,7 +989,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(comboClientIDList, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchIDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchCodeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -1031,7 +1005,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchIDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchCodeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboClientIDList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1095,27 +1069,23 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reading_Date", "Code", "Amount", "Due_Date", "Status"
+                "Billing_Code", "Code", "Reading_Date", "Amount", "Due_Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tableClients5.setColumnSelectionAllowed(true);
         tableClients5.setSelectionBackground(new java.awt.Color(18, 137, 167));
         tableClients5.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableClients5.setShowGrid(false);
         tableClients5.setShowHorizontalLines(true);
         tableClients5.getTableHeader().setReorderingAllowed(false);
-        tableClients5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableClients5MouseClicked(evt);
-            }
-        });
         jScrollPane6.setViewportView(tableClients5);
         tableClients5.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -1135,11 +1105,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jButton5.setForeground(new java.awt.Color(217, 217, 217));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         jButton5.setText("Update Data");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -1162,16 +1127,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         comboClientIDList1.setMaximumRowCount(4);
         comboClientIDList1.setAutoscrolls(true);
 
-        searchIDBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
-        searchIDBtn1.addActionListener(new java.awt.event.ActionListener() {
+        searchBillBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchBillBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIDBtn1ActionPerformed(evt);
+                searchBillBtnActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Search for Client ID :");
+        jLabel3.setText("Search Billing Code :");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1191,7 +1156,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(comboClientIDList1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchIDBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -1207,7 +1172,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchIDBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchBillBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboClientIDList1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1352,9 +1317,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("LIST OF CATEGORIES -");
 
-        countTClientsLabel3.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        countTClientsLabel3.setForeground(new java.awt.Color(0, 255, 51));
-        countTClientsLabel3.setText("0");
+        countTCategoriesLabel2.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTCategoriesLabel2.setForeground(new java.awt.Color(0, 255, 51));
+        countTCategoriesLabel2.setText("0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1364,7 +1329,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(countTClientsLabel3)
+                .addComponent(countTCategoriesLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1373,17 +1338,17 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(countTClientsLabel3))
+                    .addComponent(countTCategoriesLabel2))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        tableClients1.setAutoCreateRowSorter(true);
-        tableClients1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCategories.setAutoCreateRowSorter(true);
+        tableCategories.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date_Created", "Type", "Status"
+                "Category", "Date_Created", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1394,19 +1359,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableClients1.setColumnSelectionAllowed(true);
-        tableClients1.setSelectionBackground(new java.awt.Color(18, 137, 167));
-        tableClients1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tableClients1.setShowGrid(false);
-        tableClients1.setShowHorizontalLines(true);
-        tableClients1.getTableHeader().setReorderingAllowed(false);
-        tableClients1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableClients1MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tableClients1);
-        tableClients1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableCategories.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableCategories.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableCategories.setShowGrid(false);
+        tableCategories.setShowHorizontalLines(true);
+        tableCategories.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tableCategories);
+        tableCategories.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         createNewClientsButton4.setBackground(new java.awt.Color(10, 52, 66));
         createNewClientsButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1419,19 +1378,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(10, 52, 66));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(217, 217, 217));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton6.setText("Update Data");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
-            }
-        });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        updateCatBtn.setBackground(new java.awt.Color(10, 52, 66));
+        updateCatBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        updateCatBtn.setForeground(new java.awt.Color(217, 217, 217));
+        updateCatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        updateCatBtn.setText("Update Data");
+        updateCatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                updateCatBtnActionPerformed(evt);
             }
         });
 
@@ -1446,21 +1400,21 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        comboClientIDList2.setBackground(new java.awt.Color(102, 102, 102));
-        comboClientIDList2.setForeground(new java.awt.Color(255, 255, 255));
-        comboClientIDList2.setMaximumRowCount(4);
-        comboClientIDList2.setAutoscrolls(true);
+        comboCategoryList.setBackground(new java.awt.Color(102, 102, 102));
+        comboCategoryList.setForeground(new java.awt.Color(255, 255, 255));
+        comboCategoryList.setMaximumRowCount(4);
+        comboCategoryList.setAutoscrolls(true);
 
-        searchIDBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
-        searchIDBtn2.addActionListener(new java.awt.event.ActionListener() {
+        searchCatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchCatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIDBtn2ActionPerformed(evt);
+                searchCatBtnActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Search for Client ID :");
+        jLabel5.setText("Search Category :");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1474,13 +1428,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteClient2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateCatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createNewClientsButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(comboClientIDList2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboCategoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchIDBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -1496,12 +1450,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchIDBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboClientIDList2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(searchCatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboCategoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateCatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(deleteClient2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1554,8 +1508,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        tableClients3.setAutoCreateRowSorter(true);
-        tableClients3.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsers.setAutoCreateRowSorter(true);
+        tableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1571,18 +1525,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableClients3.setSelectionBackground(new java.awt.Color(18, 137, 167));
-        tableClients3.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tableClients3.setShowGrid(false);
-        tableClients3.setShowHorizontalLines(true);
-        tableClients3.getTableHeader().setReorderingAllowed(false);
-        tableClients3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableClients3MouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(tableClients3);
-        tableClients3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableUsers.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableUsers.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableUsers.setShowGrid(false);
+        tableUsers.setShowHorizontalLines(true);
+        tableUsers.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tableUsers);
+        tableUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         createNewClientsButton2.setBackground(new java.awt.Color(10, 52, 66));
         createNewClientsButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1600,11 +1549,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jButton7.setForeground(new java.awt.Color(217, 217, 217));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         jButton7.setText("Update Data");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -1636,7 +1580,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Search for Client ID :");
+        jLabel6.setText("Search Username :");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1755,11 +1699,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(255, 255, 255));
         jTextField6.setText("Water Billing System");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
 
         jLabel34.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(51, 51, 51));
@@ -1772,11 +1711,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         txtRateSettings.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtRateSettings.setForeground(new java.awt.Color(18, 137, 167));
         txtRateSettings.setText("10.75");
-        txtRateSettings.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRateSettingsActionPerformed(evt);
-            }
-        });
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-water (1).png"))); // NOI18N
 
@@ -1899,7 +1833,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
    
     
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to logout?","Confirm...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         
         switch (response) {
@@ -1915,14 +1848,36 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void logoNamePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoNamePanelMouseClicked
-        // TODO add your handling code here:
         this.setVisible(true);
     }//GEN-LAST:event_logoNamePanelMouseClicked
 
-    private void ListofClientsPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMousePressed
-        // TODO add your handling code here:
+    private void dashboardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseClicked
+        displayTCountClients();
+        contentTabPanel.setSelectedIndex(0);
         
+        dashboardPanel.setBackground(ActiveColor);
+        ListofClientsPanel.setBackground(DefaultColor);
+        billingsPanel.setBackground(DefaultColor);
+        reportsPanel.setBackground(DefaultColor);
+        ListofCategoriesPanel.setBackground(DefaultColor);
+        ListofUsersPanel.setBackground(DefaultColor);
+        settingsPanel.setBackground(DefaultColor);
+        
+        dashboardLabel.setForeground(DefaultColor);
+        ListofClientsLabel.setForeground(ActiveColor);
+        billingsLabel.setForeground(ActiveColor);
+        monthlyReportsLabel.setForeground(ActiveColor);
+        ListofCategoriesLabel.setForeground(ActiveColor);
+        ListofUsersLabel.setForeground(ActiveColor);
+        settingsLabel.setForeground(ActiveColor);
+    }//GEN-LAST:event_dashboardPanelMouseClicked
+
+    private void ListofClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMouseClicked
+        AutoCompleteDecorator.decorate(comboClientIDList);
         loadClient_ID();
+        FetchClient();
+        displayTCountClients();
+        contentTabPanel.setSelectedIndex(1);
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(ActiveColor);
@@ -1939,11 +1894,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ListofCategoriesLabel.setForeground(ActiveColor);
         ListofUsersLabel.setForeground(ActiveColor);
         settingsLabel.setForeground(ActiveColor);
-        
-    }//GEN-LAST:event_ListofClientsPanelMousePressed
+    }//GEN-LAST:event_ListofClientsPanelMouseClicked
 
-    private void billingsPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMousePressed
-        // TODO add your handling code here:
+    private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
+        contentTabPanel.setSelectedIndex(2);
+        
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
         billingsPanel.setBackground(ActiveColor);
@@ -1959,128 +1914,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ListofCategoriesLabel.setForeground(ActiveColor);
         ListofUsersLabel.setForeground(ActiveColor);
         settingsLabel.setForeground(ActiveColor);
-    }//GEN-LAST:event_billingsPanelMousePressed
-
-    private void dashboardPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMousePressed
-        // TODO add your handling code here:
-        dashboardPanel.setBackground(ActiveColor);
-        ListofClientsPanel.setBackground(DefaultColor);
-        billingsPanel.setBackground(DefaultColor);
-        reportsPanel.setBackground(DefaultColor);
-        ListofCategoriesPanel.setBackground(DefaultColor);
-        ListofUsersPanel.setBackground(DefaultColor);
-        settingsPanel.setBackground(DefaultColor);
-        
-        dashboardLabel.setForeground(DefaultColor);
-        ListofClientsLabel.setForeground(ActiveColor);
-        billingsLabel.setForeground(ActiveColor);
-        monthlyReportsLabel.setForeground(ActiveColor);
-        ListofCategoriesLabel.setForeground(ActiveColor);
-        ListofUsersLabel.setForeground(ActiveColor);
-        settingsLabel.setForeground(ActiveColor);
-    }//GEN-LAST:event_dashboardPanelMousePressed
-
-    private void reportsPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsPanelMousePressed
-        // TODO add your handling code here:
-        dashboardPanel.setBackground(DefaultColor);
-        ListofClientsPanel.setBackground(DefaultColor);
-        billingsPanel.setBackground(DefaultColor);
-        reportsPanel.setBackground(ActiveColor);
-        ListofCategoriesPanel.setBackground(DefaultColor);
-        ListofUsersPanel.setBackground(DefaultColor);
-        settingsPanel.setBackground(DefaultColor);
-        
-        dashboardLabel.setForeground(ActiveColor);
-        ListofClientsLabel.setForeground(ActiveColor);
-        billingsLabel.setForeground(ActiveColor);
-        monthlyReportsLabel.setForeground(DefaultColor);
-        ListofCategoriesLabel.setForeground(ActiveColor);
-        ListofUsersLabel.setForeground(ActiveColor);
-        settingsLabel.setForeground(ActiveColor);
-    }//GEN-LAST:event_reportsPanelMousePressed
-
-    private void ListofCategoriesPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofCategoriesPanelMousePressed
-        // TODO add your handling code here:
-        dashboardPanel.setBackground(DefaultColor);
-        ListofClientsPanel.setBackground(DefaultColor);
-        billingsPanel.setBackground(DefaultColor);
-        reportsPanel.setBackground(DefaultColor);
-        ListofCategoriesPanel.setBackground(ActiveColor);
-        ListofUsersPanel.setBackground(DefaultColor);
-        settingsPanel.setBackground(DefaultColor);
-        
-        dashboardLabel.setForeground(ActiveColor);
-        ListofClientsLabel.setForeground(ActiveColor);
-        billingsLabel.setForeground(ActiveColor);
-        monthlyReportsLabel.setForeground(ActiveColor);
-        ListofCategoriesLabel.setForeground(DefaultColor);
-        ListofUsersLabel.setForeground(ActiveColor);
-        settingsLabel.setForeground(ActiveColor);
-    }//GEN-LAST:event_ListofCategoriesPanelMousePressed
-
-    private void ListofUsersPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofUsersPanelMousePressed
-        // TODO add your handling code here:
-        dashboardPanel.setBackground(DefaultColor);
-        ListofClientsPanel.setBackground(DefaultColor);
-        billingsPanel.setBackground(DefaultColor);
-        reportsPanel.setBackground(DefaultColor);
-        ListofCategoriesPanel.setBackground(DefaultColor);
-        ListofUsersPanel.setBackground(ActiveColor);
-        settingsPanel.setBackground(DefaultColor);
-        
-        dashboardLabel.setForeground(ActiveColor);
-        ListofClientsLabel.setForeground(ActiveColor);
-        billingsLabel.setForeground(ActiveColor);
-        monthlyReportsLabel.setForeground(ActiveColor);
-        ListofCategoriesLabel.setForeground(ActiveColor);
-        ListofUsersLabel.setForeground(DefaultColor);
-        settingsLabel.setForeground(ActiveColor);
-    }//GEN-LAST:event_ListofUsersPanelMousePressed
-
-    private void settingsPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelMousePressed
-        // TODO add your handling code here:
-        dashboardPanel.setBackground(DefaultColor);
-        ListofClientsPanel.setBackground(DefaultColor);
-        billingsPanel.setBackground(DefaultColor);
-        reportsPanel.setBackground(DefaultColor);
-        ListofCategoriesPanel.setBackground(DefaultColor);
-        ListofUsersPanel.setBackground(DefaultColor);
-        settingsPanel.setBackground(ActiveColor);
-        
-        dashboardLabel.setForeground(ActiveColor);
-        ListofClientsLabel.setForeground(ActiveColor);
-        billingsLabel.setForeground(ActiveColor);
-        monthlyReportsLabel.setForeground(ActiveColor);
-        ListofCategoriesLabel.setForeground(ActiveColor);
-        ListofUsersLabel.setForeground(ActiveColor);
-        settingsLabel.setForeground(DefaultColor);
-    }//GEN-LAST:event_settingsPanelMousePressed
-
-    private void dashboardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseClicked
-        // TODO add your handling code here:
-        displayTCountClients();
-        contentTabPanel.setSelectedIndex(0);
-    }//GEN-LAST:event_dashboardPanelMouseClicked
-
-    private void ListofClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofClientsPanelMouseClicked
-        // TODO add your handling code here:
-        
-        AutoCompleteDecorator.decorate(comboClientIDList);
-        FetchClient();
-        loadClient_ID();
-        displayTCountClients();
-        contentTabPanel.setSelectedIndex(1);
-        
-    }//GEN-LAST:event_ListofClientsPanelMouseClicked
-
-    private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
-        // TODO add your handling code here:
-        contentTabPanel.setSelectedIndex(2);
     }//GEN-LAST:event_billingsPanelMouseClicked
 
     private void tClientsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClientsPanelMouseClicked
-        // TODO add your handling code here:
-        
         AutoCompleteDecorator.decorate(comboClientIDList);
         FetchClient();
         loadClient_ID();
@@ -2101,14 +1937,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         monthlyReportsLabel.setForeground(ActiveColor);
         ListofCategoriesLabel.setForeground(ActiveColor);
         ListofUsersLabel.setForeground(ActiveColor);
-        settingsLabel.setForeground(ActiveColor);
-        
+        settingsLabel.setForeground(ActiveColor);       
         
     }//GEN-LAST:event_tClientsPanelMouseClicked
 
     private void pendingBillsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pendingBillsPanelMouseClicked
-        // TODO add your handling code here:
-        
         contentTabPanel.setSelectedIndex(2);
         
         dashboardPanel.setBackground(DefaultColor);
@@ -2131,8 +1964,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_pendingBillsPanelMouseClicked
 
     private void categoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesPanelMouseClicked
-        // TODO add your handling code here:
-        
+        AutoCompleteDecorator.decorate(comboCategoryList);
+        fetchCategories();
+        loadCategory();
         contentTabPanel.setSelectedIndex(4);
         
         dashboardPanel.setBackground(DefaultColor);
@@ -2158,39 +1992,94 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
     private void reportsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsPanelMouseClicked
-        // TODO add your handling code here:
-        contentTabPanel.setSelectedIndex(3);        
+        contentTabPanel.setSelectedIndex(3); 
+        
+        dashboardPanel.setBackground(DefaultColor);
+        ListofClientsPanel.setBackground(DefaultColor);
+        billingsPanel.setBackground(DefaultColor);
+        reportsPanel.setBackground(ActiveColor);
+        ListofCategoriesPanel.setBackground(DefaultColor);
+        ListofUsersPanel.setBackground(DefaultColor);
+        settingsPanel.setBackground(DefaultColor);
+        
+        dashboardLabel.setForeground(ActiveColor);
+        ListofClientsLabel.setForeground(ActiveColor);
+        billingsLabel.setForeground(ActiveColor);
+        monthlyReportsLabel.setForeground(DefaultColor);
+        ListofCategoriesLabel.setForeground(ActiveColor);
+        ListofUsersLabel.setForeground(ActiveColor);
+        settingsLabel.setForeground(ActiveColor);
     }//GEN-LAST:event_reportsPanelMouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void ListofCategoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofCategoriesPanelMouseClicked
-        // TODO add your handling code here:
-        contentTabPanel.setSelectedIndex(4); 
+        AutoCompleteDecorator.decorate(comboCategoryList);
+        fetchCategories();
+        loadCategory();
+        displayTCountCategories();
+        contentTabPanel.setSelectedIndex(4);         
+        
+        dashboardPanel.setBackground(DefaultColor);
+        ListofClientsPanel.setBackground(DefaultColor);
+        billingsPanel.setBackground(DefaultColor);
+        reportsPanel.setBackground(DefaultColor);
+        ListofCategoriesPanel.setBackground(ActiveColor);
+        ListofUsersPanel.setBackground(DefaultColor);
+        settingsPanel.setBackground(DefaultColor);
+        
+        dashboardLabel.setForeground(ActiveColor);
+        ListofClientsLabel.setForeground(ActiveColor);
+        billingsLabel.setForeground(ActiveColor);
+        monthlyReportsLabel.setForeground(ActiveColor);
+        ListofCategoriesLabel.setForeground(DefaultColor);
+        ListofUsersLabel.setForeground(ActiveColor);
+        settingsLabel.setForeground(ActiveColor);
     }//GEN-LAST:event_ListofCategoriesPanelMouseClicked
 
     private void ListofUsersPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofUsersPanelMouseClicked
-        // TODO add your handling code here:
         contentTabPanel.setSelectedIndex(5); 
+        
+        dashboardPanel.setBackground(DefaultColor);
+        ListofClientsPanel.setBackground(DefaultColor);
+        billingsPanel.setBackground(DefaultColor);
+        reportsPanel.setBackground(DefaultColor);
+        ListofCategoriesPanel.setBackground(DefaultColor);
+        ListofUsersPanel.setBackground(ActiveColor);
+        settingsPanel.setBackground(DefaultColor);
+        
+        dashboardLabel.setForeground(ActiveColor);
+        ListofClientsLabel.setForeground(ActiveColor);
+        billingsLabel.setForeground(ActiveColor);
+        monthlyReportsLabel.setForeground(ActiveColor);
+        ListofCategoriesLabel.setForeground(ActiveColor);
+        ListofUsersLabel.setForeground(DefaultColor);
+        settingsLabel.setForeground(ActiveColor);
     }//GEN-LAST:event_ListofUsersPanelMouseClicked
 
     private void settingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelMouseClicked
-        // TODO add your handling code here:
-        contentTabPanel.setSelectedIndex(6); 
+        contentTabPanel.setSelectedIndex(6);
+        
+        dashboardPanel.setBackground(DefaultColor);
+        ListofClientsPanel.setBackground(DefaultColor);
+        billingsPanel.setBackground(DefaultColor);
+        reportsPanel.setBackground(DefaultColor);
+        ListofCategoriesPanel.setBackground(DefaultColor);
+        ListofUsersPanel.setBackground(DefaultColor);
+        settingsPanel.setBackground(ActiveColor);
+        
+        dashboardLabel.setForeground(ActiveColor);
+        ListofClientsLabel.setForeground(ActiveColor);
+        billingsLabel.setForeground(ActiveColor);
+        monthlyReportsLabel.setForeground(ActiveColor);
+        ListofCategoriesLabel.setForeground(ActiveColor);
+        ListofUsersLabel.setForeground(ActiveColor);
+        settingsLabel.setForeground(DefaultColor);
     }//GEN-LAST:event_settingsPanelMouseClicked
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void txtRateSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRateSettingsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRateSettingsActionPerformed
-
-    private void searchIDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtnActionPerformed
-        // TODO add your handling code here:
+    private void searchCodeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCodeBtnActionPerformed
         displayTCountClients();
                
         try {
@@ -2242,16 +2131,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_searchIDBtnActionPerformed
+    }//GEN-LAST:event_searchCodeBtnActionPerformed
 
     private void updateDataClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDataClientActionPerformed
         toUpdateClient_dashboard();
-        
     }//GEN-LAST:event_updateDataClientActionPerformed
     
     private void deleteClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClientActionPerformed
-        // TODO add your handling code here:
-        
         if(comboClientIDList.getSelectedItem() != null) {
             deleteClient();
         }
@@ -2260,88 +2146,101 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_deleteClientActionPerformed
 
-    private void tableClients5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableClients5MouseClicked
-
     private void createNewClientsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton1ActionPerformed
-        // TODO add your handling code here:
         new createNew_Billings().setVisible(true);
     }//GEN-LAST:event_createNewClientsButton1ActionPerformed
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void deleteClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_deleteClient1ActionPerformed
 
-    private void searchIDBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchIDBtn1ActionPerformed
-
-    private void tableClients1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableClients1MouseClicked
+    private void searchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBillBtnActionPerformed
+        
+    }//GEN-LAST:event_searchBillBtnActionPerformed
 
     private void createNewClientsButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton4ActionPerformed
-        // TODO add your handling code here:
+        new createNew_Category().setVisible(true);
     }//GEN-LAST:event_createNewClientsButton4ActionPerformed
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6MouseClicked
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void updateCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCatBtnActionPerformed
+        toUpdateCategory_dashboard();
+    }//GEN-LAST:event_updateCatBtnActionPerformed
 
     private void deleteClient2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_deleteClient2ActionPerformed
 
-    private void searchIDBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchIDBtn2ActionPerformed
+    private void searchCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCatBtnActionPerformed
+        try {
+            if(comboCategoryList.getSelectedItem() != null) {
+                String cat_type = comboCategoryList.getSelectedItem().toString();
 
-    private void tableClients3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClients3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableClients3MouseClicked
+                int q;
+                String querySearchCat = "SELECT * FROM categories WHERE Category_Type=?";
+                pst = con.prepareStatement(querySearchCat);
+                pst.setString(1, cat_type);
+                rs = pst.executeQuery();
+
+                ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+                q = rss.getColumnCount();
+
+                DefaultTableModel tblCat = (DefaultTableModel)tableCategories.getModel();
+                tblCat.setRowCount(0);
+
+                if(rs.next() == true) {
+                    Vector rows = new Vector();
+
+                    String cat = rs.getString("Category_Type");
+                    String date_created = rs.getString("Date_Created");
+                    String status = rs.getString("Status");
+                    
+                    for(int i = 1; i <= q; i++) { 
+                        rows.add(cat);
+                        rows.add(date_created);
+                        rows.add(status);
+                    }
+                    tblCat.addRow(rows);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Category not found!");
+                    loadClient_ID();
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "No data available!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_searchCatBtnActionPerformed
 
     private void createNewClientsButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton2ActionPerformed
-        // TODO add your handling code here:
         new createNew_User().setVisible(true);        
     }//GEN-LAST:event_createNewClientsButton2ActionPerformed
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void deleteClient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient3ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_deleteClient3ActionPerformed
 
     private void searchIDBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn3ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_searchIDBtn3ActionPerformed
 
     private void updateSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSettingsBtnActionPerformed
-        // TODO add your handling code here:
-        
         updateSettings();        
     }//GEN-LAST:event_updateSettingsBtnActionPerformed
 
+    // FUNCTIONS
+    
     public void toUpdateClient_dashboard() {
-        
         int selectedRow = tableClients.getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Select a Client to Update.");            
@@ -2354,32 +2253,32 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 
                 if(rs.next()) {
-                String client_code = rs.getString("Client_Code");
-                String first_name = rs.getString("Client_Fname");
-                String mid_name = rs.getString("Client_Mname");
-                String last_name = rs.getString("Client_Lname");
-                String cont_num = rs.getString("Contact_No");
-                String address = rs.getString("Client_Address");
-                String meter_code = rs.getString("Meter_Code");
-                String f_read = rs.getString("First_Reading");
-                String cat = rs.getString("Category_Type");
-                String status = rs.getString("Client_Status");
-                
-                update_Client uc = new update_Client();
-                
-                uc.txtClientCode.setText(client_code);
-                uc.txtClientFirstName.setText(first_name);
-                uc.txtMidName.setText(mid_name);
-                uc.txtClientLastName.setText(last_name);
-                uc.txtClientContactNumber.setText(cont_num);
-                uc.txtClientAddress.setText(address);
-                uc.txtMeterCode.setText(meter_code);
-                uc.txtFirstReading.setText(f_read);
-                uc.comboCategory.setSelectedItem(cat);
-                uc.comboClientStatus.setSelectedItem(status);
-                
-                uc.setVisible(true);
-            }
+                    String client_code = rs.getString("Client_Code");
+                    String first_name = rs.getString("Client_Fname");
+                    String mid_name = rs.getString("Client_Mname");
+                    String last_name = rs.getString("Client_Lname");
+                    String cont_num = rs.getString("Contact_No");
+                    String address = rs.getString("Client_Address");
+                    String meter_code = rs.getString("Meter_Code");
+                    String f_read = rs.getString("First_Reading");
+                    String cat = rs.getString("Category_Type");
+                    String status = rs.getString("Client_Status");
+
+                    update_Client uc = new update_Client();
+
+                    uc.txtClientCode.setText(client_code);
+                    uc.txtClientFirstName.setText(first_name);
+                    uc.txtMidName.setText(mid_name);
+                    uc.txtClientLastName.setText(last_name);
+                    uc.txtClientContactNumber.setText(cont_num);
+                    uc.txtClientAddress.setText(address);
+                    uc.txtMeterCode.setText(meter_code);
+                    uc.txtFirstReading.setText(f_read);
+                    uc.comboCategory.setSelectedItem(cat);
+                    uc.comboClientStatus.setSelectedItem(status);
+
+                    uc.setVisible(true);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2388,7 +2287,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }
     
     public void FetchClient() {
-        
         try {
             int q;
             String queryClientInformation = "SELECT * FROM clientinformation";
@@ -2429,8 +2327,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }
     
     public void loadClient_ID() {
-                
-       try {
+        try {
            String queryClientID = "SELECT Client_Code FROM clientinformation ORDER BY Client_Code";
            comboClientIDList.removeAllItems();
            pst = con.prepareStatement(queryClientID);
@@ -2486,9 +2383,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 FetchClient();
                 loadClient_ID();
                 displayTCountClients();
-                JOptionPane.showMessageDialog(null, "Deleted Successfully!");
-                
-                
+                JOptionPane.showMessageDialog(null, "Deleted Successfully!");    
             }
         } catch (SQLException ex) {
             Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2508,6 +2403,103 @@ public class admin_Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Updated Successfully!");
         }
         
+    }
+    
+    public void fetchCategories() {
+        try {
+            int q;
+            String queryCategories = "SELECT * FROM categories";
+            
+            pst = con.prepareStatement(queryCategories);
+            rs = pst.executeQuery();
+            ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+            q = rss.getColumnCount();
+            
+            DefaultTableModel tblCat = (DefaultTableModel)tableCategories.getModel();
+            tblCat.setRowCount(0);
+            
+            while(rs.next()) {
+                Vector rows = new Vector();
+                
+                String category_type = rs.getString("Category_Type");
+                String date_created = rs.getString("Date_Created");
+                String status = rs.getString("Status");
+                                
+                for(int i = 1; i <= q; i++) {
+                    rows.add(category_type);
+                    rows.add(date_created);
+                    rows.add(status);
+                }
+                tblCat.addRow(rows);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadCategory() {
+        try {
+           String queryCategoryType = "SELECT Category_Type FROM categories ORDER BY Category_Type";
+           comboCategoryList.removeAllItems();
+           pst = con.prepareStatement(queryCategoryType);
+           rs = pst.executeQuery();
+           
+           while(rs.next()) {
+               comboCategoryList.addItem(rs.getString(1));
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    public void displayTCountCategories() {
+        try {
+            String countCat = "SELECT count(*) as totalCategories FROM categories";
+            pst = con.prepareStatement(countCat);
+            rs = pst.executeQuery();
+            
+            while(rs.next()) {
+                int count = rs.getInt("totalCategories");
+                
+                countTCategoriesLabel.setText(String.valueOf(count));
+                countTCategoriesLabel2.setText(String.valueOf(count));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    public void toUpdateCategory_dashboard() {
+        int selectedRow = tableCategories.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Select a Category to Update.");
+        } else {
+            try {
+                String categoryType = (String) tableCategories.getValueAt(selectedRow, 0);
+
+                String queryCategory = "SELECT * FROM categories WHERE Category_Type=?";
+                pst = con.prepareStatement(queryCategory);
+                pst.setString(1, categoryType);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    String cat = rs.getString("Category_Type");
+                    String status = rs.getString("Status");
+
+                    update_Category uc = new update_Category();
+
+                    uc.txtCatType.setText(cat);
+                    uc.comboCatStatus.setSelectedItem(status);
+                    uc.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to Update!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     
@@ -2562,16 +2554,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel billingsLabel;
     private javax.swing.JPanel billingsPanel;
     private javax.swing.JPanel categoriesPanel;
+    private javax.swing.JComboBox<String> comboCategoryList;
     private javax.swing.JComboBox<String> comboClientIDList;
     private javax.swing.JComboBox<String> comboClientIDList1;
-    private javax.swing.JComboBox<String> comboClientIDList2;
     private javax.swing.JComboBox<String> comboClientIDList3;
     private javax.swing.JTabbedPane contentTabPanel;
-    private javax.swing.JLabel countCateLabel;
     private javax.swing.JLabel countTBillingsLabel;
+    private javax.swing.JLabel countTCategoriesLabel;
+    private javax.swing.JLabel countTCategoriesLabel2;
     private javax.swing.JLabel countTClientsLabel;
     public javax.swing.JLabel countTClientsLabel2;
-    private javax.swing.JLabel countTClientsLabel3;
     private javax.swing.JLabel countTClientsLabel4;
     private javax.swing.JButton createNewClientsButton;
     private javax.swing.JButton createNewClientsButton1;
@@ -2590,7 +2582,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -2660,9 +2651,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel pendingBillsPanel;
     private javax.swing.JPanel reportsContentPanel;
     private javax.swing.JPanel reportsPanel;
-    private javax.swing.JButton searchIDBtn;
-    private javax.swing.JButton searchIDBtn1;
-    private javax.swing.JButton searchIDBtn2;
+    private javax.swing.JButton searchBillBtn;
+    private javax.swing.JButton searchCatBtn;
+    private javax.swing.JButton searchCodeBtn;
     private javax.swing.JButton searchIDBtn3;
     private javax.swing.JLabel secondWord;
     private javax.swing.JPanel settingsContentPanel;
@@ -2671,14 +2662,15 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel sidebarPanel;
     private javax.swing.JLabel systemNameLabel;
     private javax.swing.JPanel tClientsPanel;
+    private javax.swing.JTable tableCategories;
     public javax.swing.JTable tableClients;
-    private javax.swing.JTable tableClients1;
     private javax.swing.JTable tableClients2;
-    private javax.swing.JTable tableClients3;
     private javax.swing.JTable tableClients5;
+    private javax.swing.JTable tableUsers;
     private javax.swing.JLabel thirdWord;
     private javax.swing.JTextField txtRateSettings;
     private javax.swing.JTextField txtSystemName;
+    private javax.swing.JButton updateCatBtn;
     private javax.swing.JButton updateDataClient;
     private javax.swing.JButton updateSettingsBtn;
     // End of variables declaration//GEN-END:variables

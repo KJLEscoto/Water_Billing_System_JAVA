@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import water.DB_Connection;
 
 /**
@@ -25,6 +26,8 @@ public class createNew_Client extends javax.swing.JFrame {
         con = DB_Connection.con();
         loadCategory();
         clientIDincrement();
+        AutoCompleteDecorator.decorate(comboCategory);
+        AutoCompleteDecorator.decorate(comboClientStatus);
     }
     
     /**
@@ -79,7 +82,7 @@ public class createNew_Client extends javax.swing.JFrame {
 
         cancelButton.setBackground(new java.awt.Color(99, 125, 131));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setForeground(new java.awt.Color(204, 0, 0));
         cancelButton.setText("Cancel");
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +93,7 @@ public class createNew_Client extends javax.swing.JFrame {
 
         saveButton.setBackground(new java.awt.Color(0, 55, 69));
         saveButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setForeground(new java.awt.Color(0, 255, 51));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +162,7 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Category");
 
+        comboCategory.setMaximumRowCount(3);
         comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial" }));
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
@@ -181,6 +185,7 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(9, 33, 43));
         jLabel11.setText("Status");
 
+        comboClientStatus.setMaximumRowCount(3);
         comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -326,16 +331,16 @@ public class createNew_Client extends javax.swing.JFrame {
         
         
         try {
-//            String queryCheckDupKey = "SELECT * FROM clientinformation";
+//            String queryDupEntry = "SELECT * FROM clientinformation";
 //            pst = con.prepareStatement(queryCheckDupKey);
 //            rs = pst.executeQuery();
 //
 //            if (rs.next()) {
-//                String dupClientID = rs.getString("Client_ID");
-//                String dupClientName = rs.getString("Client_Name");
+//                String dupClientID = rs.getString("Client_Code");
+//                String dupClientName = rs.getString("Client_FName");
 //                String dupMeterCode = rs.getString("Meter_Code");
 //
-//                if (client_id.equals(dupClientID)) {
+//                if (client_code.equals(dupClientID)) {
 //                    JOptionPane.showMessageDialog(this, "*Client Code* Already Exists!");
 //                    txtClientCode.setText(null);
 //                } else if (client_name.equals(dupClientName)) {
@@ -400,11 +405,11 @@ public class createNew_Client extends javax.swing.JFrame {
     public void loadCategory() {
        
        try {
-           String queryCategory = "SELECT Category_Type FROM categories";
+           String queryCategory = "SELECT Category_Type FROM categories WHERE Status='Active'";
            pst = con.prepareStatement(queryCategory);
-           rs = pst.executeQuery();
            comboCategory.removeAllItems();
-           
+           rs = pst.executeQuery();
+                      
            while(rs.next()) {
                comboCategory.addItem(rs.getString(1));
            }
@@ -472,18 +477,14 @@ public class createNew_Client extends javax.swing.JFrame {
                     txtFirstReading.setText(null);
                     comboClientStatus.setSelectedItem("Active");
                     clientIDincrement();
-                    txtClientFirstName.requestFocus();
                     
                     admin_Dashboard a = new admin_Dashboard();
                     a.loadClient_ID();
                  
-                }
-                
-           
+                }           
        } catch (SQLException ex) {
            Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       
+       }       
     }
     
     /**
