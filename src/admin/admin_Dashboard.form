@@ -777,7 +777,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="systemName" min="-2" max="-2" attributes="0"/>
+                      <Component id="systemNameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -792,7 +792,7 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="systemName" min="-2" max="-2" attributes="0"/>
+                          <Component id="systemNameLabel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="logoutBtn" min="-2" pref="41" max="-2" attributes="0"/>
@@ -804,7 +804,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="systemName">
+            <Component class="javax.swing.JLabel" name="systemNameLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ebrima" size="36" style="1"/>
@@ -1356,7 +1356,7 @@
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="5" rowCount="0">
-                                <Column editable="false" title="Client_ID" type="java.lang.Object"/>
+                                <Column editable="false" title="Client_Code" type="java.lang.Object"/>
                                 <Column editable="false" title="Name" type="java.lang.Object"/>
                                 <Column editable="false" title="Category" type="java.lang.Object"/>
                                 <Column editable="false" title="Date_Created" type="java.lang.Object"/>
@@ -2817,14 +2817,14 @@
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField5" min="-2" pref="628" max="-2" attributes="0"/>
+                                          <Component id="txtSystemName" min="-2" pref="628" max="-2" attributes="0"/>
                                           <Component id="jTextField6" alignment="0" min="-2" pref="628" max="-2" attributes="0"/>
                                           <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField7" alignment="0" min="-2" pref="628" max="-2" attributes="0"/>
+                                          <Component id="txtRateSettings" alignment="0" min="-2" pref="628" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                              <Component id="jButton24" min="-2" max="-2" attributes="0"/>
+                                              <Component id="updateSettingsBtn" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2850,7 +2850,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField5" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="txtSystemName" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -2860,21 +2860,21 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField7" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="txtRateSettings" min="-2" pref="40" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel36" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="25" max="32767" attributes="0"/>
                                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton24" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="updateSettingsBtn" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JButton" name="jButton24">
+                        <Component class="javax.swing.JButton" name="updateSettingsBtn">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="a7" green="89" red="12" type="rgb"/>
@@ -2883,10 +2883,13 @@
                               <Font name="Segoe UI" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="d9" green="d9" red="d9" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="UPDATE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateSettingsBtnActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JSeparator" name="jSeparator1">
                         </Component>
@@ -2912,7 +2915,7 @@
                             <Property name="text" type="java.lang.String" value="System Name"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField5">
+                        <Component class="javax.swing.JTextField" name="txtSystemName">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Segoe UI" size="14" style="1"/>
@@ -2974,7 +2977,7 @@
                             <Property name="text" type="java.lang.String" value="Rate per Cubic Meter (m^3)"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField7">
+                        <Component class="javax.swing.JTextField" name="txtRateSettings">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Segoe UI" size="14" style="1"/>
@@ -2985,7 +2988,7 @@
                             <Property name="text" type="java.lang.String" value="10.75"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRateSettingsActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel36">

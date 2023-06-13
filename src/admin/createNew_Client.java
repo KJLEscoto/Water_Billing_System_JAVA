@@ -126,13 +126,13 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(9, 33, 43));
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel2.setText("Client ID");
+        jLabel2.setText("Client Code");
 
         txtClientCode.setEditable(false);
         txtClientCode.setBackground(new java.awt.Color(18, 137, 167));
         txtClientCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtClientCode.setForeground(new java.awt.Color(255, 255, 255));
-        txtClientCode.setText("1001");
+        txtClientCode.setText("20231001");
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -313,7 +313,7 @@ public class createNew_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     public void saveNewClient() {
-        String client_id = txtClientCode.getText();
+        String client_code = txtClientCode.getText();
         String client_fname = txtClientFirstName.getText();
         String client_mname = txtMidName.getText();
         String client_lname = txtClientLastName.getText();
@@ -348,11 +348,11 @@ public class createNew_Client extends javax.swing.JFrame {
 //                    txtMeterCode.setText(null);
 //                }
 //            } else {
-                String queryClientInfo = "INSERT INTO clientinformation (Client_ID, Client_Fname, Client_Mname, Client_Lname, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
+                String queryClientInfo = "INSERT INTO clientinformation (Client_Code, Client_Fname, Client_Mname, Client_Lname, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
                         + "VALUES (?,?,?,?,?,?,?,?,?,?)";
                 pst = con.prepareStatement(queryClientInfo);
 
-                pst.setString(1, client_id);
+                pst.setString(1, client_code);
                 pst.setString(2, client_fname);
                 pst.setString(3, client_mname);
                 pst.setString(4, client_lname);
@@ -368,7 +368,7 @@ public class createNew_Client extends javax.swing.JFrame {
                 if (rowsAffected == 1) {
                     
                     admin_Dashboard a = new admin_Dashboard();
-                    a.Fetch();
+                    a.FetchClient();
                     a.loadClient_ID();
                     a.displayTCountClients();
                     
@@ -413,9 +413,9 @@ public class createNew_Client extends javax.swing.JFrame {
        }
     }
     
-    private void clientIDincrement() {
+    public void clientIDincrement() {
        try {
-           String queryClientID = "SELECT Client_ID FROM clientinformation ORDER BY Client_ID DESC LIMIT 1";
+           String queryClientID = "SELECT Client_Code FROM clientinformation ORDER BY Client_Code DESC LIMIT 1";
            pst = con.prepareStatement(queryClientID);
            rs = pst.executeQuery();
            
@@ -432,7 +432,7 @@ public class createNew_Client extends javax.swing.JFrame {
     
     public void updateClient() {
        try {
-           String Client_ID = txtClientCode.getText();
+           String Client_Code = txtClientCode.getText();
            String First_Name = txtClientFirstName.getText();
            String Middle_Name = txtMidName.getText();
            String Last_Name = txtClientLastName.getText();
@@ -444,8 +444,8 @@ public class createNew_Client extends javax.swing.JFrame {
            String client_status = (String) comboClientStatus.getSelectedItem();
            
            pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
-                   + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_ID=?");
-            pst.setString(1, Client_ID);
+                   + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_Code=?");
+            pst.setString(1, Client_Code);
             pst.setString(2, First_Name );
             pst.setString(3, Middle_Name);
             pst.setString(4, Last_Name );

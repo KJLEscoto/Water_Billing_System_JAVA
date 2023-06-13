@@ -94,7 +94,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         settingsLabel = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
-        systemName = new javax.swing.JLabel();
+        systemNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
         contentTabPanel = new javax.swing.JTabbedPane();
@@ -180,16 +180,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
+        updateSettingsBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtSystemName = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtRateSettings = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -645,9 +645,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         header.setBackground(new java.awt.Color(204, 204, 204));
 
-        systemName.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        systemName.setForeground(new java.awt.Color(51, 51, 51));
-        systemName.setText("MANAGEMENT SITE - Admin");
+        systemNameLabel.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        systemNameLabel.setForeground(new java.awt.Color(51, 51, 51));
+        systemNameLabel.setText("MANAGEMENT SITE - Admin");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
 
@@ -668,7 +668,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(systemName)
+                .addComponent(systemNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -681,7 +681,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(systemName)
+                    .addComponent(systemNameLabel)
                     .addGroup(headerLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -929,7 +929,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Client_ID", "Name", "Category", "Date_Created", "Status"
+                "Client_Code", "Name", "Category", "Date_Created", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1724,10 +1724,15 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(217, 217, 217));
 
-        jButton24.setBackground(new java.awt.Color(18, 137, 167));
-        jButton24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton24.setForeground(new java.awt.Color(217, 217, 217));
-        jButton24.setText("UPDATE");
+        updateSettingsBtn.setBackground(new java.awt.Color(18, 137, 167));
+        updateSettingsBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        updateSettingsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        updateSettingsBtn.setText("UPDATE");
+        updateSettingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateSettingsBtnActionPerformed(evt);
+            }
+        });
 
         jLabel31.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(51, 51, 51));
@@ -1737,9 +1742,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(51, 51, 51));
         jLabel32.setText("System Name");
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(18, 137, 167));
-        jTextField5.setText("MANAGEMENT SITE - Admin");
+        txtSystemName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSystemName.setForeground(new java.awt.Color(18, 137, 167));
+        txtSystemName.setText("MANAGEMENT SITE - Admin");
 
         jLabel33.setFont(new java.awt.Font("Ebrima", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(51, 51, 51));
@@ -1764,12 +1769,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(51, 51, 51));
         jLabel35.setText("Rate per Cubic Meter (m^3)");
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(18, 137, 167));
-        jTextField7.setText("10.75");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtRateSettings.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtRateSettings.setForeground(new java.awt.Color(18, 137, 167));
+        txtRateSettings.setText("10.75");
+        txtRateSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtRateSettingsActionPerformed(evt);
             }
         });
 
@@ -1793,14 +1798,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addGap(406, 406, 406))
                     .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel33)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSystemName, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel35)
                         .addComponent(jLabel34)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRateSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel16Layout.createSequentialGroup()
                             .addGap(3, 3, 3)
-                            .addComponent(jButton24))))
+                            .addComponent(updateSettingsBtn))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(jLabel36)
                 .addGap(139, 139, 139))
@@ -1820,7 +1825,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSystemName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel33)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1830,12 +1835,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtRateSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(updateSettingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
@@ -2061,7 +2066,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         AutoCompleteDecorator.decorate(comboClientIDList);
-        Fetch();
+        FetchClient();
         loadClient_ID();
         displayTCountClients();
         contentTabPanel.setSelectedIndex(1);
@@ -2077,7 +2082,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         AutoCompleteDecorator.decorate(comboClientIDList);
-        Fetch();
+        FetchClient();
         loadClient_ID();
         displayTCountClients();
         contentTabPanel.setSelectedIndex(1);        
@@ -2180,9 +2185,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtRateSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRateSettingsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtRateSettingsActionPerformed
 
     private void searchIDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtnActionPerformed
         // TODO add your handling code here:
@@ -2190,12 +2195,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
                
         try {
             if(comboClientIDList.getSelectedItem() != null) {
-                String client_id = comboClientIDList.getSelectedItem().toString();
+                String client_code = comboClientIDList.getSelectedItem().toString();
 
                 int q;
-                String querySearchID = "SELECT * FROM clientinformation WHERE Client_ID=?";
+                String querySearchID = "SELECT * FROM clientinformation WHERE Client_Code=?";
                 pst = con.prepareStatement(querySearchID);
-                pst.setString(1, client_id);
+                pst.setString(1, client_code);
                 rs = pst.executeQuery();
 
                 ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
@@ -2207,7 +2212,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 if(rs.next() == true) {
                     Vector rows = new Vector();
 
-                    String code = rs.getString("Client_ID");
+                    String code = rs.getString("Client_Code");
                     String fname = rs.getString("Client_Fname");
                     String mname = rs.getString("Client_Mname");
                     String lname = rs.getString("Client_Lname");
@@ -2217,7 +2222,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
                     String name = lname + ", " + fname + " " + mname;
                     
-                    for(int i = 1; i <= q; i++) {                        
+                    for(int i = 1; i <= q; i++) { 
                         rows.add(code);
                         rows.add(name);
                         rows.add(category_type);
@@ -2251,7 +2256,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             deleteClient();
         }
         else {
-            JOptionPane.showMessageDialog(this, "Select a Data to be Deleted.");
+            JOptionPane.showMessageDialog(this, "Select a Client to be Deleted.");
         }        
     }//GEN-LAST:event_deleteClientActionPerformed
 
@@ -2261,6 +2266,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void createNewClientsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButton1ActionPerformed
         // TODO add your handling code here:
+        new createNew_Billings().setVisible(true);
     }//GEN-LAST:event_createNewClientsButton1ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -2328,6 +2334,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchIDBtn3ActionPerformed
 
+    private void updateSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSettingsBtnActionPerformed
+        // TODO add your handling code here:
+        
+        updateSettings();        
+    }//GEN-LAST:event_updateSettingsBtnActionPerformed
+
     public void toUpdateClient_dashboard() {
         
         int selectedRow = tableClients.getSelectedRow();
@@ -2336,13 +2348,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }
         else { 
             try {
-                String queryClientInformation = "SELECT * FROM clientinformation WHERE Client_ID=?";
+                String queryClientInformation = "SELECT * FROM clientinformation WHERE Client_Code=?";
                 pst = con.prepareStatement(queryClientInformation);
                 pst.setString(1, (String) tableClients.getValueAt(selectedRow,0));
                 rs = pst.executeQuery();
                 
                 if(rs.next()) {
-                String client_id = rs.getString("Client_ID");
+                String client_code = rs.getString("Client_Code");
                 String first_name = rs.getString("Client_Fname");
                 String mid_name = rs.getString("Client_Mname");
                 String last_name = rs.getString("Client_Lname");
@@ -2355,7 +2367,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 
                 update_Client uc = new update_Client();
                 
-                uc.txtClientCode.setText(client_id);
+                uc.txtClientCode.setText(client_code);
                 uc.txtClientFirstName.setText(first_name);
                 uc.txtMidName.setText(mid_name);
                 uc.txtClientLastName.setText(last_name);
@@ -2375,7 +2387,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }
     }
     
-    public void Fetch() {
+    public void FetchClient() {
         
         try {
             int q;
@@ -2392,7 +2404,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             while(rs.next()) {
                 Vector rows = new Vector();
                 
-                String code = rs.getString("Client_ID");
+                String code = rs.getString("Client_Code");
                 String fname = rs.getString("Client_Fname");
                 String mname = rs.getString("Client_Mname");
                 String lname = rs.getString("Client_Lname");
@@ -2401,7 +2413,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 String client_status = rs.getString("Client_Status");
                 
                 String name = lname + ", " + fname + " " + mname;
-                
+                                
                 for(int i = 1; i <= q; i++) {
                     rows.add(code);
                     rows.add(name);
@@ -2417,8 +2429,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }
     
     public void loadClient_ID() {
+                
        try {
-           String queryClientID = "SELECT Client_ID FROM clientinformation ORDER BY Client_ID";
+           String queryClientID = "SELECT Client_Code FROM clientinformation ORDER BY Client_Code";
            comboClientIDList.removeAllItems();
            pst = con.prepareStatement(queryClientID);
            rs = pst.executeQuery();
@@ -2463,24 +2476,38 @@ public class admin_Dashboard extends javax.swing.JFrame {
             int response = JOptionPane.showConfirmDialog(this, "Delete Client ID - " + id + " ?", "Confirm...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                String client_id = (String) tableClients.getValueAt(row, 0);
+                String client_code = (String) tableClients.getValueAt(row, 0);
 
-                String queryDeleteClient = "DELETE FROM clientinformation WHERE Client_ID=?";
+                String queryDeleteClient = "DELETE FROM clientinformation WHERE Client_Code=?";
                 pst = con.prepareStatement(queryDeleteClient);
-                pst.setString(1, client_id);
+                pst.setString(1, client_code);
                 pst.executeUpdate();
 
-                Fetch();
+                FetchClient();
                 loadClient_ID();
                 displayTCountClients();
-
                 JOptionPane.showMessageDialog(null, "Deleted Successfully!");
+                
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Out of Range!");
         }
+    }
+    
+    public void updateSettings() {
+        String systemName = txtSystemName.getText();
+        
+        if(systemName.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Provide a System Name!");
+        }
+        else {
+            systemNameLabel.setText(systemName);        
+            JOptionPane.showMessageDialog(this, "Updated Successfully!");
+        }
+        
     }
 
     
@@ -2562,7 +2589,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -2625,9 +2651,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JPanel logoNamePanel;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;
@@ -2645,7 +2669,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel settingsLabel;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JPanel sidebarPanel;
-    private javax.swing.JLabel systemName;
+    private javax.swing.JLabel systemNameLabel;
     private javax.swing.JPanel tClientsPanel;
     public javax.swing.JTable tableClients;
     private javax.swing.JTable tableClients1;
@@ -2653,6 +2677,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableClients3;
     private javax.swing.JTable tableClients5;
     private javax.swing.JLabel thirdWord;
+    private javax.swing.JTextField txtRateSettings;
+    private javax.swing.JTextField txtSystemName;
     private javax.swing.JButton updateDataClient;
+    private javax.swing.JButton updateSettingsBtn;
     // End of variables declaration//GEN-END:variables
 }

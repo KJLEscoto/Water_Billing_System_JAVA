@@ -4,6 +4,15 @@
  */
 package admin;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import water.DB_Connection;
+
 /**
  *
  * @author Kent
@@ -13,8 +22,15 @@ public class createNew_Billings extends javax.swing.JFrame {
     /**
      * Creates new form createNew_Billings
      */
+    
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     public createNew_Billings() {
         initComponents();
+        con = DB_Connection.con();
+        loadClient_ID();
     }
 
     /**
@@ -36,18 +52,20 @@ public class createNew_Billings extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtClientLastName = new javax.swing.JTextField();
+        txtPreviousReading = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtClientContactNumber = new javax.swing.JTextField();
+        txtCurrentReading = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtMeterCode = new javax.swing.JTextField();
+        txtTotalBill = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        comboClientStatus = new javax.swing.JComboBox<>();
-        txtMidName = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBillStatus = new javax.swing.JComboBox<>();
+        txtRate = new javax.swing.JTextField();
+        comboBillClientID = new javax.swing.JComboBox<>();
+        comboReadingDate = new javax.swing.JComboBox<>();
+        comboDueDate = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        txtBillingCode = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,6 +97,11 @@ public class createNew_Billings extends javax.swing.JFrame {
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveButtonMouseClicked(evt);
+            }
+        });
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -112,7 +135,7 @@ public class createNew_Billings extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(9, 33, 43));
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 33, 43));
-        jLabel2.setText("Client");
+        jLabel2.setText("Client Code");
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -129,10 +152,11 @@ public class createNew_Billings extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(9, 33, 43));
         jLabel5.setText("Previous Reading");
 
-        txtClientLastName.setEditable(false);
-        txtClientLastName.setBackground(new java.awt.Color(18, 137, 167));
-        txtClientLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtClientLastName.setForeground(new java.awt.Color(255, 255, 255));
+        txtPreviousReading.setEditable(false);
+        txtPreviousReading.setBackground(new java.awt.Color(18, 137, 167));
+        txtPreviousReading.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtPreviousReading.setForeground(new java.awt.Color(255, 255, 255));
+        txtPreviousReading.setText("0");
 
         jLabel6.setBackground(new java.awt.Color(9, 33, 43));
         jLabel6.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -149,34 +173,39 @@ public class createNew_Billings extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(9, 33, 43));
         jLabel9.setText("Due Date");
 
-        txtMeterCode.setEditable(false);
-        txtMeterCode.setBackground(new java.awt.Color(18, 137, 167));
-        txtMeterCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtMeterCode.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotalBill.setEditable(false);
+        txtTotalBill.setBackground(new java.awt.Color(18, 137, 167));
+        txtTotalBill.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtTotalBill.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotalBill.setText("0");
 
         jLabel10.setBackground(new java.awt.Color(9, 33, 43));
         jLabel10.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(9, 33, 43));
         jLabel10.setText("Status");
 
-        comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Paid" }));
+        comboBillStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Paid" }));
 
-        txtMidName.setEditable(false);
-        txtMidName.setBackground(new java.awt.Color(18, 137, 167));
-        txtMidName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtMidName.setForeground(new java.awt.Color(255, 255, 255));
-        txtMidName.setText("10.75");
+        txtRate.setEditable(false);
+        txtRate.setBackground(new java.awt.Color(18, 137, 167));
+        txtRate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtRate.setForeground(new java.awt.Color(255, 255, 255));
+        txtRate.setText("10.75");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client 1", "Client 2" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        comboReadingDate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
+        comboDueDate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feb 20, 2023", "may 20, 2023", "Oct 20, 2023" }));
+        jLabel7.setBackground(new java.awt.Color(9, 33, 43));
+        jLabel7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(9, 33, 43));
+        jLabel7.setText("Billing Code");
+
+        txtBillingCode.setEditable(false);
+        txtBillingCode.setBackground(new java.awt.Color(18, 137, 167));
+        txtBillingCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtBillingCode.setForeground(new java.awt.Color(255, 255, 255));
+        txtBillingCode.setText("20232001");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,27 +218,33 @@ public class createNew_Billings extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel9)
-                        .addComponent(txtClientContactNumber)
-                        .addComponent(txtMidName)
-                        .addComponent(jComboBox1, 0, 285, Short.MAX_VALUE))
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addComponent(comboClientStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addComponent(txtClientLastName)
-                        .addComponent(jComboBox2, 0, 285, Short.MAX_VALUE))
-                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboBillStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtPreviousReading, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(txtBillingCode, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(comboReadingDate, 0, 285, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(comboDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCurrentReading, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(comboBillClientID, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(29, 29, 29))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,36 +254,40 @@ public class createNew_Billings extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboBillClientID, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtBillingCode))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jComboBox2))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(txtRate, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(comboReadingDate))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtClientLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(txtMidName))
+                    .addComponent(txtCurrentReading, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtPreviousReading))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtClientContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
+                .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboClientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(164, 164, 164))
+                .addComponent(comboBillStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -264,11 +303,11 @@ public class createNew_Billings extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -297,10 +336,96 @@ public class createNew_Billings extends javax.swing.JFrame {
         
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
+       
+    }//GEN-LAST:event_saveButtonMouseClicked
+    
+    public void SaveNewBilling(){
+        String bill_code = txtBillingCode.getText();
+        String client_code = (String) comboBillClientID.getSelectedItem();
+        String reading_date = (String) comboReadingDate.getSelectedItem();
+        String rate = txtRate.getText();
+        String curr_reading = txtCurrentReading.getText();
+        String total_bill = txtTotalBill.getText();
+        String due_date = (String) comboDueDate.getSelectedItem();
+        String bill_status = (String) comboBillStatus.getSelectedItem();
+       
+        try {         
+            String queryBillings = "INSERT INTO billings (Bill_Code, Reading_Date, Rate, Client_Code, Current_Reading, Total_Bill, Due_Date, Billing_Status) "
+                    + "VALUES (?,?,?,?,?,?,?,?)";
+            
+            pst = con.prepareStatement(queryBillings);
 
+            pst.setString(1, bill_code);
+            pst.setString(2, client_code);
+            pst.setString(3, reading_date);
+            pst.setString(4, rate );
+            pst.setString(5, curr_reading);            
+            pst.setString(6, total_bill);
+            pst.setString(7, due_date);
+            pst.setString(8, bill_status);
+            
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected == 1) {
+
+                admin_Dashboard a = new admin_Dashboard();
+                a.FetchClient();
+                a.loadClient_ID();
+                a.displayTCountClients();
+
+                JOptionPane.showMessageDialog(null, "Billing Added Successfully!");
+
+                
+                comboReadingDate.setSelectedItem("Feb 20, 2023");
+                txtRate.setText("");
+                txtPreviousReading.setText("0");
+                txtCurrentReading.setText(null);
+                txtTotalBill.setText("0");
+                comboDueDate.setSelectedItem("Feb 20, 2023");
+                comboBillStatus.setSelectedItem("Pending");
+                billIDincrement();
+                loadClient_ID();
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to Add!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Please provide a Data!");
+        }
+    }
+    
+    public void loadClient_ID() {
+        try {
+           String queryClientID = "SELECT Client_Code, Client_Fname, Client_Mname, Client_Lname FROM clientinformation ORDER BY Client_Code";
+           pst = con.prepareStatement(queryClientID);
+           rs = pst.executeQuery();
+           
+           while(rs.next()) {
+               String name = rs.getString(4) + ", " + rs.getString(2) + " " + rs.getString(3);
+               comboBillClientID.addItem(rs.getString(1) + " - " + name);
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+     private void billIDincrement() {
+       try {
+           String queryClientID = "SELECT Bill_ID FROM billings ORDER BY Bill_ID DESC LIMIT 1";
+           pst = con.prepareStatement(queryClientID);
+           rs = pst.executeQuery();
+           
+           if(rs.next()) {
+               int id = rs.getInt(1);
+               int n = id + 1;
+               txtBillingCode.setText(Integer.toString(n));
+           }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -338,10 +463,10 @@ public class createNew_Billings extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox<String> comboClientStatus;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    public javax.swing.JComboBox<String> comboBillClientID;
+    private javax.swing.JComboBox<String> comboBillStatus;
+    private javax.swing.JComboBox<String> comboDueDate;
+    private javax.swing.JComboBox<String> comboReadingDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -349,15 +474,17 @@ public class createNew_Billings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton saveButton;
-    private javax.swing.JTextField txtClientContactNumber;
-    private javax.swing.JTextField txtClientLastName;
-    private javax.swing.JTextField txtMeterCode;
-    private javax.swing.JTextField txtMidName;
+    private javax.swing.JTextField txtBillingCode;
+    private javax.swing.JTextField txtCurrentReading;
+    private javax.swing.JTextField txtPreviousReading;
+    private javax.swing.JTextField txtRate;
+    private javax.swing.JTextField txtTotalBill;
     // End of variables declaration//GEN-END:variables
 }

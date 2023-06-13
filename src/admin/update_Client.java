@@ -335,7 +335,7 @@ public class update_Client extends javax.swing.JFrame {
     
     private void clientIDincrement() {
        try {
-           String queryClientID = "SELECT Client_ID FROM clientinformation ORDER BY Client_ID DESC LIMIT 1";
+           String queryClientID = "SELECT Client_Code FROM clientinformation ORDER BY Client_Code DESC LIMIT 1";
            pst = con.prepareStatement(queryClientID);
            rs = pst.executeQuery();
            
@@ -352,7 +352,7 @@ public class update_Client extends javax.swing.JFrame {
     
     public void updatingClient() {
         try {
-            String client_id = txtClientCode.getText();
+            String client_code = txtClientCode.getText();
             String client_fname = txtClientFirstName.getText();
             String client_mname = txtMidName.getText();
             String client_lname = txtClientLastName.getText();
@@ -364,7 +364,7 @@ public class update_Client extends javax.swing.JFrame {
             String client_status = (String) comboClientStatus.getSelectedItem();   
 
             pst = con.prepareStatement("UPDATE clientinformation SET Client_Fname=?, Client_Mname=?, Client_Lname=?, Contact_No=?, Category_Type=?, "
-                    + "Client_Address=?,  Meter_Code=?, First_Reading=?, Client_Status=? WHERE Client_ID=?");
+                    + "Client_Address=?,  Meter_Code=?, First_Reading=?, Client_Status=? WHERE Client_Code=?");
             pst.setString(1, client_fname);
             pst.setString(2, client_mname);
             pst.setString(3, client_lname);
@@ -374,14 +374,14 @@ public class update_Client extends javax.swing.JFrame {
             pst.setString(7, meter_code);
             pst.setString(8, first_reading);
             pst.setString(9, client_status);
-            pst.setString(10, client_id);
+            pst.setString(10, client_code);
 
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected > 0) {
                     admin_Dashboard a = new admin_Dashboard();
                     a.loadClient_ID();
-                    a.Fetch();
+                    a.FetchClient();
                     JOptionPane.showMessageDialog(null, "Client Updated Successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to Update!");
