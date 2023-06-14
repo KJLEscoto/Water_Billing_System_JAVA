@@ -223,35 +223,23 @@ public class update_Category extends javax.swing.JFrame {
 
     public void updatingCategory() {
         try {
+            String id = txtCatID.getText();
             String cat = txtCatType.getText();
             String status = (String) comboCatStatus.getSelectedItem();
 
-            // Check for duplicate entry excluding the current category
-            String checkDuplicateQuery = "SELECT COUNT(*) FROM categories WHERE Category_Type = ? AND Category_Type <> ?";
-            pst = con.prepareStatement(checkDuplicateQuery);
-            pst.setString(1, cat);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                if (count > 0) {
-                    JOptionPane.showMessageDialog(null, "Duplicate Category!");
-                    return;
-                }
-            }
-
-            // Update the category
-            pst = con.prepareStatement("UPDATE categories SET Category_Type=?, Status=? WHERE Category_Type=?");
+            String queryUpdateCat = "UPDATE categories SET Category_Type=?, Status=? WHERE Category_ID=?";
+            pst = con.prepareStatement(queryUpdateCat);
             pst.setString(1, cat);
             pst.setString(2, status);
-
+            pst.setString(3, id);
+            
             int rowsAffected = pst.executeUpdate();
-
+            
             if (rowsAffected > 0) {
-                admin_Dashboard a = new admin_Dashboard();
-                a.loadCategory();
-                a.fetchCategories();
-                JOptionPane.showMessageDialog(null, "Category Updated Successfully!");
+                    admin_Dashboard a = new admin_Dashboard();
+                    a.loadCategory();
+                    a.fetchCategories();
+                    JOptionPane.showMessageDialog(null, "Category Updated Successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to Update!");
             }

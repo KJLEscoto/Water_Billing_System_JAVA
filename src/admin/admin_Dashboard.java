@@ -208,18 +208,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         footerLayout.setHorizontalGroup(
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(footerLayout.createSequentialGroup()
-                .addGap(573, 573, 573)
+                .addContainerGap()
                 .addComponent(jLabel8)
-                .addContainerGap(574, Short.MAX_VALUE))
+                .addContainerGap(871, Short.MAX_VALUE))
         );
         footerLayout.setVerticalGroup(
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, footerLayout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel2.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 799, 1500, -1));
+        jPanel2.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 800, 1230, 30));
 
         sidebarPanel.setBackground(new java.awt.Color(10, 52, 66));
 
@@ -612,7 +610,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addComponent(ListofUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(settingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 64, Short.MAX_VALUE))
         );
 
         jPanel2.add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 830));
@@ -625,9 +623,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
 
-        logoutBtn.setBackground(new java.awt.Color(10, 52, 66));
+        logoutBtn.setBackground(new java.awt.Color(99, 125, 131));
         logoutBtn.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        logoutBtn.setForeground(new java.awt.Color(255, 102, 102));
+        logoutBtn.setForeground(new java.awt.Color(255, 0, 0));
         logoutBtn.setText("Logout");
         logoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1348,11 +1346,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Category", "Date_Created", "Status"
+                "Category_ID", "Category", "Date_Created", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1822,9 +1820,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -2421,11 +2417,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
             while(rs.next()) {
                 Vector rows = new Vector();
                 
+                String category_id = rs.getString("Category_ID");
                 String category_type = rs.getString("Category_Type");
                 String date_created = rs.getString("Date_Created");
                 String status = rs.getString("Status");
                                 
                 for(int i = 1; i <= q; i++) {
+                    rows.add(category_id);
                     rows.add(category_type);
                     rows.add(date_created);
                     rows.add(status);
@@ -2477,19 +2475,21 @@ public class admin_Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Select a Category to Update.");
         } else {
             try {
-                String categoryType = (String) tableCategories.getValueAt(selectedRow, 0);
+                String categoryID = (String) tableCategories.getValueAt(selectedRow, 0);
 
-                String queryCategory = "SELECT * FROM categories WHERE Category_Type=?";
+                String queryCategory = "SELECT * FROM categories WHERE Category_ID=?";
                 pst = con.prepareStatement(queryCategory);
-                pst.setString(1, categoryType);
+                pst.setString(1, categoryID);
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
+                    String id = rs.getString("Category_ID");
                     String cat = rs.getString("Category_Type");
                     String status = rs.getString("Status");
 
                     update_Category uc = new update_Category();
 
+                    uc.txtCatID.setText(id);
                     uc.txtCatType.setText(cat);
                     uc.comboCatStatus.setSelectedItem(status);
                     uc.setVisible(true);
