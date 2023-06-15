@@ -84,6 +84,7 @@ public class admin_login extends javax.swing.JFrame {
         loginButton.setBorder(null);
         loginButton.setBorderPainted(false);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton.setFocusable(false);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -96,6 +97,7 @@ public class admin_login extends javax.swing.JFrame {
         backButton.setText("Back");
         backButton.setBorder(null);
         backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backButton.setFocusable(false);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
@@ -208,6 +210,7 @@ public class admin_login extends javax.swing.JFrame {
         exitBtn.setText(" X ");
         exitBtn.setBorder(null);
         exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitBtn.setFocusable(false);
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);

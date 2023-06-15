@@ -66,6 +66,7 @@ public class index extends javax.swing.JFrame {
         adminButton.setForeground(new java.awt.Color(217, 217, 217));
         adminButton.setText("ADMIN");
         adminButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminButton.setFocusable(false);
         adminButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 adminButtonMousePressed(evt);
@@ -82,6 +83,7 @@ public class index extends javax.swing.JFrame {
         employeeButton.setForeground(new java.awt.Color(217, 217, 217));
         employeeButton.setText("EMPLOYEE");
         employeeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        employeeButton.setFocusable(false);
         employeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 employeeButtonActionPerformed(evt);
@@ -115,6 +117,7 @@ public class index extends javax.swing.JFrame {
         exitButton.setText(" X ");
         exitButton.setBorder(null);
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitButton.setFocusable(false);
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);

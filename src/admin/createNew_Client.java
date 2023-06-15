@@ -80,22 +80,24 @@ public class createNew_Client extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CREATE NEW CLIENT");
 
-        cancelButton.setBackground(new java.awt.Color(99, 125, 131));
+        cancelButton.setBackground(new java.awt.Color(204, 0, 51));
         cancelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cancelButton.setForeground(new java.awt.Color(204, 0, 0));
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelButton.setText("Cancel");
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelButton.setFocusable(false);
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
 
-        saveButton.setBackground(new java.awt.Color(0, 55, 69));
+        saveButton.setBackground(new java.awt.Color(0, 153, 0));
         saveButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(0, 255, 51));
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.setFocusable(false);
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -136,6 +138,7 @@ public class createNew_Client extends javax.swing.JFrame {
         txtClientCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtClientCode.setForeground(new java.awt.Color(255, 255, 255));
         txtClientCode.setText("20231001");
+        txtClientCode.setFocusable(false);
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -258,9 +261,9 @@ public class createNew_Client extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFirstReading, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMeterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFirstReading, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtMeterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -310,7 +313,7 @@ public class createNew_Client extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
+        dispose();        
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -328,77 +331,80 @@ public class createNew_Client extends javax.swing.JFrame {
         String meter_code = txtMeterCode.getText();
         String first_reading = txtFirstReading.getText();
         String client_status = (String) comboClientStatus.getSelectedItem();
-        
-        
+
         try {
-//            String queryDupEntry = "SELECT * FROM clientinformation";
-//            pst = con.prepareStatement(queryCheckDupKey);
-//            rs = pst.executeQuery();
-//
-//            if (rs.next()) {
-//                String dupClientID = rs.getString("Client_Code");
-//                String dupClientName = rs.getString("Client_FName");
-//                String dupMeterCode = rs.getString("Meter_Code");
-//
-//                if (client_code.equals(dupClientID)) {
-//                    JOptionPane.showMessageDialog(this, "*Client Code* Already Exists!");
-//                    txtClientCode.setText(null);
-//                } else if (client_name.equals(dupClientName)) {
-//                    JOptionPane.showMessageDialog(this, "*Name* Already Exists!");
-//                    txtClientFirstName.setText(null);
-//                    txtMidName.setText(null);
-//                    txtClientLastName.setText(null);
-//                } else if (meter_code.equals(dupMeterCode)) {
-//                    JOptionPane.showMessageDialog(this, "*Meter Code* Already Exists!");
-//                    txtMeterCode.setText(null);
-//                }
-//            } else {
-                String queryClientInfo = "INSERT INTO clientinformation (Client_Code, Client_Fname, Client_Mname, Client_Lname, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
-                        + "VALUES (?,?,?,?,?,?,?,?,?,?)";
-                pst = con.prepareStatement(queryClientInfo);
+            // Check if the client already exists (only if Client_Status is "Active")
+            if (client_status.equals("Active")) {
+                String queryCheckDuplicate = "SELECT COUNT(*) FROM clientinformation WHERE Client_Status = 'Active' AND Client_Fname = ? AND Client_Mname = ? AND Client_Lname = ?";
+                pst = con.prepareStatement(queryCheckDuplicate);
+                pst.setString(1, client_fname);
+                pst.setString(2, client_mname);
+                pst.setString(3, client_lname);
+                rs = pst.executeQuery();
+                rs.next();
+                int duplicateCount = rs.getInt(1);
 
-                pst.setString(1, client_code);
-                pst.setString(2, client_fname);
-                pst.setString(3, client_mname);
-                pst.setString(4, client_lname);
-                pst.setString(5, contact_no);
-                pst.setString(6, category_type);
-                pst.setString(7, client_address);
-                pst.setString(8, meter_code);
-                pst.setString(9, first_reading);
-                pst.setString(10, client_status);
-
-                int rowsAffected = pst.executeUpdate();
-
-                if (rowsAffected == 1) {
-                    
-                    admin_Dashboard a = new admin_Dashboard();
-                    a.FetchClient();
-                    a.loadClient_ID();
-                    a.displayTCountClients();
-                    
-                    JOptionPane.showMessageDialog(null, "Client Added Successfully!");
-
-                    txtClientCode.setText(null);
-                    txtClientFirstName.setText(null);
-                    txtClientLastName.setText(null);
-                    txtMidName.setText(null);
-                    txtClientContactNumber.setText(null);
-                    comboCategory.setSelectedItem("Commercial");
-                    txtClientAddress.setText(null);
-                    txtMeterCode.setText(null);
-                    txtFirstReading.setText(null);
-                    comboClientStatus.setSelectedItem("Active");
-                    clientIDincrement();
-                    
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Failed to Add!");
+                if (duplicateCount > 0) {
+                    JOptionPane.showMessageDialog(null, "Client already exists.");
+                    return;
                 }
-            
+            }
 
+            // Validate contact_no field as a number
+            if (!contact_no.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Invalid Contact Number. Please provide a Valid Number.");
+                txtClientContactNumber.setText(null);
+                return;
+            }
+
+            // Validate first_reading field as a number or decimal
+            if (!first_reading.matches("\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(null, "Invalid First Reading. Please provide a Valid Number or Decimal.");
+                txtFirstReading.setText(null);
+                return;
+            }
+
+            String queryClientInfo = "INSERT INTO clientinformation (Client_Code, Client_Fname, Client_Mname, Client_Lname, Contact_No, Category_Type, Client_Address, Meter_Code, First_Reading, Client_Status) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            pst = con.prepareStatement(queryClientInfo);
+
+            pst.setString(1, client_code);
+            pst.setString(2, client_fname);
+            pst.setString(3, client_mname);
+            pst.setString(4, client_lname);
+            pst.setString(5, contact_no);
+            pst.setString(6, category_type);
+            pst.setString(7, client_address);
+            pst.setString(8, meter_code);
+            pst.setString(9, first_reading);
+            pst.setString(10, client_status);
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected == 1) {
+                admin_Dashboard a = new admin_Dashboard();
+                a.FetchClient();
+                a.loadClient_ID();
+                a.displayTCountClients();
+
+                JOptionPane.showMessageDialog(null, "Client Added Successfully!");
+
+                txtClientCode.setText(null);
+                txtClientFirstName.setText(null);
+                txtClientLastName.setText(null);
+                txtMidName.setText(null);
+                txtClientContactNumber.setText(null);
+                comboCategory.setSelectedItem("Commercial");
+                txtClientAddress.setText(null);
+                txtMeterCode.setText(null);
+                txtFirstReading.setText(null);
+                comboClientStatus.setSelectedItem("Active");
+                clientIDincrement();
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to Add!");
+            }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Please provide a Data!");
+            JOptionPane.showMessageDialog(null, "Provide Data Input for all Fields!");
         }
     }
     
@@ -435,57 +441,57 @@ public class createNew_Client extends javax.swing.JFrame {
        }
     }
     
-    public void updateClient() {
-       try {
-           String Client_Code = txtClientCode.getText();
-           String First_Name = txtClientFirstName.getText();
-           String Middle_Name = txtMidName.getText();
-           String Last_Name = txtClientLastName.getText();
-           String Contact_Number = txtClientContactNumber.getText();
-           String Client_Address = txtClientAddress.getText();
-           String Meter_Code = txtMeterCode.getText();
-           String First_Reading= txtFirstReading.getText();
-           String category_type = (String) comboCategory.getSelectedItem();
-           String client_status = (String) comboClientStatus.getSelectedItem();
-           
-           pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
-                   + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_Code=?");
-            pst.setString(1, Client_Code);
-            pst.setString(2, First_Name );
-            pst.setString(3, Middle_Name);
-            pst.setString(4, Last_Name );
-            pst.setString(5, Contact_Number );
-            pst.setString(6, Client_Address);
-            pst.setString(7, Meter_Code);
-            pst.setString(8, First_Reading);
-            pst.setString(9, category_type );
-            pst.setString(10, client_status );
-                
-                 int rowsAffected = pst.executeUpdate();
-
-                if (rowsAffected == 1) {
-                    JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
-
-                    txtClientCode.setText(null);
-                    txtClientFirstName.setText(null);
-                    txtClientLastName.setText(null);
-                    txtMidName.setText(null);
-                    txtClientContactNumber.setText(null);
-                    comboCategory.setSelectedItem("Commercial");
-                    txtClientAddress.setText(null);
-                    txtMeterCode.setText(null);
-                    txtFirstReading.setText(null);
-                    comboClientStatus.setSelectedItem("Active");
-                    clientIDincrement();
-                    
-                    admin_Dashboard a = new admin_Dashboard();
-                    a.loadClient_ID();
-                 
-                }           
-       } catch (SQLException ex) {
-           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
-       }       
-    }
+//    public void updateClient() {
+//       try {
+//           String Client_Code = txtClientCode.getText();
+//           String First_Name = txtClientFirstName.getText();
+//           String Middle_Name = txtMidName.getText();
+//           String Last_Name = txtClientLastName.getText();
+//           String Contact_Number = txtClientContactNumber.getText();
+//           String Client_Address = txtClientAddress.getText();
+//           String Meter_Code = txtMeterCode.getText();
+//           String First_Reading= txtFirstReading.getText();
+//           String category_type = (String) comboCategory.getSelectedItem();
+//           String client_status = (String) comboClientStatus.getSelectedItem();
+//           
+//           pst = con.prepareStatement("UPDATE clientinformation SET First_Name = ?, Middle_Name = ?, Last_Name= ?, Contact_Number = ?,Client_Address =?, "
+//                   + "Meter_Code=?,  First_Reading=?, category_type =?,client_status=? WHERE Client_Code=?");
+//            pst.setString(1, Client_Code);
+//            pst.setString(2, First_Name );
+//            pst.setString(3, Middle_Name);
+//            pst.setString(4, Last_Name );
+//            pst.setString(5, Contact_Number );
+//            pst.setString(6, Client_Address);
+//            pst.setString(7, Meter_Code);
+//            pst.setString(8, First_Reading);
+//            pst.setString(9, category_type );
+//            pst.setString(10, client_status );
+//                
+//                 int rowsAffected = pst.executeUpdate();
+//
+//                if (rowsAffected == 1) {
+//                    JOptionPane.showMessageDialog(null, "SUCCESSFUL:\nClient Added!");
+//
+//                    txtClientCode.setText(null);
+//                    txtClientFirstName.setText(null);
+//                    txtClientLastName.setText(null);
+//                    txtMidName.setText(null);
+//                    txtClientContactNumber.setText(null);
+//                    comboCategory.setSelectedItem("Commercial");
+//                    txtClientAddress.setText(null);
+//                    txtMeterCode.setText(null);
+//                    txtFirstReading.setText(null);
+//                    comboClientStatus.setSelectedItem("Active");
+//                    clientIDincrement();
+//                    
+//                    admin_Dashboard a = new admin_Dashboard();
+//                    a.loadClient_ID();
+//                 
+//                }           
+//       } catch (SQLException ex) {
+//           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+//       }       
+//    }
     
     /**
      * @param args the command line arguments

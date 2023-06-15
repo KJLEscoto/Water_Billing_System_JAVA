@@ -93,14 +93,14 @@
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txtClientCode" alignment="0" pref="285" max="32767" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboCategory" pref="285" max="32767" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <Component id="txtMeterCode" pref="285" max="32767" attributes="0"/>
                           <Component id="txtClientContactNumber" pref="285" max="32767" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <Component id="txtMidName" alignment="0" pref="285" max="32767" attributes="0"/>
+                          <Component id="txtCategory" pref="285" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboClientStatus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="comboCategory" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtCategory" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
@@ -329,6 +329,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtClientFirstName">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -348,6 +360,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtClientLastName">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -386,22 +410,19 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtClientAddress">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="comboCategory">
               <Properties>
-                <Property name="maximumRowCount" type="int" value="3"/>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Commercial"/>
-                  </StringArray>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="createNew_Client_jComboBox1"/>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
@@ -434,6 +455,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMeterCode">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -453,6 +486,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtFirstReading">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -487,6 +532,35 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMidName">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCategory">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="89" red="12" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>

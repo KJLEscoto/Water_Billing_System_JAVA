@@ -42,7 +42,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ActiveColor = new Color(217,217,217);
         contentTabPanel.setSelectedIndex(0);
         displayTCountClients();
-        displayTCountCategories();
+        displayTCountBillsPending();
+        displayTCountCategories();        
     }
     
     /**
@@ -126,9 +127,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
-        countTBillingsLabel = new javax.swing.JLabel();
+        countTBillingsLabel2 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tableClients5 = new javax.swing.JTable();
+        tableBillings = new javax.swing.JTable();
         createNewClientsButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         deleteClient1 = new javax.swing.JButton();
@@ -623,11 +624,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
 
-        logoutBtn.setBackground(new java.awt.Color(99, 125, 131));
+        logoutBtn.setBackground(new java.awt.Color(204, 0, 51));
         logoutBtn.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        logoutBtn.setForeground(new java.awt.Color(255, 0, 0));
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Logout");
         logoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutBtn.setFocusable(false);
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
@@ -807,22 +809,22 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(10, 52, 66));
-        jLabel24.setText("Healthy World\"");
+        jLabel24.setText("a Healthy World\"");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel24)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel24)
+                        .addGap(67, 67, 67)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tClientsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pendingBillsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1036,9 +1038,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("BILLINGS -");
 
-        countTBillingsLabel.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        countTBillingsLabel.setForeground(new java.awt.Color(0, 255, 51));
-        countTBillingsLabel.setText("0");
+        countTBillingsLabel2.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        countTBillingsLabel2.setForeground(new java.awt.Color(0, 255, 51));
+        countTBillingsLabel2.setText("0");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -1048,7 +1050,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel37)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(countTBillingsLabel)
+                .addComponent(countTBillingsLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -1057,17 +1059,17 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(countTBillingsLabel))
+                    .addComponent(countTBillingsLabel2))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        tableClients5.setAutoCreateRowSorter(true);
-        tableClients5.setModel(new javax.swing.table.DefaultTableModel(
+        tableBillings.setAutoCreateRowSorter(true);
+        tableBillings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Billing_Code", "Code", "Reading_Date", "Amount", "Due_Date", "Status"
+                "Billing_Code", "Reading_Date", "Code", "Amount", "Due_Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1078,14 +1080,14 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableClients5.setColumnSelectionAllowed(true);
-        tableClients5.setSelectionBackground(new java.awt.Color(18, 137, 167));
-        tableClients5.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tableClients5.setShowGrid(false);
-        tableClients5.setShowHorizontalLines(true);
-        tableClients5.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(tableClients5);
-        tableClients5.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableBillings.setColumnSelectionAllowed(true);
+        tableBillings.setSelectionBackground(new java.awt.Color(18, 137, 167));
+        tableBillings.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tableBillings.setShowGrid(false);
+        tableBillings.setShowHorizontalLines(true);
+        tableBillings.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(tableBillings);
+        tableBillings.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         createNewClientsButton1.setBackground(new java.awt.Color(10, 52, 66));
         createNewClientsButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1706,9 +1708,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(51, 51, 51));
         jLabel35.setText("Rate per Cubic Meter (m^3)");
 
+        txtRateSettings.setEditable(false);
+        txtRateSettings.setBackground(new java.awt.Color(18, 137, 167));
         txtRateSettings.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtRateSettings.setForeground(new java.awt.Color(18, 137, 167));
-        txtRateSettings.setText("10.75");
+        txtRateSettings.setForeground(new java.awt.Color(255, 255, 255));
+        txtRateSettings.setText("5.75");
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-water (1).png"))); // NOI18N
 
@@ -1894,6 +1898,8 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void billingsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billingsPanelMouseClicked
         contentTabPanel.setSelectedIndex(2);
+        fetchBillings();
+        displayTCountBillsPending();
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
@@ -1939,6 +1945,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void pendingBillsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pendingBillsPanelMouseClicked
         contentTabPanel.setSelectedIndex(2);
+        fetchBillings();
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
@@ -1984,7 +1991,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void createNewClientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewClientsButtonActionPerformed
         new createNew_Client().setVisible(true);
-     
     }//GEN-LAST:event_createNewClientsButtonActionPerformed
 
     private void reportsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsPanelMouseClicked
@@ -2130,7 +2136,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCodeBtnActionPerformed
 
     private void updateDataClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDataClientActionPerformed
-        toUpdateClient_dashboard();
+        toUpdateClient_dashboard();        
     }//GEN-LAST:event_updateDataClientActionPerformed
     
     private void deleteClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClientActionPerformed
@@ -2190,11 +2196,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 if(rs.next() == true) {
                     Vector rows = new Vector();
 
+                    String id = rs.getString("Category_ID");
                     String cat = rs.getString("Category_Type");
                     String date_created = rs.getString("Date_Created");
                     String status = rs.getString("Status");
                     
                     for(int i = 1; i <= q; i++) { 
+                        rows.add(id);
                         rows.add(cat);
                         rows.add(date_created);
                         rows.add(status);
@@ -2243,37 +2251,47 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }
         else { 
             try {
-                String queryClientInformation = "SELECT * FROM clientinformation WHERE Client_Code=?";
-                pst = con.prepareStatement(queryClientInformation);
-                pst.setString(1, (String) tableClients.getValueAt(selectedRow,0));
-                rs = pst.executeQuery();
                 
-                if(rs.next()) {
-                    String client_code = rs.getString("Client_Code");
-                    String first_name = rs.getString("Client_Fname");
-                    String mid_name = rs.getString("Client_Mname");
-                    String last_name = rs.getString("Client_Lname");
-                    String cont_num = rs.getString("Contact_No");
-                    String address = rs.getString("Client_Address");
-                    String meter_code = rs.getString("Meter_Code");
-                    String f_read = rs.getString("First_Reading");
-                    String cat = rs.getString("Category_Type");
-                    String status = rs.getString("Client_Status");
+                String inactive = (String) tableClients.getValueAt(selectedRow,4);
+                
+                if(inactive.equals("Inactive")) {
+                    updateDataClient.setEnabled(false);
+                    JOptionPane.showMessageDialog(this, "This Client is Already Inactive!");
+                    updateDataClient.setEnabled(true);
+                }
+                else{
+                    String queryClientInformation = "SELECT * FROM clientinformation WHERE Client_Code=?";
+                    pst = con.prepareStatement(queryClientInformation);
+                    pst.setString(1, (String) tableClients.getValueAt(selectedRow,0));
+                    rs = pst.executeQuery();
 
-                    update_Client uc = new update_Client();
+                    if(rs.next()) {
+                        String client_code = rs.getString("Client_Code");
+                        String first_name = rs.getString("Client_Fname");
+                        String mid_name = rs.getString("Client_Mname");
+                        String last_name = rs.getString("Client_Lname");
+                        String cont_num = rs.getString("Contact_No");
+                        String address = rs.getString("Client_Address");
+                        String meter_code = rs.getString("Meter_Code");
+                        String f_read = rs.getString("First_Reading");
+                        String cat = rs.getString("Category_Type");
+                        String status = rs.getString("Client_Status");
 
-                    uc.txtClientCode.setText(client_code);
-                    uc.txtClientFirstName.setText(first_name);
-                    uc.txtMidName.setText(mid_name);
-                    uc.txtClientLastName.setText(last_name);
-                    uc.txtClientContactNumber.setText(cont_num);
-                    uc.txtClientAddress.setText(address);
-                    uc.txtMeterCode.setText(meter_code);
-                    uc.txtFirstReading.setText(f_read);
-                    uc.comboCategory.setSelectedItem(cat);
-                    uc.comboClientStatus.setSelectedItem(status);
+                        update_Client uc = new update_Client();
 
-                    uc.setVisible(true);
+                        uc.txtClientCode.setText(client_code);
+                        uc.txtClientFirstName.setText(first_name);
+                        uc.txtMidName.setText(mid_name);
+                        uc.txtClientLastName.setText(last_name);
+                        uc.txtClientContactNumber.setText(cont_num);
+                        uc.txtClientAddress.setText(address);
+                        uc.txtMeterCode.setText(meter_code);
+                        uc.txtFirstReading.setText(f_read);
+                        uc.txtCategory.setText(cat);
+                        uc.comboClientStatus.setSelectedItem(status);
+
+                        uc.setVisible(true);
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2390,13 +2408,19 @@ public class admin_Dashboard extends javax.swing.JFrame {
     
     public void updateSettings() {
         String systemName = txtSystemName.getText();
+        String rateUpdate = txtRateSettings.getText();
         
         if(systemName.isBlank()) {
             JOptionPane.showMessageDialog(this, "Provide a System Name!");
         }
-        else {
-            systemNameLabel.setText(systemName);        
+        else if(rateUpdate.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Provide a Rate per Cubic Meter!");
+        }
+        else {            
             JOptionPane.showMessageDialog(this, "Updated Successfully!");
+            
+            systemNameLabel.setText(systemName); 
+            txtRateSettings.setText(rateUpdate);
         }
         
     }
@@ -2502,6 +2526,65 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }
     }
 
+    public void fetchBillings() {
+        try {
+            int q;
+            
+            String queryBillings = "SELECT * FROM billings";
+            pst = con.prepareStatement(queryBillings);
+            rs = pst.executeQuery();
+            
+            ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+            q = rss.getColumnCount();
+            
+            DefaultTableModel tblBillings = (DefaultTableModel)tableBillings.getModel();
+            tblBillings.setRowCount(0);
+            
+            while(rs.next()) {
+                Vector rows = new Vector();
+                
+                String bill_code = rs.getString("Bill_Code");
+                String read_date = rs.getString("Reading_Date");
+                String client_code = rs.getString("Client_Code");
+                String total_bill = rs.getString("Total_Bill");
+                String due_date = rs.getString("Due_Date");
+                String bill_status = rs.getString("Billing_Status");
+                                
+                for(int i = 1; i <= q; i++) {
+                    rows.add(bill_code);
+                    rows.add(read_date);
+                    rows.add(client_code);
+                    rows.add(total_bill);
+                    rows.add(due_date);
+                    rows.add(bill_status);
+                }
+                tblBillings.addRow(rows);
+            }            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }    
+    
+    public void displayTCountBillsPending() {
+        try {
+            String countBillPend = "SELECT count(*) as totalBillsPending FROM billings WHERE Billing_Status='Pending'";
+            pst = con.prepareStatement(countBillPend);
+            rs = pst.executeQuery();
+            
+            while(rs.next()) {
+                int count = rs.getInt("totalBillsPending");
+                
+                CountPendingBillsLabel.setText(String.valueOf(count));
+                countTBillingsLabel2.setText(String.valueOf(count));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
     
     /**
      * @param args the command line arguments
@@ -2559,7 +2642,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboClientIDList1;
     private javax.swing.JComboBox<String> comboClientIDList3;
     private javax.swing.JTabbedPane contentTabPanel;
-    private javax.swing.JLabel countTBillingsLabel;
+    private javax.swing.JLabel countTBillingsLabel2;
     private javax.swing.JLabel countTCategoriesLabel;
     private javax.swing.JLabel countTCategoriesLabel2;
     private javax.swing.JLabel countTClientsLabel;
@@ -2662,13 +2745,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel sidebarPanel;
     private javax.swing.JLabel systemNameLabel;
     private javax.swing.JPanel tClientsPanel;
+    private javax.swing.JTable tableBillings;
     private javax.swing.JTable tableCategories;
     public javax.swing.JTable tableClients;
     private javax.swing.JTable tableClients2;
-    private javax.swing.JTable tableClients5;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel thirdWord;
-    private javax.swing.JTextField txtRateSettings;
+    public javax.swing.JTextField txtRateSettings;
     private javax.swing.JTextField txtSystemName;
     private javax.swing.JButton updateCatBtn;
     private javax.swing.JButton updateDataClient;

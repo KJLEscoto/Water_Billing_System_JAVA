@@ -25,9 +25,9 @@ public class update_Client extends javax.swing.JFrame {
     public update_Client() {
         initComponents();
         con = DB_Connection.con();
-        loadCategory();
+//        loadCategory();
         clientIDincrement();
-        AutoCompleteDecorator.decorate(comboCategory);
+//        AutoCompleteDecorator.decorate(comboCategory);
         AutoCompleteDecorator.decorate(comboClientStatus);
     }
     
@@ -57,7 +57,6 @@ public class update_Client extends javax.swing.JFrame {
         txtClientContactNumber = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtClientAddress = new javax.swing.JTextField();
-        comboCategory = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtMeterCode = new javax.swing.JTextField();
@@ -66,6 +65,7 @@ public class update_Client extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         comboClientStatus = new javax.swing.JComboBox<>();
         txtMidName = new javax.swing.JTextField();
+        txtCategory = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -147,10 +147,20 @@ public class update_Client extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(9, 33, 43));
         jLabel4.setText("Middle Name (Optional)");
 
+        txtClientFirstName.setEditable(false);
+        txtClientFirstName.setBackground(new java.awt.Color(18, 137, 167));
+        txtClientFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtClientFirstName.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel5.setBackground(new java.awt.Color(9, 33, 43));
         jLabel5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(9, 33, 43));
         jLabel5.setText("Last Name");
+
+        txtClientLastName.setEditable(false);
+        txtClientLastName.setBackground(new java.awt.Color(18, 137, 167));
+        txtClientLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtClientLastName.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setBackground(new java.awt.Color(9, 33, 43));
         jLabel6.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -162,8 +172,10 @@ public class update_Client extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Category");
 
-        comboCategory.setMaximumRowCount(3);
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Commercial" }));
+        txtClientAddress.setEditable(false);
+        txtClientAddress.setBackground(new java.awt.Color(18, 137, 167));
+        txtClientAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtClientAddress.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setBackground(new java.awt.Color(9, 33, 43));
         jLabel8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -175,10 +187,20 @@ public class update_Client extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(9, 33, 43));
         jLabel9.setText("Meter Code");
 
+        txtMeterCode.setEditable(false);
+        txtMeterCode.setBackground(new java.awt.Color(18, 137, 167));
+        txtMeterCode.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMeterCode.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel10.setBackground(new java.awt.Color(9, 33, 43));
         jLabel10.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(9, 33, 43));
         jLabel10.setText("First Reading");
+
+        txtFirstReading.setEditable(false);
+        txtFirstReading.setBackground(new java.awt.Color(18, 137, 167));
+        txtFirstReading.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtFirstReading.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setBackground(new java.awt.Color(9, 33, 43));
         jLabel11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -187,6 +209,16 @@ public class update_Client extends javax.swing.JFrame {
 
         comboClientStatus.setMaximumRowCount(3);
         comboClientStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+
+        txtMidName.setEditable(false);
+        txtMidName.setBackground(new java.awt.Color(18, 137, 167));
+        txtMidName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMidName.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtCategory.setEditable(false);
+        txtCategory.setBackground(new java.awt.Color(18, 137, 167));
+        txtCategory.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCategory.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -203,13 +235,13 @@ public class update_Client extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtClientCode, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(comboCategory, 0, 285, Short.MAX_VALUE)
                     .addComponent(jLabel9)
                     .addComponent(txtMeterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addComponent(txtClientContactNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addComponent(txtMidName, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMidName, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(txtCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
@@ -268,7 +300,7 @@ public class update_Client extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboClientStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -320,21 +352,21 @@ public class update_Client extends javax.swing.JFrame {
     /**
      *
      */
-    public void loadCategory() {
-       
-       try {
-           String queryCategory = "SELECT Category_Type FROM categories";
-           pst = con.prepareStatement(queryCategory);
-           rs = pst.executeQuery();
-           comboCategory.removeAllItems();
-           
-           while(rs.next()) {
-               comboCategory.addItem(rs.getString(1));
-           }
-       } catch (SQLException ex) {
-           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
+//    public void loadCategory() {
+//       
+//       try {
+//           String queryCategory = "SELECT Category_Type FROM categories";
+//           pst = con.prepareStatement(queryCategory);
+//           rs = pst.executeQuery();
+//           comboCategory.removeAllItems();
+//           
+//           while(rs.next()) {
+//               comboCategory.addItem(rs.getString(1));
+//           }
+//       } catch (SQLException ex) {
+//           Logger.getLogger(update_Client.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+//    }
     
     private void clientIDincrement() {
        try {
@@ -355,17 +387,33 @@ public class update_Client extends javax.swing.JFrame {
     
     public void updatingClient() {
         try {
+            createNew_Client nc = new createNew_Client();
+            
             String client_code = txtClientCode.getText();
             String client_fname = txtClientFirstName.getText();
             String client_mname = txtMidName.getText();
             String client_lname = txtClientLastName.getText();
             String contact_no = txtClientContactNumber.getText();
-            String category_type = (String) comboCategory.getSelectedItem();
+            String category_type = (String) nc.comboCategory.getSelectedItem();
             String client_address = txtClientAddress.getText();
             String meter_code = txtMeterCode.getText();
             String first_reading = txtFirstReading.getText();
             String client_status = (String) comboClientStatus.getSelectedItem();   
+            
+            // Validate contact_no field as a number
+            if (!contact_no.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Invalid Contact Number. Please provide a Valid Number.");
+                txtClientContactNumber.setText(null);
+                return;
+            }
 
+            // Validate first_reading field as a number or decimal
+            if (!first_reading.matches("\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(null, "Invalid First Reading. Please provide a Valid Number or Decimal.");
+                txtFirstReading.setText(null);
+                return;
+            }
+            
             pst = con.prepareStatement("UPDATE clientinformation SET Client_Fname=?, Client_Mname=?, Client_Lname=?, Contact_No=?, Category_Type=?, "
                     + "Client_Address=?,  Meter_Code=?, First_Reading=?, Client_Status=? WHERE Client_Code=?");
             pst.setString(1, client_fname);
@@ -436,7 +484,6 @@ public class update_Client extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    public javax.swing.JComboBox<String> comboCategory;
     public javax.swing.JComboBox<String> comboClientStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -452,6 +499,7 @@ public class update_Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    public javax.swing.JTextField txtCategory;
     public javax.swing.JTextField txtClientAddress;
     public javax.swing.JTextField txtClientCode;
     public javax.swing.JTextField txtClientContactNumber;
