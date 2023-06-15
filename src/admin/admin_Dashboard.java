@@ -22,6 +22,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,8 +53,29 @@ public class admin_Dashboard extends javax.swing.JFrame {
         contentTabPanel.setSelectedIndex(0);
         displayTCountClients();
         displayTCountBillsPending();
-        displayTCountCategories();        
+        displayTCountCategories(); 
+        displayTCountUsers();
+        //runClock();
     }
+    
+//    public void runClock()
+//    {  
+//        Thread t = new Thread();{
+//            while(true){
+//                DateFormat date = new SimpleDateFormat("hh:mm:ss a");
+//                String datestring = date.format(new Date()).toString();
+//                timeLabel.setText(datestring);
+//                try{
+//                    Thread.sleep(1);
+//                }
+//                catch(Exception e)
+//                {
+//            }
+//
+//            t.start();
+//            }
+//        }
+//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +142,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        timeLabel = new javax.swing.JLabel();
         ListofClientsContentPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -176,10 +201,10 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
         createNewClientsButton2 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        updateUsers = new javax.swing.JButton();
         deleteClient3 = new javax.swing.JButton();
-        comboClientIDList3 = new javax.swing.JComboBox<>();
-        searchIDBtn3 = new javax.swing.JButton();
+        comboUserIDList = new javax.swing.JComboBox<>();
+        searchUser = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         settingsContentPanel = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -824,15 +849,26 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(10, 79, 95));
         jLabel24.setText("a Healthy World\"");
 
+        jPanel3.setBackground(new java.awt.Color(10, 79, 95));
+
+        timeLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        timeLabel.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 239, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1584,11 +1620,11 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date_Updated", "Name", "Username", "User_Type", "Status"
+                "User_ID", "Date_Updated", "Name", "Username", "User_Type", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1615,15 +1651,15 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(10, 79, 95));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(217, 217, 217));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton7.setText("Update Data");
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        updateUsers.setBackground(new java.awt.Color(10, 79, 95));
+        updateUsers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        updateUsers.setForeground(new java.awt.Color(217, 217, 217));
+        updateUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        updateUsers.setText("Update Data");
+        updateUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                updateUsersActionPerformed(evt);
             }
         });
 
@@ -1639,16 +1675,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
             }
         });
 
-        comboClientIDList3.setBackground(new java.awt.Color(102, 102, 102));
-        comboClientIDList3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        comboClientIDList3.setForeground(new java.awt.Color(255, 255, 255));
-        comboClientIDList3.setMaximumRowCount(4);
-        comboClientIDList3.setAutoscrolls(true);
+        comboUserIDList.setBackground(new java.awt.Color(102, 102, 102));
+        comboUserIDList.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        comboUserIDList.setForeground(new java.awt.Color(255, 255, 255));
+        comboUserIDList.setMaximumRowCount(4);
+        comboUserIDList.setAutoscrolls(true);
 
-        searchIDBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
-        searchIDBtn3.addActionListener(new java.awt.event.ActionListener() {
+        searchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search logo_1.png"))); // NOI18N
+        searchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIDBtn3ActionPerformed(evt);
+                searchUserActionPerformed(evt);
             }
         });
 
@@ -1668,13 +1704,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteClient3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createNewClientsButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(comboClientIDList3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboUserIDList, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchIDBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -1690,12 +1726,12 @@ public class admin_Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchIDBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboClientIDList3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(searchUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboUserIDList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addComponent(createNewClientsButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(deleteClient3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2123,6 +2159,10 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_ListofCategoriesPanelMouseClicked
 
     private void ListofUsersPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofUsersPanelMouseClicked
+        AutoCompleteDecorator.decorate(comboUserIDList);
+        displayTCountUsers();
+        loadUser_ID();
+        FetchUsers();
         contentTabPanel.setSelectedIndex(5); 
         
         dashboardPanel.setBackground(DefaultColor);
@@ -2239,11 +2279,24 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBillingsActionPerformed
 
     private void deleteBillingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBillingsActionPerformed
-        if(comboBillIDList.getSelectedItem() != null) {
-            deleteBill();
+        
+        int row = tableBillings.getSelectedRow();
+        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Select a Bill to Delete.");
         }
-        else {
-            JOptionPane.showMessageDialog(this, "Select a Bill to be Deleted.");
+        else {            
+            if(comboBillIDList.getSelectedItem() != null) {
+                String id = (String) tableBillings.getValueAt(row, 5);
+
+                if(id.equals("Pending")) {
+                    JOptionPane.showMessageDialog(null, "This Client's Status is Pending. It cannot be Deleted!");
+                    return;
+                }
+                else {
+                    deleteBill();
+                }  
+            }   
         }           
     }//GEN-LAST:event_deleteBillingsActionPerformed
 
@@ -2315,7 +2368,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_updateCatBtnActionPerformed
 
     private void deleteClient2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient2ActionPerformed
-        
+        deleteCategory();        
     }//GEN-LAST:event_deleteClient2ActionPerformed
 
     private void searchCatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCatBtnActionPerformed
@@ -2368,17 +2421,67 @@ public class admin_Dashboard extends javax.swing.JFrame {
         new createNew_User().setVisible(true);        
     }//GEN-LAST:event_createNewClientsButton2ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void updateUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUsersActionPerformed
         
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_updateUsersActionPerformed
 
     private void deleteClient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient3ActionPerformed
-        
+        deleteUsers();        
     }//GEN-LAST:event_deleteClient3ActionPerformed
 
-    private void searchIDBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDBtn3ActionPerformed
-        
-    }//GEN-LAST:event_searchIDBtn3ActionPerformed
+    private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
+        try {
+            if(comboUserIDList.getSelectedItem() != null) {
+                String userID = comboUserIDList.getSelectedItem().toString();
+
+                int q;
+                String querySearchUser = "SELECT * FROM users WHERE User_ID=?";
+                pst = con.prepareStatement(querySearchUser);
+                pst.setString(1, userID);
+                rs = pst.executeQuery();
+
+                ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+                q = rss.getColumnCount();
+
+                DefaultTableModel tblUsers = (DefaultTableModel)tableUsers.getModel();
+                tblUsers.setRowCount(0);
+
+                if(rs.next() == true) {
+                    Vector rows = new Vector();
+                
+                    String id = rs.getString(1);
+                    String fname = rs.getString(2);
+                    String mname = rs.getString(3);
+                    String lname = rs.getString(4);
+                    String username = rs.getString(5);
+                    String date = rs.getString(6);
+                    String user_status = rs.getString(7);
+                    String user_type = rs.getString(8);
+
+                    String name = lname + ", " + fname + " " + mname;
+
+                    for(int i = 1; i <= q; i++) {
+                        rows.add(id);
+                        rows.add(date);
+                        rows.add(name);
+                        rows.add(username);
+                        rows.add(user_type);
+                        rows.add(user_status);
+                    }
+                    tblUsers.addRow(rows);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "User not found!");
+                    loadClient_ID();
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "No data available!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_searchUserActionPerformed
 
     private void updateSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSettingsBtnActionPerformed
         updateSettings();        
@@ -2544,7 +2647,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Deleted Successfully!");    
             }
         } catch (SQLException ex) {
-            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "This Client still has a Billing Record. It cannot be Deleted!");
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Out of Range!");
         }
@@ -2566,7 +2669,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
             systemNameLabel.setText(systemName); 
             txtRateSettings.setText(rateUpdate);
         }
-        
     }
     
     public void fetchCategories() {
@@ -2832,7 +2934,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
             int row = tableBillings.getSelectedRow();
 
             if (row == -1) {
-                JOptionPane.showMessageDialog(null, "Select a Bill to Delete.");
+                JOptionPane.showMessageDialog(null, "Select a Billing to Delete.");
                 return;
             }
 
@@ -2854,16 +2956,149 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Deleted Successfully!");    
             }
         } catch (SQLException ex) {
-            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "This Client still has a Billing Record. It cannot be Deleted!");
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Out of Range!");
         }
     }
     
     public void deleteCategory() {
-        
+        try {
+            int row = tableCategories.getSelectedRow();
+
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Select a Category to Delete.");
+                return;
+            }
+
+            String category_type = (String) tableCategories.getValueAt(row, 1);
+            int response = JOptionPane.showConfirmDialog(this, "Delete Category Type - " + category_type + " ?", "Confirm...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                String cat_Type = (String) tableCategories.getValueAt(row, 0);
+
+                String queryDeleteCat = "DELETE FROM categories WHERE Category_ID=?";
+                pst = con.prepareStatement(queryDeleteCat);
+                pst.setString(1, cat_Type);
+                pst.executeUpdate();
+
+                fetchCategories();
+                loadCategory();
+                displayTCountCategories();
+                JOptionPane.showMessageDialog(null, "Deleted Successfully!");    
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Category Type is in Use. It cannot be Deleted!");
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Out of Range!");
+        }
     }
     
+    public void displayTCountUsers() {
+        try {
+            String countUsers = "SELECT count(*) as totalUsers FROM users";
+            pst = con.prepareStatement(countUsers);
+            rs = pst.executeQuery();
+            
+            while(rs.next()) {
+                int count = rs.getInt("totalUsers");
+                
+                countTClientsLabel4.setText(String.valueOf(count));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    public void loadUser_ID() {
+        try {
+           String queryBillID = "SELECT User_ID FROM users ORDER BY User_ID";
+           comboUserIDList.removeAllItems();
+           pst = con.prepareStatement(queryBillID);
+           rs = pst.executeQuery();
+           
+           while(rs.next()) {
+               comboUserIDList.addItem(rs.getString(1));
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    public void FetchUsers() {
+        try {
+            int q;
+            String queryUsers = "SELECT User_ID, User_Fname, User_Mname, User_Lname, Username, User_Type, Date_Updated, User_Status FROM users";
+            
+            pst = con.prepareStatement(queryUsers);
+            rs = pst.executeQuery();
+            ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+            q = rss.getColumnCount();
+            
+            DefaultTableModel tblUsers = (DefaultTableModel)tableUsers.getModel();
+            tblUsers.setRowCount(0);
+            
+            while(rs.next()) {
+                Vector rows = new Vector();
+                
+                String id = rs.getString(1);
+                String fname = rs.getString(2);
+                String mname = rs.getString(3);
+                String lname = rs.getString(4);
+                String username = rs.getString(5);
+                String user_type = rs.getString(6);
+                String date = rs.getString(7);
+                String user_status = rs.getString(8);
+                
+                String name = lname + ", " + fname + " " + mname;
+                                
+                for(int i = 1; i <= q; i++) {
+                    rows.add(id);
+                    rows.add(date);
+                    rows.add(name);
+                    rows.add(username);
+                    rows.add(user_type);
+                    rows.add(user_status);
+                }
+                tblUsers.addRow(rows);
+            }            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No Data Available!");
+        }
+    }
+    
+    public void deleteUsers() {
+        try {
+            int row = tableUsers.getSelectedRow();
+
+            if (row == -1) {
+                JOptionPane.showMessageDialog(null, "Select a User to Delete.");
+                return;
+            }
+
+            String id = (String) tableUsers.getValueAt(row, 0);
+            int response = JOptionPane.showConfirmDialog(this, "Delete User ID - " + id + " ?", "Confirm...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                String user_id = (String) tableUsers.getValueAt(row, 0);
+
+                String queryDeleteUser = "DELETE FROM users WHERE User_ID=?";
+                pst = con.prepareStatement(queryDeleteUser);
+                pst.setString(1, user_id);
+                pst.executeUpdate();
+
+                FetchUsers();
+                loadUser_ID();
+                displayTCountUsers();
+                JOptionPane.showMessageDialog(null, "Deleted Successfully!");    
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Out of Range!");
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -2919,7 +3154,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBillIDList;
     private javax.swing.JComboBox<String> comboCategoryList;
     private javax.swing.JComboBox<String> comboClientIDList;
-    private javax.swing.JComboBox<String> comboClientIDList3;
+    private javax.swing.JComboBox<String> comboUserIDList;
     private javax.swing.JTabbedPane contentTabPanel;
     private javax.swing.JLabel countTBillingsPaid;
     private javax.swing.JLabel countTBillingsPending;
@@ -2944,7 +3179,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3018,7 +3252,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton searchBillBtn;
     private javax.swing.JButton searchCatBtn;
     private javax.swing.JButton searchCodeBtn;
-    private javax.swing.JButton searchIDBtn3;
+    private javax.swing.JButton searchUser;
     private javax.swing.JLabel secondWord;
     private javax.swing.JPanel settingsContentPanel;
     private javax.swing.JLabel settingsLabel;
@@ -3032,11 +3266,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableClients2;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel thirdWord;
+    private javax.swing.JLabel timeLabel;
     public javax.swing.JTextField txtRateSettings;
     private javax.swing.JTextField txtSystemName;
     private javax.swing.JButton updateBillings;
     private javax.swing.JButton updateCatBtn;
     private javax.swing.JButton updateDataClient;
     private javax.swing.JButton updateSettingsBtn;
+    private javax.swing.JButton updateUsers;
     // End of variables declaration//GEN-END:variables
 }

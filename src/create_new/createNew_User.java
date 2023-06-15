@@ -4,12 +4,14 @@
  */
 package create_new;
 
+import admin.admin_Dashboard;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import water.DB_Connection;
 
 /**
@@ -28,6 +30,7 @@ public class createNew_User extends javax.swing.JFrame {
     public createNew_User() {
         initComponents();
         con = DB_Connection.con();
+        userIDincrement();
     }
 
     /**
@@ -57,6 +60,10 @@ public class createNew_User extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
+        txtUserID = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        comboUserStatus = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -77,6 +84,7 @@ public class createNew_User extends javax.swing.JFrame {
         cancelButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelButton.setText("Cancel");
         cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelButton.setFocusable(false);
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -88,6 +96,7 @@ public class createNew_User extends javax.swing.JFrame {
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.setFocusable(false);
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -129,11 +138,6 @@ public class createNew_User extends javax.swing.JFrame {
         jLabel4.setText("Type");
 
         comboTypeUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Employee" }));
-        comboTypeUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTypeUserActionPerformed(evt);
-            }
-        });
 
         jLabel3.setBackground(new java.awt.Color(9, 33, 43));
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -154,6 +158,25 @@ public class createNew_User extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(9, 33, 43));
         jLabel7.setText("Password");
+
+        txtUserID.setEditable(false);
+        txtUserID.setBackground(new java.awt.Color(18, 137, 167));
+        txtUserID.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtUserID.setForeground(new java.awt.Color(255, 255, 255));
+        txtUserID.setText("20233001");
+        txtUserID.setFocusable(false);
+
+        jLabel8.setBackground(new java.awt.Color(9, 33, 43));
+        jLabel8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(9, 33, 43));
+        jLabel8.setText("User ID");
+
+        comboUserStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive", " " }));
+
+        jLabel9.setBackground(new java.awt.Color(9, 33, 43));
+        jLabel9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(9, 33, 43));
+        jLabel9.setText("Type");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,7 +201,11 @@ public class createNew_User extends javax.swing.JFrame {
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(comboUserStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -187,11 +214,15 @@ public class createNew_User extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMidName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +242,11 @@ public class createNew_User extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboTypeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboUserStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -227,12 +262,12 @@ public class createNew_User extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 846, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,33 +293,109 @@ public class createNew_User extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-
+        saveUser();
         
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void comboTypeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTypeUserActionPerformed
+    public void saveUser() {
+       try {
+           String userID = txtUserID.getText();
+           String userFName = txtFirstName.getText();
+           String userMName = txtMidName.getText();
+           String userLName = txtLastName.getText();
+           String userName = txtUsername.getText();
+           String password = txtPassword.getText();
+           String userType = (String) comboTypeUser.getSelectedItem();   
+           String userStatus = (String) comboUserStatus.getSelectedItem(); 
 
-    public void saveNewUser() {
+           // Check if any field is empty
+           if (userFName.isEmpty() || userLName.isEmpty() || userName.isEmpty()) {
+               JOptionPane.showMessageDialog(null, "Please provide Data for all Fields.");
+               return;
+           }
+
+           // Check for duplicate fname, mname, lname
+           String duplicateNameQuery = "SELECT * FROM users WHERE User_Fname = ? AND User_Mname = ? AND User_Lname = ?";
+           pst = con.prepareStatement(duplicateNameQuery);
+           pst.setString(1, userFName);
+           pst.setString(2, userMName);
+           pst.setString(3, userLName);
+           ResultSet nameResultSet = pst.executeQuery();
+
+           if (nameResultSet.next()) {
+               JOptionPane.showMessageDialog(null, "User Already Exists. Check the First, Middle, and Last name.");
+               return;
+           }
+
+           // Check for duplicate username
+           String duplicateUsernameQuery = "SELECT * FROM users WHERE Username = ?";
+           pst = con.prepareStatement(duplicateUsernameQuery);
+           pst.setString(1, userName);
+           ResultSet usernameResultSet = pst.executeQuery();
+
+           if (usernameResultSet.next()) {
+               JOptionPane.showMessageDialog(null, "Username is Unavailable. Try Another One!");
+               txtUsername.setText(null);
+               return;
+           }
+
+           String queryNewUser = "INSERT INTO users (User_ID, User_Fname, User_Mname, User_Lname, Username, User_Password, User_Type, User_Status) VALUES (?,?,?,?,?,?,?,?)";
+           pst = con.prepareStatement(queryNewUser);
+           pst.setString(1, userID);
+           pst.setString(2, userFName);
+           pst.setString(3, userMName);
+           pst.setString(4, userLName);
+           pst.setString(5, userName);
+           pst.setString(6, password);
+           pst.setString(7, userType);
+           pst.setString(8, userStatus);
+
+           int rowsAffected = pst.executeUpdate();
+
+           if (rowsAffected == 1) {
+               admin_Dashboard a = new admin_Dashboard();
+               a.FetchClient();
+               a.loadClient_ID();
+               a.displayTCountClients();
+
+               JOptionPane.showMessageDialog(null, "User Added Successfully!");
+
+               txtUserID.setText(null);
+               txtFirstName.setText(null);
+               txtMidName.setText(null);
+               txtLastName.setText(null);
+               txtUsername.setText(null);
+               txtPassword.setText(null);
+               comboTypeUser.setSelectedItem("Admin");
+               comboUserStatus.setSelectedItem("Active");
+               userIDincrement();
+           } else {
+               JOptionPane.showMessageDialog(null, "Failed to Add!");
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_User.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   }
+
+
+    
+    public void userIDincrement() {
         try {
-            String userFName = txtFirstName.getText();
-            String userMName = txtMidName.getText();
-            String userLName = txtLastName.getText();
-            String userName = txtUsername.getText();
-            String password = txtPassword.getText();
-            String userType = (String) comboTypeUser.getSelectedItem();
-            
-            String userFullName = userLName + ", " + userFName + " " + userMName;
-            
-            String queryNewUser = "INSERT INTO users VALUES (?,?,?,?,?)";
-            
-            pst = con.prepareStatement(queryNewUser);
-        } catch (SQLException ex) {
-            Logger.getLogger(createNew_User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+           String queryClientID = "SELECT User_ID FROM users ORDER BY User_ID DESC LIMIT 1";
+           pst = con.prepareStatement(queryClientID);
+           rs = pst.executeQuery();
+           
+           if(rs.next()) {
+               int id = rs.getInt(1);
+               int n = id + 1;
+               txtUserID.setText(Integer.toString(n));
+           }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(createNew_Client.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
+    
     
     
     /**
@@ -325,6 +436,7 @@ public class createNew_User extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> comboTypeUser;
+    private javax.swing.JComboBox<String> comboUserStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -332,6 +444,8 @@ public class createNew_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -340,6 +454,7 @@ public class createNew_User extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtMidName;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

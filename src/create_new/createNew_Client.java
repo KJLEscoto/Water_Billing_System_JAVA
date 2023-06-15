@@ -412,10 +412,8 @@ public class createNew_Client extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Provide Data Input for all Fields!");
         }
     }
-
     
-    public void loadCategory() {
-       
+    public void loadCategory() {       
        try {
            String queryCategory = "SELECT Category_ID, Category_Type FROM categories WHERE Status='Active'";
            pst = con.prepareStatement(queryCategory);
