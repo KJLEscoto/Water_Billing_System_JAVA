@@ -31,6 +31,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import update.update_User;
 import water.DB_Connection;
 import water.index;
 /**
@@ -55,27 +56,29 @@ public class admin_Dashboard extends javax.swing.JFrame {
         displayTCountBillsPending();
         displayTCountCategories(); 
         displayTCountUsers();
-        //runClock();
+        
+        Thread t = new Thread() {
+        public void run()
+        {  
+
+            while(true){
+                DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
+                String datestring = dateFormat.format(new Date());
+                timeLabel.setText(datestring);
+                try{
+                    Thread.sleep(1000);
+                }
+                catch(InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+        t.start();
+        
     }
     
-//    public void runClock()
-//    {  
-//        Thread t = new Thread();{
-//            while(true){
-//                DateFormat date = new SimpleDateFormat("hh:mm:ss a");
-//                String datestring = date.format(new Date()).toString();
-//                timeLabel.setText(datestring);
-//                try{
-//                    Thread.sleep(1);
-//                }
-//                catch(Exception e)
-//                {
-//            }
-//
-//            t.start();
-//            }
-//        }
-//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,11 +178,9 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableClients2 = new javax.swing.JTable();
+        tableReports = new javax.swing.JTable();
         ListofCategoriesContentPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -851,7 +852,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(10, 79, 95));
 
-        timeLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        timeLabel.setFont(new java.awt.Font("Segoe UI", 1, 80)); // NOI18N
         timeLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -859,16 +860,16 @@ public class admin_Dashboard extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1297,26 +1298,13 @@ public class admin_Dashboard extends javax.swing.JFrame {
         reportsContentPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel8.setBackground(new java.awt.Color(217, 217, 217));
+        jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel9.setBackground(new java.awt.Color(18, 137, 167));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("REPORTS");
-
-        jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton12.setBackground(new java.awt.Color(10, 79, 95));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("FILTER");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
 
         jButton13.setBackground(new java.awt.Color(10, 79, 95));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1331,10 +1319,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton12)
-                .addGap(18, 18, 18)
                 .addComponent(jButton13)
                 .addGap(28, 28, 28))
         );
@@ -1343,35 +1327,34 @@ public class admin_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        tableClients2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tableClients2.setModel(new javax.swing.table.DefaultTableModel(
+        tableReports.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Code", "Reading_Date", "Due_Date", "Readings", "Consumption", "Rate", "Amount", "Status"
+                "Code", "Reading_Date", "Due_Date", "Readings", "Consumption", "Rate", "Amount", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableClients2.setColumnSelectionAllowed(true);
-        tableClients2.setEnabled(false);
-        tableClients2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tableClients2);
-        tableClients2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableReports.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tableReports.setColumnSelectionAllowed(true);
+        tableReports.setEnabled(false);
+        tableReports.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tableReports);
+        tableReports.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -2112,6 +2095,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
 
     private void reportsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsPanelMouseClicked
         contentTabPanel.setSelectedIndex(3); 
+        fetchReports();
         
         dashboardPanel.setBackground(DefaultColor);
         ListofClientsPanel.setBackground(DefaultColor);
@@ -2129,10 +2113,6 @@ public class admin_Dashboard extends javax.swing.JFrame {
         ListofUsersLabel.setForeground(ActiveColor);
         settingsLabel.setForeground(ActiveColor);
     }//GEN-LAST:event_reportsPanelMouseClicked
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        
-    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void ListofCategoriesPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListofCategoriesPanelMouseClicked
         AutoCompleteDecorator.decorate(comboCategoryList);
@@ -2422,7 +2402,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_createNewClientsButton2ActionPerformed
 
     private void updateUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUsersActionPerformed
-        
+        toUpdateUser_dashboard();        
     }//GEN-LAST:event_updateUsersActionPerformed
 
     private void deleteClient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClient3ActionPerformed
@@ -3100,6 +3080,112 @@ public class admin_Dashboard extends javax.swing.JFrame {
         }
     }
     
+    public void fetchReports() {
+        try {
+            int q;
+            String queryReport = "SELECT ci.Client_Code, ci.Client_Fname, ci.Client_Mname, ci.Client_Lname, b.Reading_Date, b.Due_Date, "
+                                + "ci.First_Reading, b.Current_Reading, b.Rate, b.Total_Bill, b.Billing_Status "
+                                + "FROM billings AS b "
+                                + "INNER JOIN clientinformation AS ci ON b.Client_Code = ci.Client_Code "
+                                + "WHERE b.Billing_Status = 'Paid'";
+
+            pst = con.prepareStatement(queryReport);
+            rs = pst.executeQuery();
+            ResultSetMetaData rss = (ResultSetMetaData) rs.getMetaData();
+            q = rss.getColumnCount();
+            
+            DefaultTableModel tblReports = (DefaultTableModel)tableReports.getModel();
+            tblReports.setRowCount(0);
+            
+            double prev = 0;
+            double curr = 0;
+            double cons = 0;
+            
+            if(rs.next()) {                
+                Vector rows = new Vector();
+                
+                String code = rs.getString(1);
+                String fname = rs.getString(2);
+                String mname = rs.getString(3);
+                String lname = rs.getString(4);
+                String read_date = rs.getString(5);
+                String due_date = rs.getString(6);
+                String first_read = rs.getString(7);
+                String curr_read = rs.getString(8);
+                String rate = rs.getString(9);
+                String amount = rs.getString(10);
+                String bill_status = rs.getString(11);
+                
+                String full_name = lname + ", " + fname + " " + mname;
+                String code_fname = code + " - " + full_name;
+                String readings = "Prev - " + first_read + " | Curr - " + curr_read;
+                
+                prev = Double.parseDouble(first_read);
+                curr = Double.parseDouble(curr_read);
+                cons = curr - prev;
+                
+                for(int i = 1; i <= q; i++) {
+                    rows.add(code_fname);
+                    rows.add(read_date);
+                    rows.add(due_date);
+                    rows.add(readings);
+                    rows.add(cons);
+                    rows.add(rate);
+                    rows.add(amount);
+                    rows.add(bill_status);
+                }
+                tblReports.addRow(rows);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "There is no Data to be Presented.");
+        }
+    }
+    
+    public void toUpdateUser_dashboard() {
+        int selectedRow = tableUsers.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Select a User to Update.");
+        } else {
+            try {
+                String userID = (String) tableUsers.getValueAt(selectedRow, 0);
+
+                String queryCategory = "SELECT * FROM users WHERE User_ID=?";
+                pst = con.prepareStatement(queryCategory);
+                pst.setString(1, userID);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    String id = rs.getString("User_ID");
+                    String fname = rs.getString("User_Fname");
+                    String mname = rs.getString("User_Mname");
+                    String username = rs.getString("Username");
+                    String user_type = rs.getString("User_Type");
+                    String password = rs.getString("User_Password");
+                    String lname = rs.getString("User_Lname");
+                    String status = rs.getString("User_Status");
+
+                    update_User uu = new update_User();
+
+                    uu.txtUserID.setText(id);
+                    uu.txtFirstName.setText(fname);
+                    uu.txtMidName.setText(mname);
+                    uu.txtLastName.setText(lname);
+                    uu.txtUsername.setText(username);
+                    uu.txtPassword.setText(password);
+                    uu.comboTypeUser.setSelectedItem(user_type);
+                    uu.comboUserStatus.setSelectedItem(status);
+                    
+                    uu.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to Update!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(admin_Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -3177,9 +3263,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel firstWord;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3263,7 +3347,7 @@ public class admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableBillings;
     private javax.swing.JTable tableCategories;
     public javax.swing.JTable tableClients;
-    private javax.swing.JTable tableClients2;
+    private javax.swing.JTable tableReports;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel thirdWord;
     private javax.swing.JLabel timeLabel;

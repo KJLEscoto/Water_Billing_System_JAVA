@@ -351,7 +351,6 @@ public class update_Client extends javax.swing.JFrame {
     
     public void updatingClient() {
         try {
-            createNew_Client nc = new createNew_Client();
             
             String client_code = txtClientCode.getText();
             String contact_no = txtClientContactNumber.getText();

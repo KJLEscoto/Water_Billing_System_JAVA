@@ -260,39 +260,7 @@ public class employee_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        String user = usernameTextField.getText();
-        String pass = passwordPassField.getText();
-        
-        try{
-            pst = con.prepareStatement("SELECT * FROM users WHERE User_Type='employee'");
-            rs = pst.executeQuery();
-            
-            while(rs.next()){
-                String username = rs.getString("Username");
-                String password = rs.getString("User_Password");
-                
-                if((user.equals(username)) && (pass.equals(password))){
-                    JOptionPane.showMessageDialog(this,"Login Successful!");
-                    new admin_Dashboard().setVisible(true);
-                    this.setVisible(false);
-                }
-                else if(user.equals("") && pass.equals("")){
-                    JOptionPane.showMessageDialog(this, "Please enter Username and Password!");
-                }
-                else if((!user.equals("")) && pass.equals("")){
-                    JOptionPane.showMessageDialog(this, "Please enter Password!");
-                }
-                else if(user.equals("") && (!pass.equals(""))){
-                    JOptionPane.showMessageDialog(this, "Please enter Username!");
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Invalid Login Credentials!");
-                }
-            }
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Invalid Login Credentials!");
-        }
+        checkDupEmp();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -332,6 +300,35 @@ public class employee_login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
+    public void checkDupEmp() {
+        String user = usernameTextField.getText();
+        String pass = passwordPassField.getText();
+
+        try {
+            String queryAdmin = "SELECT Username, User_Password FROM users WHERE User_Type='Employee' AND Username = ? AND User_Password = ?";
+            pst = con.prepareStatement(queryAdmin);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Login Successful!");
+                new employee_Dashboard().setVisible(true);
+                this.dispose();
+            } else if (user.equals("") && pass.equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter Username and Password!");
+            } else if ((!user.equals("")) && pass.equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter Password!");
+            } else if (user.equals("") && (!pass.equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter Username!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Login Credentials!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Invalid Login Credentials!");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
